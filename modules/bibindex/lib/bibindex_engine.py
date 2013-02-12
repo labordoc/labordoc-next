@@ -271,7 +271,7 @@ def get_words_from_date_tag(datestring, stemming_language=None):
             out.append("-".join(parts[:nb]))
     return out
 
-def get_words_from_fulltext(url_direct_or_indirect, stemming_language=None):
+def get_words_from_fulltext(url_direct_or_indirect, stemming_language=None, recid=None):
     """Returns all the words contained in the document specified by
        URL_DIRECT_OR_INDIRECT with the words being split by various
        SRE_SEPARATORS regexp set earlier.  If FORCE_FILE_EXTENSION is
@@ -286,93 +286,115 @@ def get_words_from_fulltext(url_direct_or_indirect, stemming_language=None):
     """
     write_message("... reading fulltext files from %s started" % url_direct_or_indirect, verbose=2)
     try:
-        if bibdocfile_url_p(url_direct_or_indirect):
-            write_message("... %s is an internal document" % url_direct_or_indirect, verbose=2)
-            bibdoc = bibdocfile_url_to_bibdoc(url_direct_or_indirect)
-            indexer = get_idx_indexer('fulltext')
-            if indexer != 'native':
-                # A document might belong to multiple records
-                for rec_link in bibdoc.bibrec_links:
-                    recid = rec_link["recid"]
-                    # Adds fulltexts of all files once per records
-                    if not recid in fulltext_added:
-                        bibrecdocs = BibRecDocs(recid)
-                        text = bibrecdocs.get_text()
-                        if indexer == 'SOLR' and CFG_SOLR_URL:
-                            solr_add_fulltext(recid, text)
-                        elif indexer == 'XAPIAN' and CFG_XAPIAN_ENABLED:
-                            xapian_add(recid, 'fulltext', text)
+        indexer = get_idx_indexer('fulltext')
+        # External indexing
+        if indexer != 'native':
+            # Adds fulltexts of all files once per records
+            if not recid in fulltext_added:
+                text = get_entire_fulltext(recid)
+                if indexer == 'SOLR' and CFG_SOLR_URL:
+                    solr_add_fulltext(recid, text)
+                    write_message("... indexing recid %s in Solr" % recid, verbose=2)
+                elif indexer == 'XAPIAN' and CFG_XAPIAN_ENABLED:
+                    xapian_add(recid, 'fulltext', text)
+                    write_message("... indexing recid %s in Xapian" % recid, verbose=2)
+                fulltext_added.add(recid)
+            # we are relying on an external information retrieval system
+            # to provide full-text indexing, so dispatch text to it and
+            # return nothing here:
+            return []
 
-                    fulltext_added.add(recid)
-                # we are relying on an external information retrieval system
-                # to provide full-text indexing, so dispatch text to it and
-                # return nothing here:
-                return []
-            else:
+        # Internal indexing
+        else:
+            # BibRecDoc exists
+            if bibdocfile_url_p(url_direct_or_indirect):
+                write_message("... %s is an internal document" % url_direct_or_indirect, verbose=2)
+                bibdoc = bibdocfile_url_to_bibdoc(url_direct_or_indirect)
                 text = ""
                 if hasattr(bibdoc, "get_text"):
                     text = bibdoc.get_text()
                 return get_words_from_phrase(text, stemming_language)
-        else:
-            if CFG_BIBINDEX_FULLTEXT_INDEX_LOCAL_FILES_ONLY:
-                write_message("... %s is external URL but indexing only local files" % url_direct_or_indirect, verbose=2)
-                return []
-            write_message("... %s is an external URL" % url_direct_or_indirect, verbose=2)
-            urls_to_index = set()
-            for splash_re, url_re in CFG_BIBINDEX_SPLASH_PAGES.iteritems():
-                if re.match(splash_re, url_direct_or_indirect):
-                    write_message("... %s is a splash page (%s)" % (url_direct_or_indirect, splash_re), verbose=2)
-                    html = urllib2.urlopen(url_direct_or_indirect).read()
-                    urls = get_links_in_html_page(html)
-                    write_message("... found these URLs in %s splash page: %s" % (url_direct_or_indirect, ", ".join(urls)), verbose=3)
-                    for url in urls:
-                        if re.match(url_re, url):
-                            write_message("... will index %s (matched by %s)" % (url, url_re), verbose=2)
-                            urls_to_index.add(url)
-            if not urls_to_index:
-                urls_to_index.add(url_direct_or_indirect)
-            write_message("... will extract words from %s" % ', '.join(urls_to_index), verbose=2)
-            words = {}
-            for url in urls_to_index:
-                tmpdoc = download_url(url)
-                file_converter_logger = get_file_converter_logger()
-                old_logging_level = file_converter_logger.getEffectiveLevel()
-                if task_get_task_param("verbose") > 3:
-                    file_converter_logger.setLevel(logging.DEBUG)
-                try:
-                    try:
-                        tmptext = convert_file(tmpdoc, output_format='.txt')
-                        text = open(tmptext).read()
-                        os.remove(tmptext)
-
-                        indexer = get_idx_indexer('fulltext')
-                        if indexer != 'native':
-                            if indexer == 'SOLR' and CFG_SOLR_URL:
-                                solr_add_fulltext(None, text) # FIXME: use real record ID
-                            if indexer == 'XAPIAN' and CFG_XAPIAN_ENABLED:
-                                #xapian_add(None, 'fulltext', text) # FIXME: use real record ID
-                                pass
-                            # we are relying on an external information retrieval system
-                            # to provide full-text indexing, so dispatch text to it and
-                            # return nothing here:
-                            tmpwords = []
-                        else:
-                            tmpwords = get_words_from_phrase(text, stemming_language)
-                        words.update(dict(map(lambda x: (x, 1), tmpwords)))
-                    except Exception, e:
-                        message = 'ERROR: it\'s impossible to correctly extract words from %s referenced by %s: %s' % (url, url_direct_or_indirect, e)
-                        register_exception(prefix=message, alert_admin=True)
-                        write_message(message, stream=sys.stderr)
-                finally:
-                    os.remove(tmpdoc)
-                    if task_get_task_param("verbose") > 3:
-                        file_converter_logger.setLevel(old_logging_level)
-            return words.keys()
+            # External file
+            else:
+                if CFG_BIBINDEX_FULLTEXT_INDEX_LOCAL_FILES_ONLY:
+                    write_message("... %s is external URL but indexing only local files" % url_direct_or_indirect, verbose=2)
+                    return []
+                write_message("... %s is an external URL" % url_direct_or_indirect, verbose=2)
+                urls_to_index = get_urls_to_index()
+                write_message("... will extract words from %s" % ', '.join(urls_to_index), verbose=2)
+                words = {}
+                for url in urls_to_index:
+                    text = get_extracted_text_of_url(url, url_direct_or_indirect)
+                    tmpwords = get_words_from_phrase(text, stemming_language)
+                words.update(dict(map(lambda x: (x, 1), tmpwords)))
+                return words.keys()
     except Exception, e:
         message = 'ERROR: it\'s impossible to correctly extract words from %s: %s' % (url_direct_or_indirect, e)
         register_exception(prefix=message, alert_admin=True)
         write_message(message, stream=sys.stderr)
         return []
+
+
+def get_entire_fulltext(recid):
+    # First step: get all fulltexts through BibRecDocs
+    bibrecdocs = BibRecDocs(recid)
+    fulltext_parts = [bibrecdocs.get_text()]
+
+    # Second step: get all external fulltexts
+    if not CFG_BIBINDEX_FULLTEXT_INDEX_LOCAL_FILES_ONLY:
+        urls = get_fieldvalues(recid, '8564_u')
+        for url_direct_or_indirect in urls:
+            # URL must not belong to a BibDocFile
+            if not bibdocfile_url_p(url_direct_or_indirect):
+                write_message("... %s is an external URL" % url_direct_or_indirect, verbose=2)
+                urls_to_index = get_urls_to_index(url_direct_or_indirect)
+                write_message("... will extract words from %s" % ', '.join(urls_to_index), verbose=2)
+                for url in urls_to_index:
+                    fulltext_parts.append(get_extracted_text_of_url(url, url_direct_or_indirect))
+
+    return ''.join(fulltext_parts)
+
+
+def get_urls_to_index(url_direct_or_indirect):
+    urls_to_index = set()
+    for splash_re, url_re in CFG_BIBINDEX_SPLASH_PAGES.iteritems():
+        if re.match(splash_re, url_direct_or_indirect):
+            write_message("... %s is a splash page (%s)" % (url_direct_or_indirect, splash_re), verbose=2)
+            html = urllib2.urlopen(url_direct_or_indirect).read()
+            urls = get_links_in_html_page(html)
+            write_message("... found these URLs in %s splash page: %s" % (url_direct_or_indirect, ", ".join(urls)), verbose=3)
+            for url in urls:
+                if re.match(url_re, url):
+                    write_message("... will index %s (matched by %s)" % (url, url_re), verbose=2)
+                    urls_to_index.add(url)
+    if not urls_to_index:
+        urls_to_index.add(url_direct_or_indirect)
+    return urls_to_index
+
+
+def get_extracted_text_of_url(url, url_direct_or_indirect):
+    text = ''
+
+    tmpdoc = download_url(url)
+    file_converter_logger = get_file_converter_logger()
+    old_logging_level = file_converter_logger.getEffectiveLevel()
+    if task_get_task_param("verbose") > 3:
+        file_converter_logger.setLevel(logging.DEBUG)
+    try:
+        try:
+            tmptext = convert_file(tmpdoc, output_format='.txt')
+            text = open(tmptext).read()
+            os.remove(tmptext)
+        except Exception, e:
+            message = 'ERROR: it\'s impossible to correctly extract words from %s referenced by %s: %s' % (url, url_direct_or_indirect, e)
+            register_exception(prefix=message, alert_admin=True)
+            write_message(message, stream=sys.stderr)
+    finally:
+        os.remove(tmpdoc)
+        if task_get_task_param("verbose") > 3:
+            file_converter_logger.setLevel(old_logging_level)
+
+    return text
 
 
 def get_nothing_from_phrase(phrase, stemming_language=None):
@@ -1052,7 +1074,11 @@ class WordTable:
                     recID, phrase = row
                     if not wlist.has_key(recID):
                         wlist[recID] = []
-                    new_words = get_words_function(phrase, stemming_language=self.stemming_language) # ,self.separators
+                    # recid needs to be passed for external fulltext
+                    if get_words_function == get_words_from_fulltext:
+                        new_words = get_words_function(phrase, stemming_language=self.stemming_language, recid=recID)
+                    else:
+                        new_words = get_words_function(phrase, stemming_language=self.stemming_language) # ,self.separators
                     wlist[recID] = list_union(new_words, wlist[recID])
 
         # lookup index-time synonyms:
