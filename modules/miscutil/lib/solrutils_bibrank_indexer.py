@@ -27,10 +27,15 @@ from invenio.config import CFG_SOLR_URL
 from invenio.bibtask import write_message, task_get_option, task_update_progress, \
                             task_sleep_now_if_required
 from invenio.dbquery import run_sql
-from invenio.search_engine import record_exists
 from invenio.bibdocfile import BibRecDocs
+from invenio.search_engine import get_fieldvalues, record_exists
+from invenio.bibrank_bridge_config import CFG_MARC_ABSTRACT, \
+                                          CFG_MARC_AUTHOR_NAME, \
+                                          CFG_MARC_ADDITIONAL_AUTHOR_NAME, \
+                                          CFG_MARC_TITLE, \
+                                          CFG_MARC_KEYWORD
 from invenio.solrutils_bibindex_indexer import replace_invalid_solr_characters
-from invenio.bibindex_engine import create_range_list
+from invenio.bibindex_engine import create_range_list, get_entire_fulltext
 from invenio.errorlib import register_exception
 from invenio.bibrank_bridge_utils import get_tags, get_field_content_in_utf8
 
@@ -110,6 +115,17 @@ def solr_add_range(lower_recid, upper_recid, tags_to_index, next_commit_counter)
             try:
                 bibrecdocs  = BibRecDocs(recid)
                 fulltext    = unicode(bibrecdocs.get_text(), 'utf-8')
+                abstract = unicode(get_fieldvalues(recid, CFG_MARC_ABSTRACT)[0], 'utf-8')
+            except:
+                abstract = ""
+            try:
+                first_author = get_fieldvalues(recid, CFG_MARC_AUTHOR_NAME)[0]
+                additional_authors = reduce(lambda x, y: x + " " + y, get_fieldvalues(recid, CFG_MARC_ADDITIONAL_AUTHOR_NAME), '')
+                author = unicode(first_author + " " + additional_authors, 'utf-8')
+            except:
+                author = ""
+            try:
+                fulltext = unicode(get_entire_fulltext(recid), 'utf-8')
             except:
                 fulltext    = ''
 
