@@ -1,0 +1,133 @@
+<name>HTML detailed - ILO test 1</name>
+<description></description>
+<script language="JavaScript" src="http://www.ilo.org/webcommon/s-includes/popups.js" type="text/javascript"></script>
+
+<table class="formatRecordTableFullWidth">
+
+
+<BFE_ILO_TITLE prefix='<tr><td class="detailsTitle" colspan="2">'
+suffix="</td>" />
+
+<BFE_ILO_ITEMSYMBOL_DETAILED prefix='<td class="detailsCover" rowspan="7">' />
+
+<BFE_ILO_request_button prefix='<br /><br /><span class="RequestButton">'
+suffix="</span></td></tr>" />
+
+<BFE_ILO_CONVENTIONS_DOCTYPE prefix='<tr><td class="formatRecordLabel">'
+ suffix="</td></tr>"/>
+
+<BFE_ILO_CONVENTIONS  prefix='<tr><td class="formatRecordLabel">
+Document type
+</td><td class="detailsConventions">'
+ suffix="</td></tr>"/>
+
+<BFE_ILO_AUTHORS prefix='<tr><td class="formatRecordLabel">
+Author(s)</td><td class="detailsAuthors">' 
+suffix="</td></tr>" limit="25" interactive="yes" print_affiliations="yes" affiliation_prefix="<small> (" affiliation_suffix=")</small>"/>
+
+<BFE_ILO_DATE prefix='<tr><td class="formatRecordLabel">
+Year
+</td><td class="detailsYear">'
+ suffix="</td></tr>"/>
+
+<BFE_ILO_PUBLISHER_PLACE prefix='<tr><td class="formatRecordLabel">
+Published
+</td><td class="detailsPublisher">' 
+suffix="</td></tr>"/>
+
+<BFE_ILO_SERIES prefix='<tr><td class="formatRecordLabel">
+Series
+</td><td class="detailsIn">'
+ suffix="</td></tr>"/>
+
+<BFE_ILO_IMPRINT prefix='<tr><td class="formatRecordLabel">
+In
+</td><td class="detailsIn">'
+ suffix="</td></tr>"/>
+
+<BFE_ILO_MEETING prefix='<tr><td class="formatRecordLabel">
+Meeting
+</td><td class="detailsMeeting">' 
+suffix="</td></tr>"/>
+
+<BFE_ADDITIONAL_REPORT_NUMBERS
+prefix='<tr><td class="formatRecordLabel">
+Report no
+</td><td class="detailsYear">' 
+suffix="</td></tr>"
+separator=" " link="no"/>
+
+<BFE_ILO_CONVENTIONS_REPORT prefix='<tr><td class="formatRecordLabel">
+Report
+</td><td class="detailsConventions">'
+ suffix="</td></tr>"/>
+
+<BFE_ILO_PAGES prefix='<tr><td class="formatRecordLabel">
+Pages
+</td><td class="detailsPages">' 
+suffix="</td></tr>"/>
+
+<BFE_ILO_LINKS prefix='<tr><td class="formatRecordLabel">
+Links
+</td><td class="detailsLinks">' suffix="</b></td></tr>" 
+separator='<br />' default='' show_icons='yes'/>
+
+<BFE_ILO_CONVENTIONS_LINK prefix='<tr><td class="formatRecordLabel">
+</td><td class="detailsConventions"><br /><b>'
+ suffix="</b></td></tr>"/>
+
+<BFE_ILO_SFX_LINK prefix='<tr><td class="formatRecordLabel">
+</td><td class="detailsConventions"><br /><b>'
+ suffix="</b></td></tr>"/>
+
+
+<tr><td class="formatRecordLabel"></td><td class="detailsEmptyRow"></td></tr>
+
+<BFE_ILO_ABSTRACT prefix='<tr><td class="formatRecordLabel">
+Abstract
+</td><td class="detailsAbstract">' 
+suffix="</td></tr>"/>
+
+<tr><td class="formatRecordLabel"></td><td class="detailsEmptyRow"></td></tr>
+
+<BFE_ILO_CONTENTS prefix='<tr><td class="formatRecordLabel">
+Contents
+</td><td class="detailsContents">' 
+suffix="</td></tr>"/>
+
+<BFE_ILO_ISBN prefix='<tr><td class="formatRecordLabel">
+ISBN
+</td><td class="detailsISBN">' suffix="</b></td></tr>" 
+separator='<br />' default=''/>
+
+<BFE_ISSN prefix='<tr><td class="formatRecordLabel">
+ISSN
+</td><td class="detailsISSN">' suffix="</b></td></tr>"  default=''/>
+
+<BFE_ILO_OTHER_VERSIONS prefix='<tr><td class="formatRecordLabel">
+Other versions
+</td><td class="detailsLang"><ul class="OtherVersionsList"><li class="OtherVersionsList">' suffix="</li></ul></td></tr>" 
+separator='</li><li class="OtherVersionsList">' default=''/>
+
+<tr><td class="formatRecordLabel"></td><td class="separator"></td></tr>
+
+<BFE_ILO_SUBJECTS prefix='<tr><td class="formatRecordLabel">
+Subjects
+</td><td class="detailsSubjects">' suffix="</b></td></tr>" 
+separator=' ' default=''/>
+
+<tr>
+<td class="formatRecordLabel">Export as</td>
+<td class="detailsExport">
+<a href="<BFE_SERVER_INFO var='CFG_SITE_URL'/>record/<BFE_RECORD_ID/>/export/hm?ln=<BFE_CLIENT_INFO var='ln'/>">MARC</a>,
+<a href="<BFE_SERVER_INFO var='CFG_SITE_URL'/>record/<BFE_RECORD_ID/>/export/xm?ln=<BFE_CLIENT_INFO var='ln'/>">MARCXML</a>,
+<a href="<BFE_SERVER_INFO var='CFG_SITE_URL'/>record/<BFE_RECORD_ID/>/export/xd?ln=<BFE_CLIENT_INFO var='ln'/>">DC</a>,
+<a href="<BFE_SERVER_INFO var='CFG_SITE_URL'/>record/<BFE_RECORD_ID/>/export/cip?ln=<BFE_CLIENT_INFO var='ln'/>">CIP</a>
+</td>
+</tr>
+
+<tr><td class="formatRecordLabel"></td><td class="detailsEmptyRow"></td></tr>
+
+<BFE_EDIT_RECORD prefix='<tr><td colspan="2"><img src="/img/arrow_link-icon-15x11-right.gif"> ' suffix="</td></tr>"/>
+
+</table>

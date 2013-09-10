@@ -1,0 +1,17 @@
+<name>ILO HTML holdings</name>
+<description>Format used when viewing the "Find in an ILO library"</description>
+<BFE_ILO_TITLE prefix='<span class="detailsTitle">' highlight="no" suffix='</span>'/>
+
+<BFE_ILO_IMPRINT prefix='<br /><span class="detailsIn"> in ' suffix='</span>'/>
+
+<BFE_ADDITIONAL_REPORT_NUMBERS
+prefix = '<small class="quicknote"> ['
+suffix="]</small> "
+separator="] [" link="no"/>
+
+<BFE_ILO_AUTHORS prefix='<br/><span class="detailsAuthors">' suffix="</span>" limit="25" interactive="yes" print_affiliations="yes" affiliation_prefix="<small> (" affiliation_suffix=")</small>"/>
+
+<BFE_PUBLI_INFO prefix="<br /><small>Published in <strong>" suffix="</strong></small>" />
+
+<BFE_ILO_YEAR_BRIEF prefix='<br /><span class="detailsYear">' suffix='</span>' /> 
+

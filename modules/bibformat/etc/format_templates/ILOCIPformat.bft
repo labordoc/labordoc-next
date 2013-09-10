@@ -1,0 +1,15 @@
+<name>ILO CIP format</name>
+<description>ILO Cataloguing in Publication Data</description>
+<BFE_ILO_CIP_PROLOG prefix="<i>" suffix="</i>"/>
+<br />
+<br />
+<BFE_ILO_CIP_AUTHORS prefix="" suffix="<br /><br />"/>
+<BFE_ILO_CIP_TITLE prefix="" suffix=""/>
+<BFE_ILO_CIP_VOLUME prefix=". " suffix=","/>
+<BFE_ILO_CIP_USERDEF4 prefix=" / " suffix=""/><BFE_ILO_CIP_EDITION prefix=".-- " suffix=""/><BFE_ILO_CIP_CITY prefix=". - " suffix=""/><BFE_ILO_CIP_PUBLISHER prefix=": " suffix=""/><BFE_ILO_CIP_DATE prefix=", " suffix=""/>
+<BFE_ILO_CIP_PAGEANDSERIES prefix="<br />" suffix=""/>
+<BFE_ILO_CIP_ISBN prefix="<br /><br />" suffix=""/>
+<BFE_ILO_CIP_ARTICLES prefix="<br /><br />" suffix=""/>
+<BFE_ILO_CIP_EDITORS prefix="<br /><br />" suffix=""/>
+<BFE_ILO_CIP_KEYWORDS prefix="<br /><br />" suffix=""/>
+<BFE_ILO_CIP_FACET prefix="<br /><br />" suffix="<br /><br /><br />"/>

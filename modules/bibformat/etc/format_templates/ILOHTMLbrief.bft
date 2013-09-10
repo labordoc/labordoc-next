@@ -1,0 +1,25 @@
+<name>ILO HTML brief</name>
+<description>ILO version of HTML brief</description>
+<BFE_ILO_ITEMSYMBOL/>
+
+<BFE_ILO_TITLE_WITH_LINK highlight="no"/>
+<BFE_ILO_IMPRINT prefix='<br /><span class="detailsIn"> in ' suffix='</span>'/>
+
+<BFE_ILO_CONVENTIONS prefix='<br/><small>' suffix="</small>"/>
+
+<BFE_ADDITIONAL_REPORT_NUMBERS
+prefix = '<small class="quicknote"> ['
+suffix="]</small> "
+separator="] [" link="no"/>
+
+<BFE_ILO_AUTHORS prefix='<br/>' suffix="" limit="25" interactive="yes" print_affiliations="yes" affiliation_prefix="<small> (" affiliation_suffix=")</small>"/>
+
+<BFE_PUBLI_INFO prefix="<br /><small>Published in <strong>" suffix="</strong></small>" />
+
+<BFE_ILO_SERIES prefix='<br /><span class="detailsIn">'
+ suffix="</span>"/>
+
+<BFE_ILO_LINKS prefix='<br/><b>' suffix="</b>" 
+separator=' / ' default='' style='detailsLinks' show_icons='yes'/>
+
+<BFE_ILO_YEAR_BRIEF prefix='<td valign="top" align="right"><span class="detailsYear">' suffix='</span></td>' /> 
