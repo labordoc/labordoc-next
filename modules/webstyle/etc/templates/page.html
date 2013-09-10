@@ -127,11 +127,11 @@
     }
 
     footer a, footer a:hover {
-      color: #666;
+      color: #ffffff;
     }
     footer, footer p {
       font-size: 11px;
-      color: #333;
+      color: #ffffff;
     }
 
     /* Lastly, apply responsive CSS fixes as necessary */
@@ -144,13 +144,17 @@
       }
     }
 
+   .header-labordoc {
+      height: 150px;
+  }
+
     /* --------------- */
   </style>
 </head>
 <body class="{{ body_css_classes|join(' ') if body_css_classes }}"
       lang="{{ g.ln.split('_', 1)[0]|safe }}" {{ rtl_direction|safe }}>
   <div id="wrap">
-    <header>
+    <header class="header-labordoc">
       <!-- replaced page header -->
       {% block headerbox %}
         {% include 'header.html' %}

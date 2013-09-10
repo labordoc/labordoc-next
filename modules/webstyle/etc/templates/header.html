@@ -26,27 +26,48 @@
 
   <style>
   .brand img {
-    height: 20px;
+    height: 26px;
     width: auto!important;
     max-width: 200%!important;
-    opacity: 0.6;
+    opacity: 0.8;
   }
 
   .brand:hover img {
     opacity: 0.95;
   }
+
+  .brand-logo img {
+    height: 40px;
+    width: 123px;
+    max-width: 200%!important;
+    opacity: 0.8;
+    float: right;
+  }
+
+  .header_background {
+  background-color: #66CCFF;
+  background-image: none;
+}
+
   </style>
+
   <div class="navbar navbar-fixed-top navbar-inverse">
     <div class="navbar-inner">
-      <div class="container">
+      <div class="container phone-margin">
+        <a class="brand" href="{{ url_for('search.index') }}">
+          <img src="{{ url_for('static', filename='img/labordoc-logo.png') }}" alt="{{ config.CFG_SITE_NAME_INTL[g.ln] }}" />
+        </a>
+        <a class="brand-logo" href="{{ url_for('search.index') }}">
+          <img src="{{ url_for('static', filename='img/ILO-logo-Labordoc-small.png') }}" alt="{{ config.CFG_SITE_NAME_INTL[g.ln] }}" />
+        </a>
         <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </a>
-        <a class="brand" href="{{ url_for('search.index') }}">
-          <img src="{{ url_for('static', filename='img/logo_white.png') }}" alt="{{ config.CFG_SITE_NAME_INTL[g.ln] }}" />
-        </a>
+      </div>
+
+      <div class="container phone-margin">
         <div class="nav-collapse collapse">
           <ul class="nav">
           {%- for item in config.menubuilder_map.main.children.itervalues()|sort(attribute='order') if item.display() recursive %}
@@ -98,9 +119,9 @@
             </ul>
           </div>
         </div>
+       </div>
       </div>
     </div>
-  </div>
 
   <div class="visible-desktop" style="clear:both; height: 60px;"></div>
 
