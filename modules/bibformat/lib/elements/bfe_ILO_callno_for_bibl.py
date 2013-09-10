@@ -1,5 +1,7 @@
+	# -*- coding: utf-8 -*-
+##
 ## This file is part of Invenio.
-## Copyright (C) 2006, 2007, 2008, 2009, 2010, 2011, 2013 CERN.
+## Copyright (C) 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010 CERN.
 ##
 ## Invenio is free software; you can redistribute it and/or
 ## modify it under the terms of the GNU General Public License as
@@ -14,32 +16,27 @@
 ## You should have received a copy of the GNU General Public License
 ## along with Invenio; if not, write to the Free Software Foundation, Inc.,
 ## 59 Temple Place, Suite 330, Boston, MA 02111-1307, USA.
+"""BibFormat element - Prints English and French abstract.
+"""
 
-etcdir = $(sysconfdir)/bibformat/output_formats
 
-etc_DATA = HA.bfo HB.bfo HC.bfo HD.bfo HM.bfo HP.bfo HS.bfo HX.bfo \
-           HDM.bfo HDREF.bfo HDFILE.bfo HDACT.bfo \
-           BSR.bfo \
-           DCITE.bfo \
-           EXCEL.bfo \
-           MOBB.bfo MOBD.bfo \
-           XD.bfo XE.bfo XE8X.bfo XM.bfo XN.bfo XP.bfo XR.bfo XW.bfo \
-           XOAIDC.bfo XO.bfo XOAIMARC.bfo \
-           WAPAFF.bfo \
-	   BCALL.bfo \
-	   CIP.bfo \
-	   HL.bfo \
- 	   HTEST.bfo \
-	   IBIB.bfo \
-	   ISBN.bfo \
-	   RDIFP1.bfo \
-	   RDIFP2.bfo \
-	   XILODC.bfo
+import cgi
+def format_element(bfo, prefix, suffix):
 
-tmpdir = $(prefix)/var/tmp
 
-tmp_DATA = TEST1.bfo TEST2.bfo TEST3.bfo
+    callno = bfo.field('099_9a')
+    out = '''
+        %s 
+    ''' % callno
 
-EXTRA_DIST = $(etc_DATA) $(tmp_DATA)
+    if len(callno) > 0:
+        return out
+    else:
+        return ''
 
-CLEANFILES = *.tmp
+def escape_values(bfo):
+    """
+    Called by BibFormat in order to check if output of this element
+    should be escaped.
+    """
+    return 0
