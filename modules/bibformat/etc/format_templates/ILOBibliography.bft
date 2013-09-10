@@ -1,0 +1,22 @@
+<name>ILO Bibliography</name>
+<description></description>
+<BFE_ILO_TITLE_FOR_BIBL prefix=''
+suffix='<br />' />
+
+<BFE_ILO_PUBLISHER_PLACE_FOR_BIBL prefix='' 
+suffix=""/>
+
+<BFE_ILO_PAGES_FOR_BIBL prefix='' 
+suffix=""/>
+
+<BFE_ILO_ABSTRACT prefix='<br />' suffix=''/>
+
+<BFE_ILO_LINKS prefix='<br />' suffix='' 
+separator='<br />' default='' show_icons='no'/>
+
+<BFE_ILO_CALLNO_FOR_BIBL prefix='<br />Call number ' suffix=''/>
+
+<br />
+<br />
+
+

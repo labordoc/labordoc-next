@@ -1,0 +1,3 @@
+<name>ILO Bangkok callno</name>
+<description>Special format for ILO Bangkok office</description>
+<BFE_ILO_CALLNO_FOR_BANGKOK prefix='' suffix='<br />'/><BFE_ILO_TITLE_FOR_BANGKOK prefix='' suffix='<br />' /><BFE_ILO_YEAR prefix='' suffix='<br />'/><BFE_ILO_VOYAGER_CALLNO prefix='' suffix='<br />'/><br /><br />

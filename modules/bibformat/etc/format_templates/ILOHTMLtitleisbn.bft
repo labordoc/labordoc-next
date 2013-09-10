@@ -1,0 +1,3 @@
+<name>ILO HTML title - isbn</name>
+<description></description>
+<BFE_ILO_YEAR separator=' ' default=''/><BFE_ILO_ISBN_PUBL separator=' ' default='' prefix=" * "/><BFE_ILO_TITLE_PUBL prefix=" * "/><BFE_ILO_AUTHORS_PUBL prefix=" * "/>
