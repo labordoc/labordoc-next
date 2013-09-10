@@ -1,0 +1,12 @@
+<name>ReDIF-Paper 1.0 for GET</name>
+<description>ReDIF Paper 1.0 template for GET papers</description>
+Template-Type: ReDIF-Paper 1.0<BFE_ILO_RDIFP1_AUTHORS prefix="
+"/><BFE_ILO_RDIFP1_TITLE prefix="
+"/><BFE_ILO_RDIFP1_ABSTRACT prefix="
+"/><BFE_ILO_RDIFP1_PAGES prefix="
+"/><BFE_ILO_RDIFP1_DATE prefix="
+"/><BFE_ILO_RDIFP1_PUBLISHEDIN prefix="
+"/><BFE_ILO_RDIFP1_LINKS prefix="
+"/><BFE_ILO_RDIFP1_KEYWORDS prefix="
+"/>
+<BFE_ILO_RDIFP2_HANDLE/>

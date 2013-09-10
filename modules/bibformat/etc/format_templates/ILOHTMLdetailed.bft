@@ -1,0 +1,87 @@
+<name>ILO HTML detailed</name>
+<description>ILO version of HTML detailed view</description>
+<table class="formatRecordTableFullWidth" >
+
+<BFE_ILO_TOPBANNER
+prefix='<tr>
+  <td class="formatRecordHeader" style="background-image: url(http://cdsweb.cern.ch/img/journals.jpg);" colspan="2">'
+suffix='</td></tr>'/>
+
+<BFE_ILO_TITLE prefix='<tr><td class="formatRecordLabel">
+Title
+</td><td style="padding-left:5px;"><b>'
+suffix="</b></td></tr>" />
+
+<BFE_ILO_AUTHORS prefix='<tr><td class="formatRecordLabel">
+Author(s)
+</td><td style="padding-left:5px;"><b>' suffix="</b></td></tr>" limit="25" interactive="yes" print_affiliations="yes" affiliation_prefix="<small> (" affiliation_suffix=")</small>"/>
+
+
+<BFE_ILO_IMPRINT prefix='<tr><td class="formatRecordLabel">
+In
+</td><td style="padding-left:5px;">'
+ suffix="</td></tr>"/>
+
+<BFE_ILO_DATE prefix='<tr><td class="formatRecordLabel">
+Year
+</td><td style="padding-left:5px;">'
+ suffix="</td></tr>"/>
+
+<BFE_ILO_PUBLISHER_PLACE prefix='<tr><td class="formatRecordLabel">
+Publisher
+</td><td style="padding-left:5px;">' 
+suffix="</td></tr>"/>
+
+<BFE_ILO_PLACE prefix='<tr><td class="formatRecordLabel">
+Place
+</td><td style="padding-left:5px;">' 
+suffix="</td></tr>"/>
+
+<BFE_ILO_MEETING prefix='<tr><td class="formatRecordLabel">
+Meeting
+</td><td style="padding-left:5px;">' 
+suffix="</td></tr>"/>
+
+<BFE_ILO_ABSTRACT prefix='<tr><td class="formatRecordLabel">
+Abstract
+</td><td style="padding-left:5px;">' 
+suffix="</td></tr>"/>
+
+<BFE_ILO_CONTENTS prefix='<tr><td class="formatRecordLabel">
+Contents
+</td><td style="padding-left:5px;">' 
+suffix="</td></tr>"/>
+
+<BFE_ILO_PAGES prefix='<tr><td class="formatRecordLabel">
+Pages
+</td><td style="padding-left:5px;">' 
+suffix="</td></tr>"/>
+
+<BFE_ILO_ISBN prefix='<tr><td class="formatRecordLabel">
+ISBN
+</td><td style="padding-left:5px;">' suffix="</b></td></tr>" 
+separator='<br />' default=''/>
+
+<BFE_ISSN prefix='<tr><td class="formatRecordLabel">
+ISSN
+</td><td style="padding-left:5px;">' suffix="</b></td></tr>"  default=''/>
+
+<BFE_ILO_LINKS prefix='<tr><td class="formatRecordLabel">
+Links
+</td><td style="padding-left:5px;">' suffix="</b></td></tr>" 
+separator='<br />' default='' show_icons='yes'/>
+
+<BFE_ILO_OTHER_VERSIONS prefix='<tr><td class="formatRecordLabel">
+Other versions
+</td><td style="padding-left:5px;"><ul class="OtherVersionsList"><li class="OtherVersionsList">' suffix="</li></ul></td></tr>" 
+separator='</li><li class="OtherVersionsList">' default=''/>
+
+<BFE_ISBN prefix='<tr><td></td><td><center><img src="http://covers.librarything.com/devkey/53f1ac0d00e2d1a6689280b1715a9f6c/medium/isbn/' 
+suffix='"></center></td></tr>'/>
+
+<BFE_ILO_SUBJECTS prefix='<tr><td class="formatRecordLabel">
+Subjects
+</td><td style="padding-left:5px;">' suffix="</b></td></tr>" 
+separator=' ' default=''/>
+
+</table>

@@ -1,0 +1,6 @@
+<name>ILO Holdingslink</name>
+<description>Manage Voyger holdings</description>
+
+
+<BFE_ILO_HOLDINGS_LINK prefix="" suffix=""/>
+

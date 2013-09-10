@@ -1,5 +1,7 @@
+# -*- coding: utf-8 -*-
+##
 ## This file is part of Invenio.
-## Copyright (C) 2006, 2007, 2008, 2009, 2010, 2011, 2013 CERN.
+## Copyright (C) 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010 CERN.
 ##
 ## Invenio is free software; you can redistribute it and/or
 ## modify it under the terms of the GNU General Public License as
@@ -14,29 +16,34 @@
 ## You should have received a copy of the GNU General Public License
 ## along with Invenio; if not, write to the Free Software Foundation, Inc.,
 ## 59 Temple Place, Suite 330, Boston, MA 02111-1307, USA.
+"""BibFormat element - Print ISBN
+"""
 
-etcdir = $(sysconfdir)/bibformat/output_formats
+__revision__ = "$Id$"
 
-etc_DATA = HB.bfo HC.bfo HD.bfo HP.bfo HX.bfo XM.bfo EXCEL.bfo \
-	   XD.bfo HS.bfo HA.bfo \
-	   XE.bfo XE8X.bfo XN.bfo XR.bfo XW.bfo \
-	   XOAIDC.bfo XO.bfo XOAIMARC.bfo \
-	   HDREF.bfo HDFILE.bfo HDACT.bfo XP.bfo BSR.bfo WAPAFF.bfo \
-	   HDM.bfo DCITE.bfo MOBB.bfo MOBD.bfo \
-	   BCALL.bfo \
-	   CIP.bfo \
-	   HL.bfo \
- 	   HTEST.bfo \
-	   IBIB.bfo \
-	   ISBN.bfo \
-	   RDIFP1.bfo \
-	   RDIFP2.bfo \
-	   XILODC.bfo
+import re
 
-tmpdir = $(prefix)/var/tmp
+def format_element(bfo, separator=""):
+    """
+    Returns the ISBN of the record.
+    """
+    isbn_numbers = bfo.fields("020__a")
+    isbn_numbers_all = ' * '.join(isbn_numbers)
+    #isbn_numbers_all = isbn_numbers_all.replace('$', ' # ', 1)
 
-tmp_DATA = TEST1.bfo TEST2.bfo TEST3.bfo
+    if isbn_numbers_all.find('*') >= 1:
+        pass
+    else:
+        isbn_numbers_all = isbn_numbers_all + ' * '
 
-EXTRA_DIST = $(etc_DATA) $(tmp_DATA)
+    return isbn_numbers_all
 
-CLEANFILES = *.tmp
+def escape_values(bfo):
+    """
+    Called by BibFormat in order to check if output of this element
+    should be escaped.
+    """
+    return 0
+
+
+
