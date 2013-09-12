@@ -25,7 +25,7 @@ from flask import g, url_for, request, abort, current_app
 
 from invenio.websearch_cache import search_results_cache, \
                                     get_search_results_cache_key_from_qid
-from invenio.intbitset import intbitset as HitSet
+from invenio.intbitset import intbitset
 from invenio.config import CFG_WEBSEARCH_SEARCH_CACHE_TIMEOUT, CFG_PYLIBDIR
 from invenio.pluginutils import PluginContainer
 from invenio.webuser_flask import current_user
@@ -49,10 +49,10 @@ def get_current_user_records_that_can_be_displayed(qid):
         key = get_search_results_cache_key_from_qid(qid)
         data = search_results_cache.get(key)
         if data is None:
-            return []
+            return intbitset([])
         cc = search_results_cache.get(key + '::cc')
         return get_records_that_can_be_displayed(current_user,
-                                                 HitSet().fastload(data), cc)
+                                                 intbitset().fastload(data), cc)
     # Simplifies API
     return get_records_for_user(qid, current_user.get_id())
 
@@ -159,10 +159,10 @@ class FacetBuilder(object):
         try:
             return get_current_user_records_that_can_be_displayed(qid)
         except:
-            return HitSet([])
+            return intbitset([])
 
     def get_recids(self, qid):
-        return self.get_recids_intbitset(qid).tolist()
+        return list(self.get_recids_intbitset(qid))
 
     def get_facets_for_query(self, qid, limit=20, parent=None):
         return get_most_popular_field_values(self.get_recids(qid),
@@ -180,7 +180,7 @@ class FacetBuilder(object):
     def get_facet_recids(self, values):
         return reduce(lambda x, y: x.union(y),
                       [self.get_value_recids(v) for v in values],
-                      HitSet())
+                      intbitset())
 
 
 class CollectionFacetBuilder(FacetBuilder):

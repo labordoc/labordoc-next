@@ -120,7 +120,7 @@ def _get_values_from_marc_tag(tag, recids):
 
     if len(recids) == 1:
         to_append = '= %s'
-        query_params = [recids.tolist()[0]]
+        query_params = [list(recids)[0]]
 
     elif len(recids) < max_recid/3:
         # if we have less then one third of the records

@@ -194,7 +194,7 @@ def _create_neareset_term_box(argd_orig):
 
 
 def sort_and_rank_records(recids, so=None, rm=None, p=''):
-    output = recids.tolist()
+    output = list(recids)
     if so:
         output.reverse()
     elif rm:
@@ -204,7 +204,7 @@ def sort_and_rank_records(recids, so=None, rm=None, p=''):
             output = ranked[0]
             output.reverse()
         else:
-            output = output.tolist()
+            output = list(output)
     else:
         output.reverse()
     return output
