@@ -77,7 +77,7 @@ def todict(self):
         elif isinstance(c.type, sqlalchemy.DateTime):
             value = convert_datetime(value)
         elif isinstance(value, intbitset):
-            value = value.tolist()
+            value = list(value)
         yield(c.name, value)
 
 
