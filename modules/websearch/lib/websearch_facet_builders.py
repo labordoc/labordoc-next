@@ -162,7 +162,7 @@ class FacetBuilder(object):
             return intbitset([])
 
     def get_recids(self, qid):
-        return self.get_recids_intbitset(qid).tolist()
+        return list(self.get_recids_intbitset(qid))
 
     def get_facets_for_query(self, qid, limit=20, parent=None):
         return get_most_popular_field_values(self.get_recids(qid),

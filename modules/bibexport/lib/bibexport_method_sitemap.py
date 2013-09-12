@@ -87,7 +87,7 @@ def get_all_public_collections(base_collections):
         last_mod = None
         query_last_mod = "SELECT modification_date FROM bibrec WHERE id=%s"
         try:
-            latest_recid = collection.reclist.tolist()[-1]
+            latest_recid = list(collection.reclist)[-1]
         except IndexError:
             # this collection is empty
             return last_mod
