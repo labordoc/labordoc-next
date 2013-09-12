@@ -1517,7 +1517,7 @@ def getInfo(RN):
 
     recids = search_pattern(p=RN, f='037__a')
     if len(recids) == 1:
-        sysno = int(recids.tolist()[0])
+        sysno = int(list(recids)[0])
         authors = ','.join(get_fieldvalues(sysno, "100__a") + get_fieldvalues(sysno, "700__a"))
         title = ','.join(get_fieldvalues(sysno, "245__a"))
 

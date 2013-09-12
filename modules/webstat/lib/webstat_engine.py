@@ -2805,7 +2805,7 @@ def _get_tag_name(tag):
     return ''
 
 def _get_collection_recids_for_sql_query(coll):
-    ids = get_collection_reclist(coll).tolist()
+    ids = list(get_collection_reclist(coll))
     if len(ids) == 0:
         return ""
     return "id_bibrec IN %s" % str(ids).replace('[', '(').replace(']', ')')
