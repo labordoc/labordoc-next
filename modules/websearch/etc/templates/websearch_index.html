@@ -40,7 +40,9 @@
 {% endblock %}
 
 {% macro collection_records(collection) %}
+
 <style>
+
 .websearch .nav > li > ul > li {
   float: left;
 }
@@ -67,11 +69,11 @@
 }
 
 .collection ul.nav-list {
-  padding-left: 0px;
+  padding-left: 22px;
 }
 
 .collection ul.nav-list ul.nav-list {
-  font-size: 90%;
+  font-size: 100%;
 }
 
 .collection ul ul li a {
@@ -90,11 +92,15 @@
   border: 1px solid #999;
 }
 
+.centercolls {
+  padding-left: 50px;
+}
+
 </style>
 
 {{ search_form(collection) }}
 
-<div class="row websearch clearfix"><!-- row 2 -->
+<div class="row websearch clearfix centercolls"><!-- row 2 -->
   {{ portalbox_sidebar(portalboxes.lt, class="span2") }}
 
   {% if collection.collection_children_r %}
