@@ -96,8 +96,14 @@
     <input type="checkbox" name="c" value="{{ collection.name }}" checked/>
     {% endif %}
     #}
-    <a href="{{ url_for(".collection", name=collection.name, ln=g.ln, _external=True) }}">
-      {{ collection.name_ln }}
+    {%- if collection.name in ['ILRew','ILC','ILO_GB','ILOconventions','fundamentalconventions',
+                               'governanceconventions','conventionsbysubject',
+                               'conventionsparsujet','conveniosportema','finalarticles','technicalconventions'] -%}
+       <a href="{{ url_for(".collection", name=collection.name, ln=g.ln, _external=True) }}">
+    {% else %}
+       <a href="{{ url_for('search.search', cc=collection.name, ln=g.ln, _external=True) }}">
+    {% endif %}
+    {{ collection.name_ln }}
     </a>
     <small class="muted">({{ collection.nbrecs }})</small>&nbsp;
   {% if collection.collection_children and idxs|length < limit %}
