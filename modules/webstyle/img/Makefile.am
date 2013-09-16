@@ -311,7 +311,15 @@ img_DATA = add-small.png \
            yammer_icon_24.png \
            yammer_icon_48.png \
            labordoc-logo.png \
-           ILO-logo-Labordoc-small.png
+           ILO-logo-Labordoc-small.png \
+           book.png \
+           conferencepaper.png \
+           multimedia.png \
+           journalarticle.png \
+           report.png \
+           attachment-pdf.png \
+           webpage.png \
+           empty.gif
 
 tmpdir=$(localstatedir)/tmp
 
