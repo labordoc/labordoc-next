@@ -138,8 +138,12 @@ pylib_DATA = __init__.py \
              xapianutils_bibrank_indexer.py \
              xapianutils_bibrank_searcher.py \
              xapianutils_config.py \
-             xmlDict.py
-
+             xmlDict.py \
+             author_descending.py \
+             publication_date_ascending.py \
+             publication_date_descending.py \
+             title_descending.py
+                  
 jsdir=$(localstatedir)/www/js
 
 js_DATA = jquery.mathpreview.js
