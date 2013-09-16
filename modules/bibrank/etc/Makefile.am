@@ -41,7 +41,16 @@ etc_DATA = bibrankgkb.cfg \
            citerank_pagerank_t.cfg \
            selfcites.cfg \
            demo_itc_collection.cfg \
-           template_index_term_count.cfg
+           template_index_term_count.cfg \
+           au.cfg \
+           ILO_author_descending.kb \
+           ILO_title_descending.kb \
+           ILO_year_title_ascending.kb \
+           ILO_year_title.kb \
+           ti.cfg \
+           wrd.cfg \
+           yta.cfg \
+           yt.cfg
 
 EXTRA_DIST = bibrankgkb.cfg.in \
              bibrankgkb_jif_conv.kb \
@@ -66,6 +75,15 @@ EXTRA_DIST = bibrankgkb.cfg.in \
              citerank_pagerank_c.cfg \
              citerank_pagerank_t.cfg \
              demo_itc_collection.cfg \
-             template_index_term_count.cfg
+             template_index_term_count.cfg \
+             au.cfg \
+             ILO_author_descending.kb \
+             ILO_title_descending.kb \
+             ILO_year_title_ascending.kb \
+             ILO_year_title.kb \
+             ti.cfg \
+             wrd.cfg \
+             yta.cfg \
+             yt.cfg
 
 CLEANFILES = *~ *.tmp
