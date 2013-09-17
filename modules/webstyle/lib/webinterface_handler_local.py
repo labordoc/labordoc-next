@@ -24,7 +24,10 @@ from flask import current_app
 
 def customize_app(app):
 
-    del app.config['menubuilder_map']['main'].children['webdeposit']
+    try:
+        del app.config['menubuilder_map']['main'].children['webdeposit']
+    except:
+        pass
 
     Menu = type(app.config['menubuilder_map']['main'])
 
@@ -32,14 +35,14 @@ def customize_app(app):
     resources = Menu('main.resources', 'Resources', '', 2)
     app.config['menubuilder_map']['main'].children['resources'] = resources
     resources.children = {}
- 
+
     resources_links = {'ILO Library': 'http://www.ilo.org/public/english/support/lib/index.htm',
                       'ILO Databases': 'http://www.ilo.org/public/english/support/lib/resource/ilodatabases.htm',
                       'ILO Thesaurus': 'http://www.ilo.org/thesaurus/defaulten.asp',
                       'Resource Guides': 'http://www.ilo.org/public/english/support/lib/resource/guides.htm',
                       'E-Journals': 'http://sfxhostedeu.exlibrisgroup.com/41ILO/az',
                       'MultiSearch': 'http://ilo.deepwebaccess.com/ilo/search.html'}
- 
+
     i = 0
     for k, v in resources_links.items():
         resources.children[k] = Menu('main.resources.'+k, k,
@@ -50,10 +53,10 @@ def customize_app(app):
     help = Menu('main.help', 'Help', '', 3)
     app.config['menubuilder_map']['main'].children['help'] = help
     help.children = {}
- 
+
     help_links = {'Ask a Librarian': 'mailto:informs@ilo.org?subject=Ask a Librarian',
                   'Search Tips': 'http://labordoc.ilo.org/help/search-tips'}
- 
+
     i = 0
     for k, v in help_links.items():
         help.children[k] = Menu('main.help.'+k, k,
