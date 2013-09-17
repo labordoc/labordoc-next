@@ -107,7 +107,7 @@
           {%- endif -%}
 
           <ul class="dropdown-menu">
-          {%- for (k,v,vv) in [('Most recent', 'rm', ''), ('Most cited', 'rm', 'citation'), ('Most relevant', 'rm', 'wrd')] -%}
+          {%- for (k,v,vv) in [('Most recent first', 'rm', 'yt'), ('Oldest first', 'rm', 'yta'), ('Title', 'rm', 'ti'), ('Author', 'rm', 'au')] -%}
             {%- set active = request.values.get(v,'') == vv -%}
             {%- set used_args = new_args.copy() -%}
             {%- do used_args.update({v:vv}) -%}
