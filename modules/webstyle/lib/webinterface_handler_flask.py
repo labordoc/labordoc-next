@@ -328,8 +328,12 @@ def create_invenio_flask_app(**kwargs_config):
     _app.config['USE_X_SENDFILE'] = CFG_BIBDOCFILE_USE_XSENDFILE
     _app.config['DEBUG'] = CFG_DEVEL_SITE > 0
     _app.debug = CFG_DEVEL_SITE > 0
+    language_list_long = language_list_long()
+    language_labordoc_list = [ln for ln in language_list_long if ln[0] in ['en', 'es', 'fr']]
     _app.config['CFG_LANGUAGE_LIST_LONG'] = [(lang, longname.decode('utf-8'))
-        for (lang, longname) in language_list_long()]
+        for (lang, longname) in language_list_long]
+    _app.config['CFG_LANGUAGE_LABORDOC_LIST'] = [(lang, longname.decode('utf-8'))
+        for (lang, longname) in language_labordoc_list]
 
 
     ## Invenio is all using str objects. Let's change them to unicode
