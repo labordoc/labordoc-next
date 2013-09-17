@@ -40,7 +40,8 @@ pylib_DATA = webdoc.py \
              ping_webinterface.py \
              goto_webinterface.py \
              goto_model.py \
-             goto_engine.py
+             goto_engine.py \
+             webinterface_handler_local.py
 
 wsgiweb_DATA = invenio.wsgi
 
