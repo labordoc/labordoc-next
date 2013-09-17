@@ -35,11 +35,6 @@ etc_DATA = bibrankgkb.cfg \
            template_word_similarity_solr.cfg \
            template_word_similarity_xapian.cfg \
            wrd.cfg \
-           citation.cfg \
-           citerank_citation_t.cfg \
-           citerank_pagerank_c.cfg \
-           citerank_pagerank_t.cfg \
-           selfcites.cfg \
            demo_itc_collection.cfg \
            template_index_term_count.cfg \
            au.cfg \
@@ -70,10 +65,6 @@ EXTRA_DIST = bibrankgkb.cfg.in \
              template_word_similarity_solr.cfg \
              template_word_similarity_xapian.cfg \
              wrd.cfg \
-             citation.cfg \
-             citerank_citation_t.cfg \
-             citerank_pagerank_c.cfg \
-             citerank_pagerank_t.cfg \
              demo_itc_collection.cfg \
              template_index_term_count.cfg \
              au.cfg \
