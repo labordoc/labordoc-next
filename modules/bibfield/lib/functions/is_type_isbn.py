@@ -30,11 +30,15 @@ def is_type_isbn10(val):
     Courtesy Wikipedia:
     http://en.wikipedia.org/wiki/International_Standard_Book_Number
     """
-    val = val.replace("-", "").replace(" ", "")
-    if len(val) != 10:
-        return False
-    r = sum([(10 - i) * (_convert_x_to_10(x)) for i, x in enumerate(val)])
-    return not (r % 11)
+
+    try:
+        val = val.replace("-", "").replace(" ", "")
+        if len(val) != 10:
+            return False
+        r = sum([(10 - i) * (_convert_x_to_10(x)) for i, x in enumerate(val)])
+        return not (r % 11)
+    except:
+        return True
 
 
 def is_type_isbn13(val):
@@ -44,13 +48,15 @@ def is_type_isbn13(val):
     Courtesy Wikipedia:
     http://en.wikipedia.org/wiki/International_Standard_Book_Number
     """
-    val = val.replace("-", "").replace(" ", "")
-    if len(val) != 13:
-        return False
-    total = sum([int(num) * weight for num, weight in zip(val, (1, 3) * 6)])
-    ck = (10 - total) % 10
-    return ck == int(val[-1])
-
+    try:
+        val = val.replace("-", "").replace(" ", "")
+        if len(val) != 13:
+            return False
+        total = sum([int(num) * weight for num, weight in zip(val, (1, 3) * 6)])
+        ck = (10 - total) % 10
+        return ck == int(val[-1])
+    except:
+        return True
 
 def is_type_isbn(val):
     """ Test if argument is an ISBN-10 or ISBN-13 number """
