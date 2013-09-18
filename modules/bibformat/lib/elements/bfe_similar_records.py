@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 ##
 ## This file is part of Invenio.
-## Copyright (C) 2006, 2007, 2008, 2009, 2010, 2011 CERN.
+## Copyright (C) 2013 CERN.
 ##
 ## Invenio is free software; you can redistribute it and/or
 ## modify it under the terms of the GNU General Public License as
@@ -16,35 +16,46 @@
 ## You should have received a copy of the GNU General Public License
 ## along with Invenio; if not, write to the Free Software Foundation, Inc.,
 ## 59 Temple Place, Suite 330, Boston, MA 02111-1307, USA.
-"""BibFormat element - Prints a link to BibEdit
+
+
+"""BibFormat element - Offers the similar records link
 """
+
 __revision__ = "$Id$"
+
 
 from invenio.urlutils import create_html_link
 from invenio.messages import gettext_set_language
-from invenio.config import CFG_SITE_URL, CFG_SITE_RECORD
-from invenio.bibedit_utils import user_can_edit_record_collection
+from invenio.config import CFG_SITE_URL
+
 
 def format_element(bfo, style):
     """
-    Prints a link to BibEdit, if authorization is granted
-
+    Offers link to search similar records
     @param style: the CSS style to be applied to the link.
     """
+
     _ = gettext_set_language(bfo.lang)
 
     out = ""
+    try:
+        recid = bfo.control_field('001')
+    except:
+        raise Exception("Record not found")
 
-#     user_info = bfo.user_info
-#     if user_can_edit_record_collection(user_info, bfo.recID):
     linkattrd = {}
     if style != '':
         linkattrd['style'] = style
-    out += create_html_link(CFG_SITE_URL +
-           '/%s/edit/?ln=%s#state=edit&recid=%s' % (CFG_SITE_RECORD, bfo.lang, str(bfo.recID)),
-           {},
-           link_label=_("Edit This Record"),
-           linkattrd=linkattrd)
+
+    label = _("Similar Records")
+
+    out += create_html_link(CFG_SITE_URL + "/search",
+                              {'ln': bfo.lang,
+                               'rm': 'wrd',
+                               'p': 'recid:%s' % bfo.control_field('001')
+                               },
+                              link_label = label,
+                              linkattrd = linkattrd)
 
     return out
 

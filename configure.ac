@@ -903,6 +903,7 @@ AC_CONFIG_FILES([config.nice  \
      modules/webstyle/doc/Makefile \
      modules/webstyle/doc/admin/Makefile \
      modules/webstyle/doc/hacking/Makefile \
+     modules/webstyle/font/Makefile \
      modules/webstyle/etc/Makefile \
      modules/webstyle/etc/templates/Makefile \
      modules/webstyle/img/Makefile \

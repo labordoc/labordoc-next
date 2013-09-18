@@ -17,7 +17,9 @@
 
 webdir = $(localstatedir)/www/css
 
-web_DATA = invenio.css invenio-ie7.css tablesorter.css jquery.ajaxPager.css
+web_DATA = invenio.css invenio-ie7.css tablesorter.css jquery.ajaxPager.css \
+		   font-awesome.css font-awesome-ie7.min.css \
+		   font-awesome.min.css
 
 EXTRA_DIST = $(web_DATA)
 

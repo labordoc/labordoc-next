@@ -33,28 +33,31 @@ def format_element(bfo, keyword_prefix, keyword_suffix, separator=' ; ', link='y
     @param separator: a separator between keywords
     @param link: links the keywords if 'yes' (HTML links)
     """
-    
+
+    separator="&nbsp;&nbsp"
     if bfo.lang == 'fr':
+        final_keywords = ""
         #keywords = bfo.fields('65017a')
         keywords = bfo.fields('9061_a')
         if len(keywords) == 0:
             keywords = bfo.fields('90617a')
         if len(keywords) > 0:
             if link == 'yes':
-                keywords = ['<a href="' + CFG_SITE_URL + '/search?f=subject&amp;p='+ \
+                keywords = ['<span><a href="' + CFG_SITE_URL + '/search?f=subject&amp;p='+ \
                             quote('"' + keyword + '"') + \
                             '&amp;ln='+ bfo.lang+ \
-                            '">' + cgi.escape(keyword) + '</a>'
+                            '"><span class="label label-info">' + cgi.escape(keyword) + '</span></a></span>'
                             for keyword in keywords]
             else:
                 keywords = [cgi.escape(keyword)
                             for keyword in keywords]
 
-            keywords = [keyword_prefix + keyword + keyword_suffix
-                        for keyword in keywords]
-            return separator.join(keywords)
+            final_keywords = keyword_prefix + separator.join(keywords) + keyword_suffix
+
+            return final_keywords
 
     elif bfo.lang == 'es':
+        final_keywords = ""
         #keywords = bfo.fields('65017a')
         keywords = bfo.fields('9071_a')
         if len(keywords) == 0:
@@ -64,17 +67,18 @@ def format_element(bfo, keyword_prefix, keyword_suffix, separator=' ; ', link='y
                 keywords = ['<a href="' + CFG_SITE_URL + '/search?f=subject&amp;p='+ \
                             quote('"' + keyword + '"') + \
                             '&amp;ln='+ bfo.lang+ \
-                            '">' + cgi.escape(keyword) + '</a>'
+                            '"><span class="label label-info">' + cgi.escape(keyword) + '</span></a>'
                             for keyword in keywords]
             else:
                 keywords = [cgi.escape(keyword)
                             for keyword in keywords]
 
-            keywords = [keyword_prefix + keyword + keyword_suffix
-                        for keyword in keywords]
-            return separator.join(keywords)
+            final_keywords = keyword_prefix + separator.join(keywords) + keyword_suffix
+
+            return final_keywords
 
     else:
+        final_keywords = ""
         #keywords = bfo.fields('65017a')
         keywords = bfo.fields('9051_a')
         if len(keywords) == 0:
@@ -84,15 +88,15 @@ def format_element(bfo, keyword_prefix, keyword_suffix, separator=' ; ', link='y
                 keywords = ['<a href="' + CFG_SITE_URL + '/search?f=subject&amp;p='+ \
                             quote('"' + keyword + '"') + \
                             '&amp;ln='+ bfo.lang+ \
-                            '">' + cgi.escape(keyword) + '</a>'
+                            '"><span class="label label-info">' + cgi.escape(keyword) + '</span></a>'
                             for keyword in keywords]
             else:
                 keywords = [cgi.escape(keyword)
                             for keyword in keywords]
 
-            keywords = [keyword_prefix + keyword + keyword_suffix
-                        for keyword in keywords]
-            return separator.join(keywords)
+            final_keywords = keyword_prefix + separator.join(keywords) + keyword_suffix
+
+            return final_keywords
 
 
 def escape_values(bfo):

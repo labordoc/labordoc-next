@@ -25,20 +25,36 @@ import re
 
 def format_element(bfo):
     
+#     # prepare variables
+#     voyager_sysno = bfo.field("970__a")
+#     voyager_sysno = re.sub('^LABORDOC-', '', voyager_sysno)
+# #    request_url = '''http://golf.ilo.org/cgi-bin/Pwebrecon.cgi?bbid=%s&BIB=%s&PAGE=REQUESTBIB" onclick="newWin(this.href); return false;''' % (voyager_sysno, voyager_sysno)
+#     request_url = """http://ringo.ilo.org:7008/vwebv/patronRequests?&sk=en_ILO&bibId=%s" 
+#                         onclick="newWin(this.href); return false;""" % (voyager_sysno)
+# 
+# 
+#     # the html
+#     out_html ="""<div class="pull-right"><a title="Request Button" href="%s"> Request &nbsp;&nbsp;
+#                     <i class="icon-double-angle-right"></i></a></div>""" % (request_url)
+# #          <div class="RequestButton"> <a title="Request Button" href="%s"> Request <div class="RequestArrows">  &nbsp;&#187; </div> </a> </div> 
+# #          """ % (request_url)
+#     return out_html
+#     
     # prepare variables
     voyager_sysno = bfo.field("970__a")
     voyager_sysno = re.sub('^LABORDOC-', '', voyager_sysno)
 #    request_url = '''http://golf.ilo.org/cgi-bin/Pwebrecon.cgi?bbid=%s&BIB=%s&PAGE=REQUESTBIB" onclick="newWin(this.href); return false;''' % (voyager_sysno, voyager_sysno)
-    request_url = '''http://ringo.ilo.org:7008/vwebv/patronRequests?&sk=en_ILO&bibId=%s" onclick="newWin(this.href); return false;''' % (voyager_sysno)
+    request_url = """http://ringo.ilo.org:7008/vwebv/patronRequests?&sk=en_ILO&bibId=%s" 
+                        onclick="newWin(this.href); return false;""" % (voyager_sysno)
 
 
     # the html
-
-    out_html ="""  
-         <span class="RequestButton"> <a title="Request Button" href="%s"> Request <span class="RequestArrows">  &nbsp;&#187; </span> </a> </span> 
-         """ % (request_url)
+    out_html ="""<a title="Request Button" href="%s"> <h4><i class="icon-book">   </i> Request item </h4> </a>""" % (request_url)
+#          <div class="RequestButton"> <a title="Request Button" href="%s"> Request <div class="RequestArrows">  &nbsp;&#187; </div> </a> </div> 
+#          """ % (request_url)
     return out_html
     
+
 def escape_values(bfo):
     """
     Called by BibFormat in order to check if output of this element
