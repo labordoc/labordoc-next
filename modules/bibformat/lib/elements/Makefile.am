@@ -113,7 +113,8 @@ pylib_DATA = bfe_field.py bfe_title.py bfe_authors.py bfe_abstract.py bfe_affili
 			 bfe_ILO_topbanner.py \
 			 bfe_ILO_voyager_callno.py \
 			 bfe_ILO_year.py \
-			 bfe_ILO_year_brief.py
+			 bfe_ILO_year_brief.py \
+			 bfe_similar_records.py
 
 tmpdir = $(prefix)/var/tmp/tests_bibformat_elements
 
