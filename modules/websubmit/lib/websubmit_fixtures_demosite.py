@@ -2620,7 +2620,7 @@ class SbmFIELDDESCData(DataSet):
         rows = None
         name = u'DEMOPOE_YEAR'
         val = None
-        marccode = u'909C0y'
+        marccode = u'997__a'
         fddfi2 = None
         cols = None
         cd = datetime.date(2008, 3, 12)
@@ -3079,7 +3079,7 @@ class SbmFIELDDESCData(DataSet):
         rows = None
         name = u'DEMOVID_YEAR'
         val = None
-        marccode = u'909C0y'
+        marccode = u'997__a'
         fddfi2 = None
         cols = None
         cd = datetime.date(2012, 2, 16)

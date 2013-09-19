@@ -4247,7 +4247,7 @@ class WebSearchSpanQueryTest(InvenioTestCase):
     def test_span_in_bibxxx(self):
         """websearch - span query in MARC tables"""
         self.assertEqual([],
-                         test_web_page_content(CFG_SITE_URL + '/search?p=909C0y%3A%221992%22-%3E%221996%22&of=id&ap=0',
+                         test_web_page_content(CFG_SITE_URL + '/search?p=997__a%3A%221992%22-%3E%221996%22&of=id&ap=0',
                                                expected_text='[17, 66, 69, 71]'))
 
     def test_span_with_spaces(self):

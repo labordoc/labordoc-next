@@ -299,7 +299,7 @@ def format_element(bfo, width="50"):
         if year == "":
             year = get_year(bfo.field("502__c"))
             if year == "":
-                year = get_year(bfo.field("909C0y"))
+                year = get_year(bfo.field("997__a"))
 
     out += format_bibtex_field("year",
                                year,
