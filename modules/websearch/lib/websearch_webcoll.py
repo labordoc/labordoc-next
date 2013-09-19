@@ -960,8 +960,8 @@ def set_cache_last_updated_timestamp(timestamp):
     """Set last updated cache timestamp to TIMESTAMP."""
     try:
         f = open(CFG_CACHE_LAST_UPDATED_TIMESTAMP_FILE, "w")
-    	f.write(timestamp)
-	f.close()
+        f.write(timestamp)
+        f.close()
     except:
         pass
 

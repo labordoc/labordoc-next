@@ -244,7 +244,7 @@ INSERT INTO tag VALUES (11,'collection identifier','980__%');
 INSERT INTO tag VALUES (12,'main subject','65017a');
 INSERT INTO tag VALUES (13,'additional subject','65027a');
 INSERT INTO tag VALUES (14,'division','909C0p');
-INSERT INTO tag VALUES (15,'year','909C0y');
+INSERT INTO tag VALUES (15,'year','997__a');
 INSERT INTO tag VALUES (16,'00x','00%');
 INSERT INTO tag VALUES (17,'01x','01%');
 INSERT INTO tag VALUES (18,'02x','02%');
