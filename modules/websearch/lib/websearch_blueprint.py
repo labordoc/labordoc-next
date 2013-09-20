@@ -223,7 +223,7 @@ def _create_neareset_term_box(argd_orig):
     #return '<!-- not found -->'
 
 
-def sort_and_rank_records(recids, so=None, rm=None, p=''):
+def sort_and_rank_records(recids, so=None, rm='yt', p=''):
     output = list(recids)
     if so:
         output.reverse()
@@ -268,7 +268,7 @@ def collection_breadcrumbs(collection, endpoint=None):
                                  'f': (unicode, None),
                                  'of': (unicode, 'hb'),
                                  'so': (unicode, None),
-                                 'rm': (unicode, None),
+                                 'rm': (unicode, 'yt'),
                                  'rg': (int, 10),
                                  'jrec': (int, 1)})
 @check_collection(default_collection=True)
@@ -341,7 +341,7 @@ def rss(collection, p, jrec, so, rm):
 @blueprint.invenio_wash_urlargd({'p': (unicode, ''),
                                  'of': (unicode, 'hb'),
                                  'so': (unicode, None),
-                                 'rm': (unicode, None)})
+                                 'rm': (unicode, 'yt')})
 @check_collection(default_collection=True)
 def search(collection, p, of, so, rm):
     """
@@ -369,10 +369,10 @@ def search(collection, p, of, so, rm):
 
     qid = get_search_query_id(**argd)
     recids = perform_request_search(req=request.get_legacy_request(), **argd)
-
+    recids = sort_and_rank_records(recids, so=so, rm=rm, p=p)
     #if so or rm:
-    if len(of)>0 and of[0] == 'h':
-        recids.reverse()
+    #    if len(of)>0 and of[0] == 'h':
+    #        recids.reverse()
 
     ctx = dict(facets=FACETS.config(collection=collection, qid=qid),
                records=len(get_current_user_records_that_can_be_displayed(qid)),
