@@ -17,8 +17,8 @@
 ## along with Invenio; if not, write to the Free Software Foundation, Inc.,
 ## 59 Temple Place, Suite 330, Boston, MA 02111-1307, USA.
 
-"""Year Facet"""
+"""Language Facet"""
 
 from invenio.websearch_facet_builders import FacetBuilder
 
-facet = FacetBuilder('year', order=4)
+facet = FacetBuilder('language', order=3)
