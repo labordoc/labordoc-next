@@ -116,10 +116,10 @@ class FieldData(DataSet):
         id = 17
         name = u'coden'
 
-    #class Field_18:
-    #    code = u'doi'
-    #    id = 18
-    #    name = u'doi'
+    class Field_18:
+        code = u'language'
+        id = 18
+        name = u'language'
 
     class Field_19:
         code = u'journal'
@@ -796,8 +796,8 @@ class TagData(DataSet):
 
     class Tag_121:
         id = 121
-        value = u'909C4a'
-        name = u'doi'
+        value = u'998__a'
+        name = u'language'
 
     class Tag_122:
         id = 122
@@ -1212,10 +1212,10 @@ class FieldTagData(DataSet):
         id_tag = TagData.Tag_120.ref('id')
         id_field = FieldData.Field_17.ref('id')
 
-    #class FieldTag_18_120:
-    #    score = 100
-    #    id_tag = TagData.Tag_121.ref('id')
-    #    id_field = FieldData.Field_18.ref('id')
+    class FieldTag_18_121:
+        score = 100
+        id_tag = TagData.Tag_121.ref('id')
+        id_field = FieldData.Field_18.ref('id')
 
     class FieldTag_19_131:
         score = 100
