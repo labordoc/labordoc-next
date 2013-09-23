@@ -16,23 +16,44 @@
 ## You should have received a copy of the GNU General Public License
 ## along with Invenio; if not, write to the Free Software Foundation, Inc.,
 ## 59 Temple Place, Suite 330, Boston, MA 02111-1307, USA.
-"""BibFormat element - Prints English and French abstract.
+"""BibFormat element - Prints abstract.
 """
 
 
 import cgi
-def format_element(bfo, prefix, suffix):
 
+
+def format_element(bfo, limit="", max_chars="",
+                   extension="[...] ", contextual="no",
+                   highlight='no', escape="3",
+                   separator="<br/>"):
+    """ Prints the abstract of a record in HTML.
+    """
+
+    out = ''
 
     abstract = bfo.field('5208_a')
-    out = '''
-        %s 
-    ''' % abstract
-
     if len(abstract) > 0 and abstract != "Abstract":
+        print_extension = False
+        if limit != "" and limit.isdigit():
+            s_abstract = abstract.split(". ")
+            if int(limit) < len(s_abstract):
+                print_extension = True
+                s_abstract = s_abstract[:int(limit)]
+ 
+            out = '. '.join(s_abstract)
+ 
+            if print_extension:
+                out += " " + extension
+        else:
+             out += abstract
+
+        if highlight == 'yes':
+            out = bibformat_utils.highlight(out, bfo.search_pattern)
         return out
     else:
-        return ''
+        return ""
+
 
 def escape_values(bfo):
     """

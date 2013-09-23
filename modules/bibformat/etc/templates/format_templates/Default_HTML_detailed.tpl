@@ -2,19 +2,26 @@
 <script language="JavaScript" src="http://www.ilo.org/webcommon/s-includes/popups.js" type="text/javascript"></script>
 
 <div class="row span14">
+  <div id="detailedrecord" class="span11 pull-left">
+ 
+    <div id="title">
+      {{ bfe_ilo_title(bfo, prefix='<h3 class="articleTitle">', suffix='</h3>') }}
+    </div>
 
-  <div id="detailedrecord" class="span9 pull-left">
-  
-	<div id="title">
-		{{ bfe_ilo_title(bfo, prefix='<h3 class="articleTitle">', suffix='</h3>') }}
-	</div>
+    <div class="bfe-actions span3 pull-right">
+
+     <div id="itemsymbol" class="detailsCover">
+	   {{ bfe_ilo_itemsymbol_detailed_test(bfo) }}
+	 </div>
+
+     <div id="actions">
+       {{ format_record(recid, 'HDACT', ln=g.ln) }}
+     </div>
+
+    </div !-- bfe-actions --! >
 
 	<div class="detailedcontent span8">
 	
-      <div id="itemsymbol">
-		 {{ bfe_ilo_itemsymbol_detailed(bfo, prefix='<div class="detailsCover"></div>') }} 
- 	  </div>
- 
 	  <div id="conventionsdoctype">
 		{{ bfe_ilo_conventions_doctype(bfo, prefix='<div class="formatRecordLabel"></div>') }} 
  	  </div>
@@ -135,12 +142,12 @@
 	    {{ bfe_ilo_other_versions(bfo, prefix='<div class="formatRecordLabel"> Other versions </div>
 	    					                   <div class="positionDetails detailsSmallSize">
 	    					                   <ul class="OtherVersionsList"><li class="OtherVersionsList">
-	    					                   <i class="icon-li icon-ok"></i>&nbsp;&nbsp;&nbsp;',
- 					                   suffix='</li></ul></div>',
- 					                   separator='</li><li class="OtherVersionsList"><i class="icon-li icon-ok"></i>&nbsp;&nbsp;&nbsp;',
+											   <i class="icon-caret-right"></i>&nbsp;&nbsp;&nbsp;',
+					                   suffix='</li></ul></div>',
+ 					                   separator='</li><li class="OtherVersionsList"><i class="icon-caret-right"></i>&nbsp;&nbsp;&nbsp;',
  					                   default='') }}
  	  </div>
- 	 
+
  	  <div id="verticalspace" class="detailsEmptyRow" ></div>
 
  	  <div id="subjects">
@@ -152,10 +159,6 @@
 	</div !-- detailedcontent --! >
 
    </div !-- detailedrecord --! >
-
-   <div class="bfe-actions span3 pull-right">
-     {{ format_record(recid, 'HDACT', ln=g.ln) }}
-   </div>
 
 </div !-- row --!>
 

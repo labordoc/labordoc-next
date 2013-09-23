@@ -481,6 +481,8 @@ th.youraccountheader a:hover {
 .detailsTitle {
   line-height:1.3em;
   font-weight:bold;
+  font-size: 16.5px;
+  
  }
 
 h1.articleTitle {
@@ -499,6 +501,10 @@ h2.articleTitle {
   padding-left: 150px;
 }
 
+.positionDetailsBrief { 
+  padding-left: 115px;
+}
+
 .detailsIn { 
   color:#777;
 }
@@ -508,7 +514,7 @@ h2.articleTitle {
   vertical-align:baseline;
   background:none;
   float: left;
-  width: 105px;
+  width: 115px;
 }
 
 .detailedcontent {
@@ -521,16 +527,21 @@ h2.articleTitle {
 }
 
 .detailsCover {
-  vertical-align:top;
-  background:none; 
-} /* ...except the book cover cell */
+  padding-bottom: 50px;
+  text-align: center;
+}
+
+.detailsImageCover {
+  height: 150px;
+  weight: 100px;
+}
 
 .detailsContents {
   padding-left:150px;   
 }
 
 .detailsSmallSize {
-  font-size:0.9em;
+  font-size:1em;
 }
 
 .detailsLinks { 
@@ -558,7 +569,23 @@ ul.OtherVersionsList li {
 }
 
 .bfe-actions {
-  padding-top: 130px;
   width: 200px;
 }
+
+.detailsYear {
+  color:#999;
+  padding-top:15px;
+}
+
+.quicknote {
+  font-size:0.9em;
+  color:#aaa;
+  padding-left:7px;
+}
+
+.detailsBriefContent {
+  margin-left: 5%;
+  margin-top: 15px;
+}
+
 /* end of invenio.css */
