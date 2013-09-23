@@ -191,6 +191,11 @@ class FieldData(DataSet):
         id = 32
         name = u'exact title'
 
+    class Field_33:
+        code = u'location'
+        id = 33
+        name = u'location'
+
 
 class TagData(DataSet):
 
@@ -914,6 +919,10 @@ class TagData(DataSet):
         value = u'787%'
         name = u'other relationship entry'
 
+    class Tag_145:
+        id = 145
+        value = u'964__m'
+        name = u'location'
 
 class FormatData(DataSet):
 
@@ -1881,3 +1890,8 @@ class FieldTagData(DataSet):
         score = 100
         id_tag = TagData.Tag_115.ref('id')
         id_field = FieldData.Field_9.ref('id')
+
+    class FieldTag_33_145:
+        score = 100
+        id_tag = TagData.Tag_145.ref('id')
+        id_field = FieldData.Field_33.ref('id')
