@@ -165,7 +165,7 @@
                   {{ loop.index+(pagination.page-1)*rg }}
                 </label>
               </div>
-              <div class="span11">
+              <div class="span10">
                 {{ format_record(recid, of, ln=g.ln)|safe }}
                 {{ '<hr/>'|safe if not loop.last }}
               </div>

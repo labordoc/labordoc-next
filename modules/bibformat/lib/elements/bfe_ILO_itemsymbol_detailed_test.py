@@ -31,7 +31,10 @@ def format_element(bfo):
     """
     Item type icon
     """
+    url_example = 'http://bearcat-careers.ism-online.org/files/2013/03/ilo-logo.jpg'
+    out_example = '''<img class="detailsImageCover" src="%s">''' % (url_example)
 
+    out = ""
     isbns = []    
     baseurl = CFG_SITE_URL + '/img/'
     conv = bfo.field('970__a')
@@ -69,10 +72,10 @@ def format_element(bfo):
             out = '<div class="convIteml">T</div>'
         if convt.startswith('Vot'):
             out = '<div class="convIteml">V</div>'
-        if len(out) > 0:
-            return out
-        else:
-            return  ''
+#         if len(out) > 0:
+#             return out
+#         else:
+#             return  ''
     
     test_ic_gb = gb1 + ' ' + gb2 + ' ' + gb3 + ' ' + gb4 + ' ' + ic1 + ' ' + ic2
     test_wp = wp1 + ' ' + wp2 + ' ' + wp3 
@@ -94,13 +97,13 @@ def format_element(bfo):
         imagepath = '/opt/invenio/var/www/img/cover/' + isbn + '-M.jpg'
         if os.path.isfile(imagepath):
             imageurl = CFG_SITE_URL + '/img/cover/' + isbn + '-M.jpg'
-            out = '''<img class="borderYes" src="%s">''' % imageurl
-            return out
+            out = '''<img class="detailsImageCover" src="%s">''' % imageurl
+#             return out
     
     if os.path.isfile(imagepath2):
         imageurl = CFG_SITE_URL + '/img/cover/' + test + '-M.jpg'
-        out = '''<img class="borderYes" src="%s">''' % imageurl
-        return out
+        out = '''<img class="detailsImageCover" src="%s">''' % imageurl
+#         return out
 
     else:
         if item_type == "am":
@@ -137,15 +140,22 @@ def format_element(bfo):
        
         if item_type_new:
             if isbn != '' and item_type_new != 'empty':
-                out = '''<img class="borderNone" src='http://covers.openlibrary.org/b/isbn/%s-S.jpg?default=false' onerror="this.src='%s';">''' % (isbn, item_type_new)
-                return out
+                out = '''<img class="detailsImageCover" src='http://covers.openlibrary.org/b/isbn/%s-S.jpg?default=false' onerror="this.src='%s';">''' % (isbn, item_type_new)
+#                 return out
             elif item_type_new == 'empty':
-                return '&nbsp;'
+#                 return '&nbsp;'
+                out = '&nbsp;'
+                out = out_example
             else:
-                out = '''<img class="borderYes" src="%s">''' % (item_type_new)
-                return out
-        else:
-            return '&nbsp;'
+                out = '''<img class="detailsImageCover" src="%s">''' % (item_type_new)
+#                 return out
+#         else:
+#             return '&nbsp;'
+
+    if not out:
+        return out_example
+    else:
+        return out
 
 def escape_values(bfo):
     """
