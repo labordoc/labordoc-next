@@ -33,7 +33,11 @@ from invenio.websearch_model import Collection
 from invenio.search_engine import search_pattern, \
                                   get_field_tags, \
                                   get_records_that_can_be_displayed, \
-                                  get_most_popular_field_values
+                                  get_most_popular_field_values, \
+                                  get_fieldvalues
+
+from invenio.config import CFG_SITE_LANG
+from invenio.messages import gettext_set_language, wash_language
 
 
 def get_current_user_records_that_can_be_displayed(qid):
@@ -213,3 +217,27 @@ class CollectionFacetBuilder(FacetBuilder):
             if num_records:
                 facet.append((c.name, num_records, c.name_ln))
         return sorted(facet, key=lambda x: x[1], reverse=True)[0:limit]
+
+
+class FulltextFacetBuilder(FacetBuilder):
+    """Custom implementation of fulltext facet builder."""
+
+    def __init__(self, name, order=0):
+        self.name = name
+        self.order = order
+  #      self._ = gettext_set_language(wash_language(CFG_SITE_LANG)
+
+    def get_title(self, **kwargs):
+        return g._('Any Fulltext')
+
+    def get_facets_for_query(self, qid, limit=20, parent=None):
+        recids = self.get_recids(qid)
+        has = []
+        hasnt = []
+        for recid in recids:
+            fulltext = get_fieldvalues(recid, get_field_tags('fulltext')[0])
+            if len(fulltext) > 0 and len(fulltext[0]) > 0:
+                has.append(recid)
+            else:
+                hasnt.append(recid)
+        return [(g._('With Fulltext'), len(has)), (g._("Without Fulltext"), len(hasnt))]
