@@ -222,22 +222,18 @@ class CollectionFacetBuilder(FacetBuilder):
 class FulltextFacetBuilder(FacetBuilder):
     """Custom implementation of fulltext facet builder."""
 
-    def __init__(self, name, order=0):
-        self.name = name
-        self.order = order
-  #      self._ = gettext_set_language(wash_language(CFG_SITE_LANG)
-
     def get_title(self, **kwargs):
-        return g._('Any Fulltext')
+        return g._('Any Attached Files')
 
     def get_facets_for_query(self, qid, limit=20, parent=None):
-        recids = self.get_recids(qid)
-        has = []
-        hasnt = []
-        for recid in recids:
-            fulltext = get_fieldvalues(recid, get_field_tags('fulltext')[0])
-            if len(fulltext) > 0 and len(fulltext[0]) > 0:
-                has.append(recid)
+        all_facets = get_most_popular_field_values(self.get_recids(qid),
+                                       get_field_tags(self.name))
+        fulltext_facets = {'Full text': 0}
+        for i in all_facets:
+            if i[0].startswith("Full text"):
+                fulltext_facets["Full text"] = fulltext_facets["Full text"] + i[1]
+            elif i[0].startswith("http"):
+                pass
             else:
-                hasnt.append(recid)
-        return [(g._('With Fulltext'), len(has)), (g._("Without Fulltext"), len(hasnt))]
+                fulltext_facets[i[0]] = i[1]
+        return fulltext_facets.items()
