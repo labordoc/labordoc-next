@@ -228,12 +228,15 @@ class FulltextFacetBuilder(FacetBuilder):
     def get_facets_for_query(self, qid, limit=20, parent=None):
         all_facets = get_most_popular_field_values(self.get_recids(qid),
                                        get_field_tags(self.name))
-        fulltext_facets = {'Full text': 0}
+        fulltext_facets = {'Full text': 0, 'Booklet': 0}
         for i in all_facets:
             if i[0].startswith("Full text"):
                 fulltext_facets["Full text"] = fulltext_facets["Full text"] + i[1]
+            elif i[0].startswith("Booklet"):
+                fulltext_facets["Booklet"] = fulltext_facets["Booklet"] + i[1]
             elif i[0].startswith("http"):
                 pass
             else:
                 fulltext_facets[i[0]] = i[1]
         return fulltext_facets.items()
+

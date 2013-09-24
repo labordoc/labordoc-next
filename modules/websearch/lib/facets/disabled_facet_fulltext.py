@@ -21,4 +21,4 @@
 
 from invenio.websearch_facet_builders import FulltextFacetBuilder
 
-facet = FulltextFacetBuilder('fulltext', order=5)
+# facet = FulltextFacetBuilder('fulltext', order=5)
