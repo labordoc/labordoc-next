@@ -46,7 +46,7 @@ def format_element(bfo, keyword_prefix, keyword_suffix, separator=' ; ', link='y
                 keywords = ['<span><a href="' + CFG_SITE_URL + '/search?f=subject&amp;p='+ \
                             quote('"' + keyword + '"') + \
                             '&amp;ln='+ bfo.lang+ \
-                            '"><span class="label label-info">' + cgi.escape(keyword) + '</span></a></span>'
+                            '"><span class="label label">' + cgi.escape(keyword) + '</span></a></span>'
                             for keyword in keywords]
             else:
                 keywords = [cgi.escape(keyword)
@@ -67,7 +67,7 @@ def format_element(bfo, keyword_prefix, keyword_suffix, separator=' ; ', link='y
                 keywords = ['<a href="' + CFG_SITE_URL + '/search?f=subject&amp;p='+ \
                             quote('"' + keyword + '"') + \
                             '&amp;ln='+ bfo.lang+ \
-                            '"><span class="label label-info">' + cgi.escape(keyword) + '</span></a>'
+                            '"><span class="label label">' + cgi.escape(keyword) + '</span></a>'
                             for keyword in keywords]
             else:
                 keywords = [cgi.escape(keyword)
@@ -88,7 +88,7 @@ def format_element(bfo, keyword_prefix, keyword_suffix, separator=' ; ', link='y
                 keywords = ['<a href="' + CFG_SITE_URL + '/search?f=subject&amp;p='+ \
                             quote('"' + keyword + '"') + \
                             '&amp;ln='+ bfo.lang+ \
-                            '"><span class="label label-info">' + cgi.escape(keyword) + '</span></a>'
+                            '"><span class="label label">' + cgi.escape(keyword) + '</span></a>'
                             for keyword in keywords]
             else:
                 keywords = [cgi.escape(keyword)
