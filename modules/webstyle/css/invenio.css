@@ -586,6 +586,7 @@ ul.OtherVersionsList li {
 .detailsBriefContent {
   margin-left: 5%;
   margin-top: 15px;
+  line-height: 25px;
 }
 
 /* end of invenio.css */
