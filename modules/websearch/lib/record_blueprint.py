@@ -35,7 +35,7 @@ from invenio.bibedit_model import Bibrec
 from invenio.webinterface_handler_flask_utils import _, InvenioBlueprint, \
     register_template_context_processor
 from invenio.webuser_flask import current_user
-
+from invenio.bibcirculation import perform_get_holdings_information
 from invenio.search_engine import guess_primary_collection_of_a_record, \
     check_user_can_view_record, print_record
 
@@ -167,10 +167,22 @@ def files(recid):
     return render_template('record_files.html')
 
 
+import invenio.bibcirculation_dblayer as db
+from invenio.bibcirculation_config import AMZ_ACQUISITION_IDENTIFIER_TAG
+
 @blueprint.route('/<int:recid>/holdings', methods=['GET', 'POST'])
 @request_record
 def holdings(recid):
-    return render_template('record_holdings.html')
+    acquisition_src = get_fieldvalues(recid, AMZ_ACQUISITION_IDENTIFIER_TAG)
+    if acquisition_src and acquisition_src[0].startswith('AMZ') and db.has_copies(recid) == False:
+        action = "proposal"
+    else:
+        action = "borrowal"
+
+    holdings_information = perform_get_holdings_information(recid, request, \
+                                                            action=action, ln=g.ln)
+    return render_template('record_holdings.html',
+                           holdings_information = holdings_information)
 
 from invenio.bibrank_citation_searcher import calculate_cited_by_list,\
                                               get_self_cited_by, \
