@@ -76,6 +76,9 @@ from invenio.bibcirculation_config import \
     CFG_BIBCIRCULATION_PROPOSAL_TYPE, \
     CFG_BIBCIRCULATION_PROPOSAL_STATUS
 
+# VS add imports to get vbibid and holdings info
+from invenio.urlutils import VoyagerHoldings
+
 def load_menu(ln=CFG_SITE_LANG):
 
     _ = gettext_set_language(ln)
@@ -302,8 +305,17 @@ class Template:
             return out
 
         elif not db.has_copies(recid):
-            message = _("This record has no copies.")
-
+            # VS add if statement to get holdings info
+            if recid:
+                out ="""  %s
+                     """ % (VoyagerHoldings(recid), )
+            else:
+                message = _("This record has no copies.")
+                out = """<div align="center" class="infoboxmsg">
+                         %s
+                         </div>""" % message
+            return out
+#             message = _("This record has no copies.")
 
             if auth_code == 0:
                 new_copy_link = create_html_link(CFG_SITE_URL +

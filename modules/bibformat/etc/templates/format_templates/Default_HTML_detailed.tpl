@@ -1,7 +1,7 @@
 
 <script language="JavaScript" src="http://www.ilo.org/webcommon/s-includes/popups.js" type="text/javascript"></script>
 
-<div class="row span14">
+<div class="row">
   <div id="detailedrecord" class="span11 pull-left">
  
     <div id="title">

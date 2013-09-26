@@ -589,4 +589,23 @@ ul.OtherVersionsList li {
   line-height: 25px;
 }
 
+.tableHoldings {
+	margin-top: 20px;
+	margin-bottom: 20px;
+	width:60%;
+	box-shadow: 10px 10px 5px #888888;
+	border:1px solid #000000;
+	border-radius: 5px;
+}
+
+.tableHoldings table{
+	width:100%;
+	height:100%;
+	margin: 10px 10px;
+}
+
+.centered {
+  text-align: left;
+}
+
 /* end of invenio.css */

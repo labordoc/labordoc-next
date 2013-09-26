@@ -51,6 +51,7 @@ from invenio.config import \
      CFG_WEBSTYLE_EMAIL_ADDRESSES_OBFUSCATION_MODE, \
      CFG_WEBDIR, CFG_SITE_NAME,  CFG_VERSION, CFG_SITE_LANGS
 
+
 def wash_url_argument(var, new_type):
     """
     Wash argument into 'new_type', that can be 'list', 'str',
@@ -841,3 +842,96 @@ def auto_version_url(file_path):
     except IOError:
         pass
     return file_path + "?%s" % file_md5
+
+
+# VS: Make holdings tab data + html.
+def VoyagerHoldings(recid):
+
+    from invenio.bibformat_engine import BibFormatObject
+    from invenio.bibformat_elements import bfe_ILO_links
+    # prepare variables
+ 
+    bfo = BibFormatObject(recid)
+    holdings = {}
+    out_table = []
+    out_html = ''
+    row = ''
+    callno = ''
+    issues_info = ''
+    HQ = False
+    conv = bfo.field('970__a')
+    item_type = bfo.field("996__a")
+    holdings = bfo.fields("964")
+    kept = bfo.field("866_0a")
+    kept_note = bfo.field("866_0z")
+    voyager_sysno = bfo.field("970__a")
+    voyager_sysno = re.sub('^LABORDOC-', '', voyager_sysno)
+    links = bfe_ILO_links.format_element(bfo, style='', prefix='', suffix='', separator='<br />', show_icons='no', focus_on_main_file='yes')
+    #request_url = '''http://golf.ilo.org/cgi-bin/Pwebrecon.cgi?bbid=%s&BIB=%s&PAGE=REQUESTBIB" onclick="newWin(this.href); return false;''' % (voyager_sysno, voyager_sysno)
+    request_url = '''http://ringo.ilo.org:7008/vwebv/patronRequests?&sk=en_ILO&bibId=%s" onclick="newWin(this.href); return false;''' % (voyager_sysno)
+ 
+ 
+    # Start of the html, request text and link plus holdings table headings
+ 
+    out_html ="""  
+         <script language="JavaScript" src="http://www.ilo.org/webcommon/s-includes/popups.js" type="text/javascript"></script>
+         <div class="span8">
+             <div>
+             ILO staff may request this item by clicking on the blue Request button. Enter your client number and
+             last name and click Log in. If you do not have a Client number, contact the Loans Service
+             at tel. +(4122)799 8705; Email:
+             <a href="mailto:informloan@ilo.org">informloan@ilo.org</a><br /><br />
+             If you are not ILO staff and would like to see this item, you may wish to contact your library to
+             ask for an inter-library loan or visit an ILO Library near you.
+             </div>
+
+             <div class="tableHoldings centered">
+             <table>
+             <thead>
+             <tr>
+             <th>%s</th>
+             <th>%s</th>
+             </tr>
+             </thead>
+             <tbody>
+             """ % ("Location", "Call Number", )
+   
+    # iterate through holdings and make rows for the table
+ 
+    for out in holdings:
+        location = str(out.get("m", " "))
+        callno = str(out.get("e", " ")) 
+        if callno.find('NYP') >= 1:
+            callno = callno.replace('NYP','not yet published')
+        callno = ' ' + callno + ' ' 
+        if callno.find('NYP') >= 1:
+            callno = callno.replace('NYP','not yet published')
+        row = "<tr><td>" + location + "</td><td>" + callno + "</td></tr>"
+        if  row.find('Main collection') >= 1 and HQ == False:
+            row = row.replace('Library - Main collection','HQ Library')
+            if kept != 0 or kept_note != 0:
+                issues_info = 'HQ Library' + kept + '&nbsp;' + kept_note   
+                row = row.replace('HQ Library', issues_info)
+            out_table.append(row)
+            HQ = True
+        elif  row.find('Electronic') >= 1:
+              links = bfe_ILO_links.format_element(bfo, style='', prefix='', suffix='', separator='<br /', show_icons='no',  focus_on_main_file='yes')
+              links = '</td><td>' + links + '</td></tr>'
+              row = re.sub('</td><td>.*</td></tr>', links, row)
+              out_table.append(row)
+        elif  row.find('Main collection') >= 1 and HQ:
+            pass
+        else:
+            out_table.append(row)
+ 
+    if conv.startswith('ILOCONV'):
+        row = "<tr><td>" + 'Electronic documents' + "</td><td>" + links + "</td></tr>"
+        out_table.append(row)
+ 
+    out_table.sort()
+    out_html = out_html + ''.join(out_table) +  '</tbody></table></div>'
+    out_html += """<div>
+                    <span class="pull-left"> <a title="Request Button" href="%s"> <h4><i class="icon-book"> </i>  Request item </h4></a> </span> 
+                  </div>
+                  </div>""" % request_url
+    return out_html
