@@ -1,6 +1,8 @@
 <name>Default HTML similarity</name>
 <description>Small HTML record printed in "Similar Documents" section</description>
-<strong><a href="/<BFE_SERVER_INFO var='CFG_SITE_RECORD'/>/<BFE_RECORD_ID/><BFE_CLIENT_INFO var="ln" prefix="?ln=">"><BFE_TITLE_BRIEF /></a></strong>
-<BFE_AUTHORS limit="1" prefix=" - " extension=" <em>et al</em>"/>
-<BFE_PUBLI_INFO prefix=" - "/>
-<BFE_PRIMARY_REPORT_NUMBER prefix=" - "/>
+
+<BFE_ILO_TITLE prefix='<span class="detailsTitle">' highlight="no" suffix='</span><br/>'/>
+
+<BFE_ILO_AUTHORS prefix='' suffix=''
+				 limit="25" interactive="yes" print_affiliations="yes"
+				 affiliation_prefix="<small>(" affiliation_suffix=")</small>" />
