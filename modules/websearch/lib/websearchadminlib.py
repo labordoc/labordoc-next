@@ -3392,16 +3392,16 @@ def get_detailed_page_tabs(colID=None, recID=None, ln=CFG_SITE_LANG):
     _ = gettext_set_language(ln)
 
     tabs = {'metadata'  : {'label': _('Information'),      'visible': False, 'enabled': True, 'order': 1},
-            'references': {'label': _('References'),       'visible': False, 'enabled': True, 'order': 2},
-            'citations' : {'label': _('Citations'),        'visible': False, 'enabled': True, 'order': 3},
-            'keywords'  : {'label': _('Keywords'),         'visible': False, 'enabled': True, 'order': 4},
+            'references': {'label': _('References'),       'visible': False, 'enabled': False, 'order': 2},
+            'citations' : {'label': _('Citations'),        'visible': False, 'enabled': False, 'order': 3},
+            'keywords'  : {'label': _('Keywords'),         'visible': False, 'enabled': False, 'order': 4},
             'comments'  : {'label': _('Comments'),         'visible': False, 'enabled': True, 'order': 5},
-            'reviews'   : {'label': _('Reviews'),          'visible': False, 'enabled': True, 'order': 6},
+            'reviews'   : {'label': _('Reviews'),          'visible': False, 'enabled': False, 'order': 6},
             'usage'     : {'label': _('Usage statistics'), 'visible': False, 'enabled': True, 'order': 7},
-            'files'     : {'label': _('Files'),            'visible': False, 'enabled': True, 'order': 8},
-            'plots'     : {'label': _('Plots'),            'visible': False, 'enabled': True, 'order': 9},
-            'holdings'  : {'label': _('Holdings'),         'visible': False, 'enabled': True, 'order': 10},
-            'linkbacks' : {'label': _('Linkbacks'),        'visible': False, 'enabled': True, 'order': 11},
+            'files'     : {'label': _('Files'),            'visible': False, 'enabled': False, 'order': 8},
+            'plots'     : {'label': _('Plots'),            'visible': False, 'enabled': False, 'order': 9},
+            'holdings'  : {'label': _('Find in an ILO Library'), 'visible': False, 'enabled': True, 'order': 10},
+            'linkbacks' : {'label': _('Linkbacks'),        'visible': False, 'enabled': False, 'order': 11},
             }
 
     res = run_sql("SELECT tabs FROM collectiondetailedrecordpagetabs " + \
@@ -3469,8 +3469,9 @@ def get_detailed_page_tabs(colID=None, recID=None, ln=CFG_SITE_LANG):
 
         #Disable holdings tab if collection != Books
         collection = run_sql("""select name from collection where id=%s""", (colID, ))
-        if collection[0][0] != 'Books':
-            tabs['holdings']['enabled'] = False
+        # VS show Holdings tab always.
+#         if collection[0][0] != 'Books':
+#             tabs['holdings']['enabled'] = False
 
         # Disable Plots tab if no docfile of doctype Plot found
         brd =  BibRecDocs(recID)

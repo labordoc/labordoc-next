@@ -167,6 +167,11 @@ def files(recid):
     return render_template('record_files.html')
 
 
+@blueprint.route('/<int:recid>/holdings', methods=['GET', 'POST'])
+@request_record
+def holdings(recid):
+    return render_template('record_holdings.html')
+
 from invenio.bibrank_citation_searcher import calculate_cited_by_list,\
                                               get_self_cited_by, \
                                               calculate_co_cited_with_list
