@@ -619,4 +619,14 @@ ul.OtherVersionsList li {
 .tagsContent{
   padding-left: 35px;
 }
+
+.outof {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.linksbox {
+  text-align: right;
+}
+
 /* end of invenio.css */

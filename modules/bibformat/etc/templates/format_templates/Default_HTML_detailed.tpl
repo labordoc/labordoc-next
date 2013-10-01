@@ -1,5 +1,10 @@
 
+ <div class="pull-right linksbox">
+   {{ tfn_get_back_to_search_links(record['recid'], g.ln).decode('utf-8') }}
+ </div>
+
 <div class="row">
+
   <div id="detailedrecord" class="span11 pull-left">
  
     <div id="title">
