@@ -1,6 +1,4 @@
 <name>ILO HTML holdings</name>
 <description>Format used when viewing the "Find in an ILO library"</description>
 
-<BFE_ILO_TITLE prefix='<span class="detailsTitle">' highlight="no" suffix='</span>'/>
-<BFE_ILO_AUTHORS prefix='<br/><span class="detailsAuthors">' suffix="</span>" limit="25" interactive="yes" print_affiliations="yes" affiliation_prefix="<small> (" affiliation_suffix=")</small>"/>
-
+<BFE_ILO_TITLE_WITH_LINK prefix='<span class="detailsTitle">' highlight="no" suffix='</span><br/>'/>

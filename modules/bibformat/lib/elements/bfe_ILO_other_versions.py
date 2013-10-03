@@ -29,7 +29,8 @@ from invenio.bibupload import find_record_from_sysno
 #value =  Create_Modify_Interface_getfieldval_fromDBrec('8564_u',440333)
 #value = find_record_from_sysno('LABORDOC-447053')
 
-def format_element(bfo, separator="<br/>"):
+def format_element(bfo, prefix_en="", prefix_es="",
+                   prefix_fr="", separator="<br/>"):
     """
     Prints the other language versions of the document. First get old sysno's 
     and use those to retrieve the regid. Then print title of the other versions.
@@ -82,9 +83,15 @@ def format_element(bfo, separator="<br/>"):
             title_remainder = ''
        
     if other_version_titles:
+        if bfo.lang == 'es':
+            prefix = prefix_es
+        elif bfo.lang == 'fr':
+            prefix = prefix_fr
+        else:
+            prefix = prefix_en
         out = separator.join(other_version_titles)
     if out != '':
-        return out
+        return prefix + out
 
 def escape_values(bfo):
     """

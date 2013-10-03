@@ -23,7 +23,8 @@ __revision__ = "$Id$"
 import re
 import cgi
 
-def format_element(bfo):
+def format_element(bfo, prefix_en="", prefix_es="",
+                   prefix_fr=""):
     """
     Prints the publisher name
     Prints the imprint publication place as HTML
@@ -39,16 +40,19 @@ def format_element(bfo):
         place = bfo.field('7730_d')
     place = re.sub(':$', '', place)
  
+    if publisher:
+        if bfo.lang == 'es':
+            prefix = prefix_es
+        elif bfo.lang == 'fr':
+            prefix = prefix_fr
+        else:
+            prefix = prefix_en
 
     if publisher and place:
         publisher = publisher + ', ' + place 
 
-    
-#    publisher = cgi.escape(publisher)
-#    publisher = re.sub('&amp;', '&', publisher)
-
     if publisher != "sine nomine":
-        return publisher
+        return prefix + publisher
 
 def escape_values(bfo):
     """

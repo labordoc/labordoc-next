@@ -6,13 +6,13 @@
 	<BFE_ILO_REQUEST_BUTTON /> 
   </div>
 
-  <h4><i class="icon-download-alt">   </i>Export as</h4>
+  <h4><i class="icon-download-alt">   </i>_(Export as)_</h4>
   <a href="<BFE_SERVER_INFO var='CFG_SITE_URL'/>record/<BFE_RECORD_ID/>/export/hm?ln=<BFE_CLIENT_INFO var='ln'/>">MARC</a>,
   <a href="<BFE_SERVER_INFO var='CFG_SITE_URL'/>record/<BFE_RECORD_ID/>/export/xm?ln=<BFE_CLIENT_INFO var='ln'/>">MARCXML</a>,
   <a href="<BFE_SERVER_INFO var='CFG_SITE_URL'/>record/<BFE_RECORD_ID/>/export/xd?ln=<BFE_CLIENT_INFO var='ln'/>">DC</a>,
   <a href="<BFE_SERVER_INFO var='CFG_SITE_URL'/>record/<BFE_RECORD_ID/>/export/cip?ln=<BFE_CLIENT_INFO var='ln'/>">CIP</a>
 
- <h4><i class="icon-wrench">   </i>Other options</h4>
+ <h4><i class="icon-wrench">   </i>_(Other options)_</h4>
   <div>
 	<BFE_SIMILAR_RECORDS />
   </div>
