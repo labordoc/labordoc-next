@@ -48,7 +48,10 @@
 {%- js 'js/invenio.js', '00-invenio' -%}
 
 {%- if not no_pageheader -%}
-<!DOCTYPE html>
+<!DOCTYPE html public "*">
+<!--[if IE]>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" >
+<![endif]-->
 <html lang="{{ ln|safe }}" {% if is_language_rtl(g.ln) %}dir="rtl"{% endif %}>
 <head>
   <meta charset="utf-8">
@@ -94,7 +97,6 @@
   {% endfor %}
   {% block _top_assets %}{% endblock _top_assets %}
   {% block css %}{% endblock css %}
-
 </head>
 
 <body class="{{ body_css_classes|join(' ') if body_css_classes }}"
