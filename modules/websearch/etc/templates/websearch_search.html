@@ -90,7 +90,7 @@
 }
 
 #facet_list.affix {
-  top: 60px;
+  top: 100px;
 }
 
 body {
@@ -98,9 +98,9 @@ body {
 }
 
 #facet_list.affix-bottom {
-  position: absolute;
+  position: fixed;
   top: auto;
-  bottom: 170px;
+  bottom: 100px;
 }
 
 </style>
@@ -325,8 +325,8 @@ body {
             var $ul = $el_clicked.parent().find('ul')
             $ul.each(function(i, ul) {
               $(this).find('[data-facet="toggle"]').each(function() {
-                $('#facet_list').data('facet').delete('+', $(this).attr('data-facet-key'), $(this).attr('data-facet-value'))
-                $('#facet_list').data('facet').delete('-', $(this).attr('data-facet-key'), $(this).attr('data-facet-value'))
+                $('#facet_list').data('facet').delete2('+', $(this).attr('data-facet-key'), $(this).attr('data-facet-value'))
+                $('#facet_list').data('facet').delete2('-', $(this).attr('data-facet-key'), $(this).attr('data-facet-value'))
               })
             })
 
@@ -355,7 +355,7 @@ body {
     })
 
 
-    $('#search_results').css('min-height', $('#facet_list').height())
+    $('#search_results').css('min-height', $('#facet_list').height() + $('#facet_list').position()['top'])
     $('#facet_list').affix('checkPosition');
 
     //if (document.location.hash.length > 2) {
@@ -419,8 +419,8 @@ body {
           //if ($el_clicked.parent().has('ul').length > 0) {
           //  $el_clicked.parent().find('ul').each(function(i, ul) {
           //    $(this).find('[data-facet="toggle"]').each(function() {
-          //      $('#facet_list').data('facet').delete('+', $(this).attr('data-facet-key'), $(this).attr('data-facet-value'))
-          //      $('#facet_list').data('facet').delete('-', $(this).attr('data-facet-key'), $(this).attr('data-facet-value'))
+          //      $('#facet_list').data('facet').delete2('+', $(this).attr('data-facet-key'), $(this).attr('data-facet-value'))
+          //      $('#facet_list').data('facet').delete2('-', $(this).attr('data-facet-key'), $(this).attr('data-facet-value'))
           //    })
           //  }).remove()
           //} else {
