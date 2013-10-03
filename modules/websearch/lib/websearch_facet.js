@@ -66,11 +66,12 @@
 
       for (var i in facets) {
         var f = facets[i];
-        this.options.url_map[f.facet] = f.url
-        // Create facet sidebar.
-        $(this.options.box_builder(f.facet, f.title)).appendTo(element);
-
-        this.createFacetBox(f, $('.'+f.facet+' .context'), {})
+        if (f.facet.toString() != "undefined"){
+          this.options.url_map[f.facet] = f.url
+          // Create facet sidebar.
+          $(this.options.box_builder(f.facet, f.title)).appendTo(element);
+          this.createFacetBox(f, $('.'+f.facet+' .context'), {})
+        }
       } // end for
 
       this.filter = []
@@ -138,8 +139,8 @@
           var $row = $(row_builder(this, name))
           if (data.parent) {
             $row.on('click', function() {
-              context.that.delete('+', name, data.parent)
-              context.that.delete('-', name, data.parent)
+              context.that.delete2('+', name, data.parent)
+              context.that.delete2('-', name, data.parent)
               el.trigger($.Event('deleted', {op: '', key: name, value: data.parent}));
             })
           }
@@ -157,6 +158,7 @@
             m.hide();
           }
           controls.show();
+          $('#search_results').css('min-height', $('#facet_list').height() + $('#facet_list').position()['top']);
           return false
         }).appendTo(el);
 
@@ -169,6 +171,7 @@
           if (controls.length <= 2*split_by) {
             l.hide();
           }
+          $('#search_results').css('min-height', $('#facet_list').height() + $('#facet_list').position()['top']);
           return false
         }).addClass('pull-right').appendTo(el);
 
@@ -270,7 +273,7 @@
       return false
     }
 
-  , delete: function(op, key, value) {
+  , delete2: function(op, key, value) {
       if (this._delete(op, key, value)) {
         this.$element.trigger($.Event('deleted', {op: op, key: key, value: value}));
       }
@@ -282,7 +285,7 @@
           exclude = this.exclude(op, key, value)
       if (keys.length > 0) {
         if (exclude.length < this.filter.length) {
-          return this.delete(op, key, value)
+          return this.delete2(op, key, value)
         }
       }
       return this.addFacet(op, key, value)
@@ -381,7 +384,8 @@
         action,
         $t.attr('data-facet-key'),
         $t.attr('data-facet-value')
-      )
+      )   
+      $('#search_results').css('min-height', $('#facet_list').height() + $('#facet_list').position()['top']);
     })
 
     $('body').on('click.facet.data-api', '[data-facet="reset-key"]', function (e) {
@@ -390,6 +394,7 @@
       $(target).data('facet').resetKey(
         $t.attr('data-facet-key')
       )
+      $('#search_results').css('min-height', $('#facet_list').height() + $('#facet_list').position()['top']);
     })
   })
 
