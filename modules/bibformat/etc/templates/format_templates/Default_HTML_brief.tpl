@@ -1,3 +1,4 @@
+
 <div class="row">
 
   <div id="title">
@@ -32,6 +33,12 @@
 				          suffix='</div>',
 				          separator='<br />', default='', show_icons='yes') }}
   </div>
+
+  <div id="snippets">
+    {{ bfn_get_fulltext_snippets(record['recid'], request.args['p']) | wrap(prefix='<div class="formatRecordLabel"> Snippets </div>
+                                                                   <div class="positionDetailsBrief">', suffix='</div>') }}
+  </div>
+
   <div id="subjects">
     {{ bfe_ilo_subjects(bfo, keyword_prefix='<div class="formatRecordLabel"> Subjects </div>
     					                     <div class="detailsSmallSize positionDetailsBrief">',

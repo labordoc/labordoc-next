@@ -336,23 +336,16 @@ def get_words_from_fulltext(url_direct_or_indirect, stemming_language=None, reci
 
 
 def get_entire_fulltext(recid):
-    # First step: get all fulltexts through BibRecDocs
-    bibrecdocs = BibRecDocs(recid)
-    fulltext_parts = [bibrecdocs.get_text()]
+    # Get the fulltexts from the public/intranet ILO url(s) specified in the 8564_u field(s) 
+    # of the metadata of the record.
+    fulltext_parts = []
+    urls = get_fieldvalues(recid, '8564_u')
+    for url in urls:
+        if 'libdoc' in url:
+            write_message("... will extract words from %s" % url, verbose=2)
+            fulltext_parts.append(get_extracted_text_of_url(url, ''))
 
-    # Second step: get all external fulltexts
-    if not CFG_BIBINDEX_FULLTEXT_INDEX_LOCAL_FILES_ONLY:
-        urls = get_fieldvalues(recid, '8564_u')
-        for url_direct_or_indirect in urls:
-            # URL must not belong to a BibDocFile
-            if not bibdocfile_url_p(url_direct_or_indirect):
-                write_message("... %s is an external URL" % url_direct_or_indirect, verbose=2)
-                urls_to_index = get_urls_to_index(url_direct_or_indirect)
-                write_message("... will extract words from %s" % ', '.join(urls_to_index), verbose=2)
-                for url in urls_to_index:
-                    fulltext_parts.append(get_extracted_text_of_url(url, url_direct_or_indirect))
-
-    return ''.join(fulltext_parts)
+    return ' '.join(fulltext_parts)
 
 
 def get_urls_to_index(url_direct_or_indirect):
