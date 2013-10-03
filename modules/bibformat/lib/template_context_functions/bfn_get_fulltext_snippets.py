@@ -19,27 +19,32 @@
 
 """WebTag List of tags in document view"""
 
-from invenio.config import CFG_WEBSEARCH_FULLTEXT_SNIPPETS
+from invenio.config import CFG_WEBSEARCH_FULLTEXT_SNIPPETS, \
+                            CFG_WEBSEARCH_FULLTEXT_SNIPPETS_CHARS
 from invenio.errorlib import register_exception
-from invenio.bibformat_utils import get_pdf_snippets
+from invenio.solrutils_bibindex_searcher import solr_get_snippet
+#from invenio.bibformat_utils import get_pdf_snippets
 from invenio.search_engine_utils import get_fulltext_terms_from_search_pattern
 
 
-def template_context_function(id_bibrec, pattern, current_user):
+def template_context_function(id_bibrec, pattern):
     """
     @param id_bibrec ID of record
     @param pattern search pattern
     @param current_user user object
     @return HTML containing snippet
     """
-    if id_bibrec and pattern and current_user:
+    nb_chars = CFG_WEBSEARCH_FULLTEXT_SNIPPETS_CHARS.get('', 0)
+    max_snippets = CFG_WEBSEARCH_FULLTEXT_SNIPPETS.get('', 0)
+
+    if id_bibrec and pattern:
         # Requires search in fulltext field
         if CFG_WEBSEARCH_FULLTEXT_SNIPPETS and 'fulltext:' in pattern:
             terms = get_fulltext_terms_from_search_pattern(pattern)
             if terms:
                 snippets = ''
                 try:
-                    snippets = get_pdf_snippets(id_bibrec, terms, current_user).decode('utf8')
+                    snippets = solr_get_snippet(terms, id_bibrec, nb_chars, max_snippets).decode('utf8')
                 except:
                     register_exception()
                 return snippets
