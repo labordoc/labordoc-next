@@ -19,10 +19,11 @@
 """BibFormat element - Prints physical description of the item
 """
 
-
 import cgi
 import re
-def format_element(bfo, prefix, suffix):
+
+def format_element(bfo, prefix_en="", prefix_es="",
+                   prefix_fr=""):
 
 
     pages = bfo.field('5050_a')
@@ -39,9 +40,14 @@ def format_element(bfo, prefix, suffix):
     ''' % pages
      
     if len(pages) > 0:
-        return out
-    else:
-        return ''
+        if bfo.lang == 'es':
+            prefix = prefix_es
+        elif bfo.lang == 'fr':
+            prefix = prefix_fr
+        else:
+            prefix = prefix_en        
+        return prefix + out
+
 
 def escape_values(bfo):
     """

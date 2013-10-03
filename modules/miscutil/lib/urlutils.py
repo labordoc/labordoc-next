@@ -883,18 +883,18 @@ def VoyagerHoldings(recid):
              <a href="mailto:informloan@ilo.org">informloan@ilo.org</a><br /><br />
              If you are not ILO staff and would like to see this item, you may wish to contact your library to
              ask for an inter-library loan or visit an ILO Library near you.
-             </div>
+             </div>"""
 
-             <div class="tableHoldings centered">
-             <table>
-             <thead>
-             <tr>
-             <th>%s</th>
-             <th>%s</th>
-             </tr>
-             </thead>
-             <tbody>
-             """ % ("Location", "Call Number", )
+    out_html += """<div class="pull-left tableHoldings">
+                 <table>
+                 <thead>
+                 <tr>
+                 <th>%s</th>
+                 <th>%s</th>
+                 </tr>
+                 </thead>
+                 <tbody>
+             """ % ("Location", "Call Number")
    
     # iterate through holdings and make rows for the table
  
@@ -929,9 +929,8 @@ def VoyagerHoldings(recid):
         out_table.append(row)
  
     out_table.sort()
-    out_html = out_html + ''.join(out_table) +  '</tbody></table></div>'
-    out_html += """<div>
-                    <span class="pull-left"> <a title="Request Button" href="%s"> <h4><i class="icon-book"> </i>  Request item </h4></a> </span> 
-                  </div>
-                  </div>""" % request_url
+    out_html += ''.join(out_table) +  '</tbody></table></div>'
+    out_html += """<div class="span2 requestButton"> <a title="Request Button" href="%s">
+                   <h4><i class="icon-book"> </i>  Request item </h4></a> </div></div>""" % request_url
+
     return out_html

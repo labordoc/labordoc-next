@@ -47,7 +47,7 @@ def format_element(bfo, style):
     if style != '':
         linkattrd['style'] = style
 
-    label = _("Similar Records")
+    label = _("Similar records")
 
     out += create_html_link(CFG_SITE_URL + "/search",
                               {'ln': bfo.lang,

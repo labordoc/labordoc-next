@@ -1,8 +1,4 @@
 <name>Default HTML similarity</name>
 <description>Small HTML record printed in "Similar Documents" section</description>
 
-<BFE_ILO_TITLE prefix='<span class="detailsTitle">' highlight="no" suffix='</span><br/>'/>
-
-<BFE_ILO_AUTHORS prefix='' suffix=''
-				 limit="25" interactive="yes" print_affiliations="yes"
-				 affiliation_prefix="<small>(" affiliation_suffix=")</small>" />
+<BFE_ILO_TITLE_WITH_LINK prefix='<span class="detailsTitle">' highlight="no" suffix='</span><br/>'/>

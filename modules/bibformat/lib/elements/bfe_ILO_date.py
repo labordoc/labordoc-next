@@ -24,7 +24,9 @@ __revision__ = "$Id$"
 
 import time
 
-def format_element(bfo, date_format='%d %B %Y'):
+
+def format_element(bfo, prefix_en="", prefix_es="",
+                   prefix_fr="", date_format='%d %B %Y'):
     """
     Prints the imprint publication date. If <code>format</code> is specified,
     Parameter <code>date_format</code> allows to specify the string representation of the output.
@@ -41,18 +43,32 @@ def format_element(bfo, date_format='%d %B %Y'):
 
     doctype = bfo.field('996__a')
     date_as = bfo.field('3620_a')
-    #date_as = bfo.field('866%%a')
-    #info_as = bfo.field('866%%z')
     date = bfo.field('997__a')
+
+    if date or date_as:
+        if bfo.lang == 'es':
+            prefix = prefix_es
+        elif bfo.lang == 'fr':
+            prefix = prefix_fr
+        else:
+            prefix = prefix_en
+
     if doctype == 'as' and date_as != '':
         #date_as = date_as + ' ' + info_as
-        return date_as
+        return prefix + date_as
     elif date_format != '':
         try:
             date_time = time.strptime(date, "%Y-%m-%d")
-            return time.strftime(date_format, date_time)
+            return prefix + time.strftime(date_format, date_time)
         except ValueError:
-            return date
+            return prefix + date
     else:
-        return date
+        return prefix + date 
 
+
+def escape_values(bfo):
+    """
+    Called by BibFormat in order to check if output of this element
+    should be escaped.
+    """
+    return 0

@@ -22,8 +22,24 @@
 {% set record = get_record(id_bibrec) %}
 
 {% block webtag_list %}
-  <i class="icon-tags"></i>
+ {# 'Edit tags' button #}
+  {% block webtag_edit_button scoped %}
+    <span class="tagsLabel"><a href="{{ url_for('webtag.editor', id_bibrec=id_bibrec) }}" role="button"
+     data-target="#tags_editor_{{ id_bibrec }}" data-toggle="modal">
+      {% if record_tags|count %}
+        {{ _('Edit your tags') }}
+      {% else %}
+        {{ _('Add your tags') }}
+      {% endif %}
+   </a></span>
+  {% endblock webtag_edit_button %}
+
   {% if record_tags %}
+	{% if of == 'hd' %}
+		<span class="tagsContent">
+	{% else %}
+		<span>
+	{% endif %}
     {% for tag in record_tags %}
     <span class="label label-info">
       {# <a href="{{ url_for('search.search', p='tags:' + tag['name']) }}"> #}
@@ -31,20 +47,9 @@
         {{ tag['name'] }} ({{ tag.record_count }})
       </a>
     </span>
+   </span>
     {% endfor %}
   {% endif %}
-
-  {# 'Edit tags' button #}
-  {% block webtag_edit_button scoped %}
-    <a href="{{ url_for('webtag.editor', id_bibrec=id_bibrec) }}" role="button"
-     data-target="#tags_editor_{{ id_bibrec }}" data-toggle="modal">
-      {% if record_tags|count %}
-        {{ _('Edit tags') }}
-      {% else %}
-        {{ _('Add tags') }}
-      {% endif %}
-   </a>
-  {% endblock webtag_edit_button %}
 {% endblock webtag_list %}
 
 {% block webtag_editor_window %}

@@ -1,6 +1,4 @@
 
-<script language="JavaScript" src="http://www.ilo.org/webcommon/s-includes/popups.js" type="text/javascript"></script>
-
 <div class="row">
   <div id="detailedrecord" class="span11 pull-left">
  
@@ -15,150 +13,152 @@
 	 </div>
 
      <div id="actions">
-       {{ format_record(recid, 'HDACT', ln=g.ln) }}
+       {{ format_record(recid, 'HDACT', ln=g.ln).decode('utf-8') }}
      </div>
 
     </div !-- bfe-actions --! >
 
 	<div class="detailedcontent span8">
 	
-	  <div id="conventionsdoctype">
-		{{ bfe_ilo_conventions_doctype(bfo, prefix='<div class="formatRecordLabel"></div>') }} 
- 	  </div>
+	{{ bfe_ilo_conventions_doctype(bfo, prefix='<div class="formatRecordLabel"></div>') }} 
 
-	  <div id="conventions">
-		{{ bfe_ilo_conventions(bfo, prefix='<div class="formatRecordLabel"> Document type </div>
-								     <div class="positionDetails detailsConventions">',
-							 		suffix='</div>') }} 
- 	  </div>
+	{{ bfe_ilo_conventions(bfo, prefix='<div class="formatRecordLabel"> Document type </div>
+							     <div class="positionDetails detailsConventions">',
+						 		suffix='</div>') }} 
 
-	  <div id="authors">
-		  {{ bfe_ilo_authors(bfo, prefix='<div class="formatRecordLabel"> Author(s) </div>
-		  						   <div class="positionDetails">',
-		                   		  suffix='</div>',
-		  				   		  limit="25", interactive="yes", print_affiliations="yes", 
-		  				   		  affiliation_prefix="<small>(", affiliation_suffix=")</small>") }}
-	  </div>
+	{{ bfe_ilo_authors(bfo, prefix_en='<div id="authors"><div class="formatRecordLabel"> Author(s) </div>
+					  		   <div class="positionDetails">',
+					   	  	  prefix_es='<div id="authors"><div class="formatRecordLabel"> Autor(es) </div>
+					  		   <div class="positionDetails">',
+					      	  prefix_fr='<div id="authors"><div class="formatRecordLabel"> Auteur(s) </div>
+					  		   <div class="positionDetails">',
+						  	  suffix='</div></div>',
+	  				   		  limit="25", interactive="yes", print_affiliations="yes", 
+	  				   		  affiliation_prefix="<small>(", affiliation_suffix=")</small>") }}
 
-	  <div id="year">
-		  {{ bfe_ilo_date(bfo, prefix='<div class="formatRecordLabel"> Year </div>
-							  		   <div class="positionDetails">',
- 					  		   suffix='</div>') }}
- 	  </div>
+    {{ bfe_ilo_date(bfo, prefix_en='<div id="date"><div class="formatRecordLabel"> Year </div>
+					  		     <div class="positionDetails">',
+					     prefix_es='<div id="date"><div class="formatRecordLabel"> Año </div>
+					  		     <div class="positionDetails">',
+					     prefix_fr='<div id="date"><div class="formatRecordLabel"> Année </div>
+					  		     <div class="positionDetails">',
+			  		     suffix='</div></div>') }}
 
- 	  <div id="publisherplace">
- 	    {{ bfe_ilo_publisher_place(bfo, prefix='<div class="formatRecordLabel"> Published </div>
- 	    							            <div class="positionDetails">', 
-                                        suffix="</div>") }}	  						     						   
-	  </div>
+    {{ bfe_ilo_publisher_place(bfo, prefix_en='<div id="place"><div class="formatRecordLabel"> Published </div>
+    							            <div class="positionDetails">',
+									prefix_es='<div id="place"><div class="formatRecordLabel"> Publicado </div>
+    							            <div class="positionDetails">',
+									prefix_fr='<div id="place"><div class="formatRecordLabel"> Publié </div>
+    							            <div class="positionDetails">',     							                							            
+                                    suffix="</div></div>") }}	  						     						   
 
-	  <div id="series">
-	    {{ bfe_ilo_series(bfo, prefix='<div class="formatRecordLabel"> Series </div>
-	    						       <div class="positionDetails detailsSmallSize">',
- 							   suffix='</div>') }}
- 	  </div>
+    {{ bfe_ilo_series(bfo, prefix='<div class="formatRecordLabel"> Series </div>
+    						       <div class="positionDetails">',
+						   suffix='</div>') }}
  
-	  <div id="imprint">
-	    {{ bfe_ilo_imprint(bfo, prefix='<div class="formatRecordLabel"> In </div>
-	    						        <div class="positionDetails detailsSmallSize">',
- 						        suffix='</div>') }}
- 	  </div>
+    {{ bfe_ilo_imprint(bfo, prefix='<div class="formatRecordLabel"> In </div>
+    						        <div class="positionDetails detailsSmallSize">',
+					        suffix='</div>') }}
 
-	  <div id="meeting">
-	    {{ bfe_ilo_meeting(bfo, prefix='<div class="formatRecordLabel"> Meeting </div>
-	    						        <div class="positionDetails">',
- 						        suffix='</div>') }}
- 	  </div>
+    {{ bfe_ilo_meeting(bfo, prefix='<div class="formatRecordLabel"> Meeting </div>
+    						        <div class="positionDetails">',
+					        suffix='</div>') }}
  
- 	  <div id="reportnumbers">
-	    {{ bfe_additional_report_numbers(bfo, prefix='<div class="formatRecordLabel"> Report number </div>
-	    									          <div class="positionDetails">',
- 						                      suffix='</div>',
- 						                      separator=" ", link="no") }}
- 	  </div>
+    {{ bfe_additional_report_numbers(bfo, prefix='<div class="formatRecordLabel"> Report number </div>
+    									          <div class="positionDetails">',
+					                      suffix='</div>',
+					                      separator=" ", link="no") }}
  
-	  <div id="conventionsreport">
-	    {{ bfe_ilo_conventions_report(bfo, prefix='<div class="formatRecordLabel"> Report </div>
-	    									       <div class="positionDetails">',
- 									       suffix='</div>') }}
- 	  </div>
+    {{ bfe_ilo_conventions_report(bfo, prefix='<div class="formatRecordLabel"> Report </div>
+    									       <div class="positionDetails">',
+								       suffix='</div>') }}
 
-	  <div id="pages">
-	    {{ bfe_ilo_pages(bfo, prefix='<div class="formatRecordLabel"> Pages </div>
-	    					          <div class="positionDetails">',
- 					          suffix='</div>') }}
- 	  </div>
+    {{ bfe_ilo_pages(bfo, prefix_en='<div id="pages"><div class="formatRecordLabel"> Pages </div>
+    					          <div class="positionDetails">',
+						  prefix_es='<div id="pages"><div class="formatRecordLabel"> Páginas </div>
+    					          <div class="positionDetails">',
+						  prefix_fr='<div id="pages"><div class="formatRecordLabel"> Pages </div>
+    					          <div class="positionDetails">', 					       
+				          suffix='</div></div>') }}
 
- 	  <div id="links">
-	    {{ bfe_ilo_links(bfo, prefix='<div class="formatRecordLabel"> Links </div>
-	    					          <div class="positionDetails detailsLinks">',
- 					          suffix='</div>',
- 					          separator='<br />', default='', show_icons='yes') }}
- 	  </div>
+    {{ bfe_ilo_links(bfo, prefix_en='<div id="links"><div class="formatRecordLabel"> Links </div>
+					             <div class="positionDetails">',
+						  prefix_es='<div id="links"><div class="formatRecordLabel"> Enlaces </div>
+						             <div class="positionDetails">',
+						  prefix_fr='<div id="links"><div class="formatRecordLabel"> Liens </div>
+						             <div class="positionDetails">',
+				          suffix='</div></div>',
+				          separator='<br />', default='', show_icons='yes') }}
 
- 	  <div id="conventionslink">
-	    {{ bfe_ilo_conventions_link(bfo, prefix='<span class="formatRecordLabel"> Links </span>
-	    					                     <span class="positionDetails detailsConventions"><br /><b>',
- 					                     suffix='</b></span>') }}
- 	  </div>
+    {{ bfe_ilo_conventions_link(bfo, prefix='<span class="formatRecordLabel"> Links </span>
+    					                     <span class="positionDetails detailsConventions"><br /><b>',
+				                     suffix='</b></span>') }}
 
- 	  <div id="sfxlink">
-	    {{ bfe_ilo_sfx_link(bfo, prefix='<div class="formatRecordLabel"> </div>
-	    					             <div class="positionDetails"><br /><b>',
- 					             suffix='</b></div>') }}
- 	  </div>
+	{{ bfe_ilo_sfx_link(bfo, prefix='<div class="formatRecordLabel"> </div>
+	    					         <div class="positionDetails"><br /><b>',
+ 					         suffix='</b></div>') }}
+  
+    {{ bfe_ilo_abstract(bfo, prefix_en='<div id="abstract"><div class="formatRecordLabel"> Abstract </div>
+						  		   <div class="positionDetails">',
+						   	 prefix_es='<div id="abstract"><div class="formatRecordLabel"> Resumen </div>
+						  		   <div class="positionDetails">',
+						     prefix_fr='<div id="abstract"><div class="formatRecordLabel"> Résumé </div>
+						  		   <div class="positionDetails">',
+							 suffix='</div></div>') }}
  
- 	  <div id="verticalspace" class="detailsEmptyRow" ></div>
+  	<div id="verticalspace" class="detailsEmptyRow" ></div>
  
- 	  <div id="abstract">
-	    {{ bfe_ilo_abstract(bfo, prefix='<div class="formatRecordLabel"> Abstract </div>
-	    					             <div class="positionDetails">',
- 					             suffix='</div>') }}
- 	  </div>
+    {{ bfe_ilo_contents(bfo, prefix_en='<div id="contents"><div class="formatRecordLabel"> Contents </div>
+    					             <div class="positionDetails">',
+    					     prefix_es='<div id="contents"><div class="formatRecordLabel"> Contenidos </div>
+    					             <div class="positionDetails">',
+     					     prefix_fr='<div id="contents"><div class="formatRecordLabel"> Contenu </div>
+    					             <div class="positionDetails">',     					      
+				   			 suffix='</div></div>') }}
 
- 	  <div id="verticalspace" class="detailsEmptyRow" ></div>
- 
- 	  <div id="contents">
-	    {{ bfe_ilo_contents(bfo, prefix='<div class="formatRecordLabel"> Contents </div>
-	    					             <div class="detailsSmallSize positionDetails">',
- 					   			 suffix='</div> ') }}
- 	  </div>
+    {{ bfe_ilo_isbn(bfo, prefix='<div class="formatRecordLabel"> ISBN </div>
+    					         <div class="positionDetails detailsSmallSize">',
+				         suffix='</div>',
+				         separator='<br />', default='') }}
 
- 	  <div id="isbn">
-	    {{ bfe_ilo_isbn(bfo, prefix='<div class="formatRecordLabel"> ISBN </div>
-	    					         <div class="positionDetails detailsSmallSize">',
- 					         suffix='</div>',
- 					         separator='<br />', default='') }}
- 	  </div>
+    {{ bfe_issn(bfo, prefix='<div class="formatRecordLabel"> ISNN </div>
+    					     <div class="positionDetails detailsSmallSize">',
+				     suffix='</div>',
+				     default='') }}
 
- 	  <div id="issn">
-	    {{ bfe_issn(bfo, prefix='<div class="formatRecordLabel"> ISNN </div>
-	    					     <div class="positionDetails detailsSmallSize">',
- 					     suffix='</div>',
- 					     default='') }}
- 	  </div>
+    {{ bfe_ilo_other_versions(bfo, prefix_en='<div id="other_versions"><div class="formatRecordLabel"> Other versions </div>
+    					                   <div class="positionDetails detailsSmallSize">
+    					                   <ul class="OtherVersionsList"><li class="OtherVersionsList">
+										   <i class="icon-caret-right"></i>&nbsp;&nbsp;&nbsp;',
+								   prefix_es='<div id="other_versions"><div class="formatRecordLabel"> Otras versiones </div>
+    					                   <div class="positionDetails detailsSmallSize">
+    					                   <ul class="OtherVersionsList"><li class="OtherVersionsList">
+										   <i class="icon-caret-right"></i>&nbsp;&nbsp;&nbsp;',
+								   prefix_fr='<div id="other_versions"><div class="formatRecordLabel"> Autre versions </div>
+    					                   <div class="positionDetails detailsSmallSize">
+    					                   <ul class="OtherVersionsList"><li class="OtherVersionsList">
+										   <i class="icon-caret-right"></i>&nbsp;&nbsp;&nbsp;',
+				                   suffix='</li></ul></div></div>',
+				                   separator='</li><li class="OtherVersionsList"><i class="icon-caret-right"></i>&nbsp;&nbsp;&nbsp;',
+				                   default='') }}
 
- 	  <div id="otherversions">
-	    {{ bfe_ilo_other_versions(bfo, prefix='<div class="formatRecordLabel"> Other versions </div>
-	    					                   <div class="positionDetails detailsSmallSize">
-	    					                   <ul class="OtherVersionsList"><li class="OtherVersionsList">
-											   <i class="icon-caret-right"></i>&nbsp;&nbsp;&nbsp;',
-					                   suffix='</li></ul></div>',
- 					                   separator='</li><li class="OtherVersionsList"><i class="icon-caret-right"></i>&nbsp;&nbsp;&nbsp;',
- 					                   default='') }}
- 	  </div>
+ 	<div id="verticalspace" class="detailsEmptyRow" ></div>
 
- 	  <div id="verticalspace" class="detailsEmptyRow" ></div>
+    {{ bfe_ilo_subjects(bfo, prefix_en='<div id="subjects"><div class="formatRecordLabel"> Subjects </div>
+					  		   <div class="detailsSmallSize positionDetails">',
+						   	 prefix_es='<div id="subjects"><div class="formatRecordLabel"> Temas </div>
+						  		   <div class="detailsSmallSize positionDetails">',
+						     prefix_fr='<div id="subjects"><div class="formatRecordLabel"> Sujets </div>
+						  		   <div class="detailsSmallSize positionDetails">',
+							 suffix='</div></div>') }}
 
- 	  <div id="subjects">
-	    {{ bfe_ilo_subjects(bfo, keyword_prefix='<div class="formatRecordLabel"> Subjects </div>
-	    					                     <div class="detailsSmallSize positionDetails">',
- 					             keyword_suffix='</div>') }}
- 	  </div>
+   <div id="verticalspace" class="detailsEmptyRow" ></div>
 
-	</div !-- detailedcontent --! >
+	{{ bfn_webtag_record_tags(record['recid'], current_user.get_id(), 'hd') }}
 
-   </div !-- detailedrecord --! >
+  </div !-- detailedcontent --! >
+
+  </div !-- detailedrecord --! >
 
 </div !-- row --!>
 

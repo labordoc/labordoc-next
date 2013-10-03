@@ -25,7 +25,9 @@ from invenio.messages import gettext_set_language
 from invenio.config import CFG_SITE_URL, CFG_CERN_SITE
 from cgi import escape
 
-def format_element(bfo, style, prefix, suffix, separator='; ', show_icons='no', focus_on_main_file='yes'):
+def format_element(bfo, style, prefix_en="", prefix_es="",
+                   prefix_fr="", separator='; ',
+                   show_icons='no', focus_on_main_file='yes'):
     """
     This is the format for formatting fulltext links in the mini panel.
     @param separator: the separator between urls.
@@ -35,6 +37,7 @@ def format_element(bfo, style, prefix, suffix, separator='; ', show_icons='no', 
     prominently display this doctype. In that case other doctypes are
     summarized with a link to the Fulltext tab, named"Additional files".
     """
+
     _ = gettext_set_language(bfo.lang)
     out = ''
 
@@ -63,8 +66,14 @@ def format_element(bfo, style, prefix, suffix, separator='; ', show_icons='no', 
         additional_str = separator + '<small>(<a '+style+' href="'+CFG_SITE_URL+'/record/'+str(bfo.recID)+'/files/">%s</a>)</small>' % _("additional files")
 
     versions_str = ''
-    #if old_versions:
-        #versions_str = separator + '<small>(<a '+style+' href="'+CFG_SITE_URL+'/record/'+str(bfo.recID)+'/files/">%s</a>)</small>' % _("older versions")
+
+    if main_urls or others_urls:
+        if bfo.lang == 'es':
+            prefix = prefix_es
+        elif bfo.lang == 'fr':
+            prefix = prefix_fr
+        else:
+            prefix = prefix_en        
 
     if main_urls:
         # Put a big file icon if only one file
@@ -115,35 +124,35 @@ def format_element(bfo, style, prefix, suffix, separator='; ', show_icons='no', 
             out += separator + separator.join(url_list) + \
                    additional_str + versions_str + '</div>'
 
-    if CFG_CERN_SITE and cern_urls:
-        # Put a big file icon if only one file
-        if len(main_urls.keys()) == 0 and \
-               len(cern_urls) == 1 and len(others_urls) == 0 and \
-               show_icons.lower() == 'yes':
-            file_icon = '<img style="border:none" src="%s/img/file-icon-text-34x48.gif" alt="%s" /><br />' % (CFG_SITE_URL, _("Download fulltext"))
-            pdf_icon = '<img style="border:none" src="%s/img/attachment-pdf.png" align="absbottom" vspace="2" height="15" weight="15" alt="%s"/> ' \
-            % (CFG_SITE_URL, _("Download PDF"))
-            web_icon = '<img style="border:none" src="%s/img/webpage.png" align="absbottom" vspace="2" height="15" weight="15" alt="%s" /> ' \
-            % (CFG_SITE_URL, _("Download Web link"))
-
-        elif show_icons.lower() == 'yes':
-            file_icon = '<img style="border:none" src="%s/img/file-icon-text-12x16.gif" alt="%s"/>' % (CFG_SITE_URL, _("Download fulltext"))
-            pdf_icon = '<img style="border:none" src="%s/img/attachment-pdf.png" align="absbottom" vspace="2" height="15" weight="15" alt="%s"/> ' \
-            % (CFG_SITE_URL, _("Download PDF"))
-            web_icon = '<img style="border:none" src="%s/img/webpage.png" align="absbottom" vspace="2" height="15" weight="15" alt="%s" /> ' \
-            % (CFG_SITE_URL, _("Download Web link"))
-        else:
-            file_icon = ''
-            pdf_icon = ''
-            web_icon = ''
-
-        link_word = len(cern_urls) == 1 and _('%(x_sitename)s link') or _('%(x_sitename)s links')
-        out += '<small class="detailedRecordActions">%s:</small><br />' % (link_word % {'x_sitename': 'CERN'})
-        url_list = []
-        for url, descr in cern_urls:
-            url_list.append('<a '+style+' href="'+escape(url)+'">'+file_icon+escape(str(descr))+'</a>')
-        out += '<small>' + separator.join(url_list) + '</small>'
-        out += "<br/>"
+#     if CFG_CERN_SITE and cern_urls:
+#         # Put a big file icon if only one file
+#         if len(main_urls.keys()) == 0 and \
+#                len(cern_urls) == 1 and len(others_urls) == 0 and \
+#                show_icons.lower() == 'yes':
+#             file_icon = '<img style="border:none" src="%s/img/file-icon-text-34x48.gif" alt="%s" /><br />' % (CFG_SITE_URL, _("Download fulltext"))
+#             pdf_icon = '<img style="border:none" src="%s/img/attachment-pdf.png" align="absbottom" vspace="2" height="15" weight="15" alt="%s"/> ' \
+#             % (CFG_SITE_URL, _("Download PDF"))
+#             web_icon = '<img style="border:none" src="%s/img/webpage.png" align="absbottom" vspace="2" height="15" weight="15" alt="%s" /> ' \
+#             % (CFG_SITE_URL, _("Download Web link"))
+# 
+#         elif show_icons.lower() == 'yes':
+#             file_icon = '<img style="border:none" src="%s/img/file-icon-text-12x16.gif" alt="%s"/>' % (CFG_SITE_URL, _("Download fulltext"))
+#             pdf_icon = '<img style="border:none" src="%s/img/attachment-pdf.png" align="absbottom" vspace="2" height="15" weight="15" alt="%s"/> ' \
+#             % (CFG_SITE_URL, _("Download PDF"))
+#             web_icon = '<img style="border:none" src="%s/img/webpage.png" align="absbottom" vspace="2" height="15" weight="15" alt="%s" /> ' \
+#             % (CFG_SITE_URL, _("Download Web link"))
+#         else:
+#             file_icon = ''
+#             pdf_icon = ''
+#             web_icon = ''
+# 
+#         link_word = len(cern_urls) == 1 and _('%(x_sitename)s link') or _('%(x_sitename)s links')
+#         out += '<small class="detailedRecordActions">%s:</small><br />' % (link_word % {'x_sitename': 'CERN'})
+#         url_list = []
+#         for url, descr in cern_urls:
+#             url_list.append('<a '+style+' href="'+escape(url)+'">'+file_icon+escape(str(descr))+'</a>')
+#         out += '<small>' + separator.join(url_list) + '</small>'
+#         out += "<br/>"
 
     if others_urls:
         # Put a big file icon if only one file
@@ -192,10 +201,11 @@ def format_element(bfo, style, prefix, suffix, separator='; ', show_icons='no', 
             if len(non_libdoc_pdf) != 0:
                 url_list.append('<a '+style+' href="'+escape(non_libdoc_pdf)+'">'+pdf_icon+escape(str(descr))+'</a>')
         out += separator.join(url_list)
+
     if out.endswith('<br />'):
         out = out[:-len('<br />')]
 
-    return out
+    return prefix + out
 
 def escape_values(bfo):
     """

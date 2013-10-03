@@ -591,11 +591,14 @@ ul.OtherVersionsList li {
 
 .tableHoldings {
 	margin-top: 20px;
+	margin-right: 30px;
+	margin-left: 45px;
 	margin-bottom: 20px;
 	width:60%;
 	box-shadow: 10px 10px 5px #888888;
 	border:1px solid #000000;
 	border-radius: 5px;
+	text-align: left;
 }
 
 .tableHoldings table{
@@ -604,8 +607,16 @@ ul.OtherVersionsList li {
 	margin: 10px 10px;
 }
 
-.centered {
-  text-align: left;
+.requestButton {
+   margin-top: 20px;
 }
 
+.tagsLabel{
+  float: left;
+  width: 115px;
+}
+
+.tagsContent{
+  padding-left: 35px;
+}
 /* end of invenio.css */

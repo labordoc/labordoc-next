@@ -22,8 +22,8 @@
 
 import cgi
 
-
-def format_element(bfo, limit="", max_chars="",
+def format_element(bfo, prefix_en="", prefix_es="",
+                   prefix_fr="", limit="", max_chars="",
                    extension="[...] ", contextual="no",
                    highlight='no', escape="3",
                    separator="<br/>"):
@@ -34,6 +34,13 @@ def format_element(bfo, limit="", max_chars="",
 
     abstract = bfo.field('5208_a')
     if len(abstract) > 0 and abstract != "Abstract":
+        if bfo.lang == 'es':
+            prefix = prefix_es
+        elif bfo.lang == 'fr':
+            prefix = prefix_fr
+        else:
+            prefix = prefix_en
+
         print_extension = False
         if limit != "" and limit.isdigit():
             s_abstract = abstract.split(". ")
@@ -50,9 +57,8 @@ def format_element(bfo, limit="", max_chars="",
 
         if highlight == 'yes':
             out = bibformat_utils.highlight(out, bfo.search_pattern)
-        return out
-    else:
-        return ""
+
+        return prefix + out
 
 
 def escape_values(bfo):

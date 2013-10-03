@@ -32,7 +32,7 @@ from invenio.webtag_model import \
 from invenio.websession_model import User
 from invenio.bibedit_model import Bibrec
 
-def template_context_function(id_bibrec, id_user):
+def template_context_function(id_bibrec, id_user, of):
     """
     @param id_bibrec ID of record
     @param id_user user viewing the record (and owning the displayed tags)
@@ -48,6 +48,7 @@ def template_context_function(id_bibrec, id_user):
            .all()
         return render_template_to_string('webtag_record.html',
                                          id_bibrec=id_bibrec,
-                                         record_tags=tags)
+                                         record_tags=tags,
+                                         of=of)
     else:
-        return None
+        return ""

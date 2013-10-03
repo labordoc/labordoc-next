@@ -43,7 +43,7 @@ class WebTagSettings(Settings):
     def __init__(self):
         super(WebTagSettings, self).__init__()
         self.icon = 'tags'
-        self.title = _('Tags')
+        self.title = _('Your Tags')
         self.view = url_for('webtag.display_cloud')
 
     def widget(self):

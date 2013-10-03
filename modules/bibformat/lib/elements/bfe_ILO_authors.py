@@ -20,14 +20,16 @@
 """
 __revision__ = "$Id$"
 
-def format_element(bfo, limit, separator=' ; ',
-           extension='[...]',
-           print_links="yes",
-           print_affiliations='no',
-           affiliation_prefix = ' (',
-           affiliation_suffix = ')',
-           interactive="no",
-           highlight="no"):
+
+def format_element(bfo, limit, prefix_en="", prefix_es="",
+                   prefix_fr="", separator=' ; ',
+                   extension='[...]',
+                   print_links="yes",
+                   print_affiliations='no',
+                   affiliation_prefix = ' (',
+                   affiliation_suffix = ')',
+                   interactive="no",
+                   highlight="no"):
     """
     Prints the list of authors of a record.
 
@@ -46,8 +48,6 @@ def format_element(bfo, limit, separator=' ; ',
     from invenio.config import CFG_SITE_URL
     from invenio.messages import gettext_set_language
     import re
-
-    _ = gettext_set_language(bfo.lang)    # load the right message language
 
     authors = []
     authors_1 = bfo.fields('1001_')
@@ -95,93 +95,102 @@ def format_element(bfo, limit, separator=' ; ',
     authors.extend(authors_4)
     authors.extend(authors_5)
     authors.extend(authors_6)
-    
+
     nb_authors = len(authors)
 
-    # Process authors to add link, highlight and format affiliation
-    for author in authors:
+    if nb_authors:
+        if bfo.lang == 'es':
+            prefix = prefix_es
+        elif bfo.lang == 'fr':
+            prefix = prefix_fr
+        else:
+            prefix = prefix_en
 
-        if author.has_key('a'):
-            if highlight == 'yes':
-                from invenio import bibformat_utils
-                author['a'] = bibformat_utils.highlight(author['a'],
-                                                        bfo.search_pattern)
+        # Process authors to add link, highlight and format affiliation
+        for author in authors:
 
-            # VS hack to take away links from corporate authors
-            if print_links.lower() == "yes":
-                if author['a'].startswith('CORP'):
-                    author['a'] = re.sub('^CORP', '', author['a'])
-                else:
-                    #author['a'] = '<a  class="detailsAuthors" href="' + CFG_SITE_URL + \
-                    #              '/search?f=author&amp;p='+ quote(author['a']) + \
-                    #              '&amp;ln='+ bfo.lang + \
-                    #              '">'+escape(author['a'])+'</a>'
-                    author['a'] = '<a  class="detailsAuthors" href="' + CFG_SITE_URL + \
-                                  '/search?f=author&amp;p='+ quote(author['a']) + \
-                                  '&amp;ln='+ bfo.lang + \
-                                  '">'+(author['a'])+'</a>'
+            if author.has_key('a'):
+                if highlight == 'yes':
+                    from invenio import bibformat_utils
+                    author['a'] = bibformat_utils.highlight(author['a'],
+                                                            bfo.search_pattern)
 
-        if author.has_key('u'):
-            if print_affiliations == "yes":
-                author['u'] = affiliation_prefix + author['u'] + \
-                              affiliation_suffix
+                # VS hack to take away links from corporate authors
+                if print_links.lower() == "yes":
+                    if author['a'].startswith('CORP'):
+                        author['a'] = re.sub('^CORP', '', author['a'])
+                    else:
+                        #author['a'] = '<a  class="detailsAuthors" href="' + CFG_SITE_URL + \
+                        #              '/search?f=author&amp;p='+ quote(author['a']) + \
+                        #              '&amp;ln='+ bfo.lang + \
+                        #              '">'+escape(author['a'])+'</a>'
+                        author['a'] = '<a  class="detailsAuthors" href="' + CFG_SITE_URL + \
+                                      '/search?f=author&amp;p='+ quote(author['a']) + \
+                                      '&amp;ln='+ bfo.lang + \
+                                      '">'+(author['a'])+'</a>'
 
-        if author.has_key('b'):
-            if print_affiliations == "yes":
-                author['b'] = affiliation_prefix + author['b'] + \
-                              affiliation_suffix
+            if author.has_key('u'):
+                if print_affiliations == "yes":
+                    author['u'] = affiliation_prefix + author['u'] + \
+                                  affiliation_suffix
 
-    # Flatten author instances
-    if print_affiliations == 'yes':
-        authors = [author.get('a', '') + author.get('u', '') + author.get('b', '')
-                   for author in authors]
-    else:
-        authors = [author.get('a', '') + author.get('b', '')
-                   for author in authors]
+            if author.has_key('b'):
+                if print_affiliations == "yes":
+                    author['b'] = affiliation_prefix + author['b'] + \
+                                  affiliation_suffix
 
-    if limit.isdigit() and  nb_authors > int(limit) and interactive != "yes":
-        return separator.join(authors[:int(limit)]) + extension
+        # Flatten author instances
+        if print_affiliations == 'yes':
+            authors = [author.get('a', '') + author.get('u', '') + author.get('b', '')
+                       for author in authors]
+        else:
+            authors = [author.get('a', '') + author.get('b', '')
+                       for author in authors]
 
-    elif limit.isdigit() and nb_authors > int(limit) and interactive == "yes":
-        out = '''
-        <script type="text/javascript">
-        function toggle_authors_visibility(){
-            var more = document.getElementById('more');
-            var link = document.getElementById('link');
-            var extension = document.getElementById('extension');
-            if (more.style.display=='none'){
-                more.style.display = '';
-                extension.style.display = 'none';
-                link.innerHTML = "%(show_less)s"
-            } else {
-                more.style.display = 'none';
-                extension.style.display = '';
-                link.innerHTML = "%(show_more)s"
+        if limit.isdigit() and  nb_authors > int(limit) and interactive != "yes":
+            out = separator.join(authors[:int(limit)]) + extension
+
+        elif limit.isdigit() and nb_authors > int(limit) and interactive == "yes":
+            out = '''
+            <script type="text/javascript">
+            function toggle_authors_visibility(){
+                var more = document.getElementById('more');
+                var link = document.getElementById('link');
+                var extension = document.getElementById('extension');
+                if (more.style.display=='none'){
+                    more.style.display = '';
+                    extension.style.display = 'none';
+                    link.innerHTML = "%(show_less)s"
+                } else {
+                    more.style.display = 'none';
+                    extension.style.display = '';
+                    link.innerHTML = "%(show_more)s"
+                }
+                link.style.color = "rgb(204,0,0);"
             }
-            link.style.color = "rgb(204,0,0);"
-        }
 
-        function set_up(){
-            var extension = document.getElementById('extension');
-            extension.innerHTML = "%(extension)s";
-            toggle_authors_visibility();
-        }
+            function set_up(){
+                var extension = document.getElementById('extension');
+                extension.innerHTML = "%(extension)s";
+                toggle_authors_visibility();
+            }
 
-        </script>
-        '''%{'show_less':_("Hide"),
-             'show_more':_("Show all %i authors") % nb_authors,
-             'extension':extension}
+            </script>
+            '''%{'show_less':_("Hide"),
+                 'show_more':_("Show all %i authors") % nb_authors,
+                 'extension':extension}
 
-        out += '<a name="show_hide" />'
-        out += separator.join(authors[:int(limit)])
-        out += '<span id="more" style="">' + separator + \
-               separator.join(authors[int(limit):]) + '</span>'
-        out += ' <span id="extension"></span>'
-        out += ' <small><i><a class="detailsAuthors" id="link" href="#" onclick="toggle_authors_visibility()" style="color:rgb(204,0,0);"></a></i></small>'
-        out += '<script type="text/javascript">set_up()</script>'
-        return out
-    elif nb_authors > 0:
-        return separator.join(authors)
+            out += '<a name="show_hide" />'
+            out += separator.join(authors[:int(limit)])
+            out += '<span id="more" style="">' + separator + \
+                   separator.join(authors[int(limit):]) + '</span>'
+            out += ' <span id="extension"></span>'
+            out += ' <small><i><a class="detailsAuthors" id="link" href="#" onclick="toggle_authors_visibility()" style="color:rgb(204,0,0);"></a></i></small>'
+            out += '<script type="text/javascript">set_up()</script>'
+        elif nb_authors > 0:
+            out = separator.join(authors)
+
+        return prefix + out
 
 def escape_values(bfo):
     """
