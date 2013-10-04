@@ -1178,6 +1178,14 @@ class FormatData(DataSet):
         visibility = 0
         name = u'Mobile detailed'
 
+    class Format_29:
+        code = u'cip'
+        last_updated = None
+        description = u'ILO Cataloguing in Publication Data.'
+        content_type = u'text/html'
+        id = 29
+        visibility = 0
+        name = u'CIP'
 
 class FieldTagData(DataSet):
 
