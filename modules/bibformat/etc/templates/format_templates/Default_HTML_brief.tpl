@@ -46,7 +46,7 @@
 			          separator='<br />', default='', show_icons='yes') }}
 
   <div id="snippets">
-    {{ bfn_get_fulltext_snippets(record['recid'], request.args['p']) | wrap(prefix='<div class="formatRecordLabel"> Snippets </div>
+    {{ tfn_get_fulltext_snippets(record['recid'], request.args['p']) | wrap(prefix='<div class="formatRecordLabel"> Snippets </div>
                                                                    					<div class="positionDetailsBrief">', suffix='</div>') }}
   </div>
 
@@ -60,7 +60,7 @@
 						 suffix='</div></div>') }}
 
   <div id="tags">
-   {{ bfn_webtag_record_tags(record['recid'], current_user.get_id(), 'hb') }}
+   {{ tfn_webtag_record_tags(record['recid'], current_user.get_id(), 'hb') }}
   </div>
 </div>
 

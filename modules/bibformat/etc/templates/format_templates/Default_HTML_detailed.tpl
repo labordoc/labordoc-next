@@ -154,7 +154,7 @@
 
    <div id="verticalspace" class="detailsEmptyRow" ></div>
 
-	{{ bfn_webtag_record_tags(record['recid'], current_user.get_id(), 'hd') }}
+	{{ tfn_webtag_record_tags(record['recid'], current_user.get_id(), 'hd') }}
 
   </div !-- detailedcontent --! >
 
