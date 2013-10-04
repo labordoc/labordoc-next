@@ -18,6 +18,6 @@
 -#}
 <collection xmlns="http://www.loc.gov/MARC21/slim">
 {% for recid in recids %}
-  {{ format_record(recid, of) }}
+  {{ format_record(recid, of).decode('utf-8') }}
 {% endfor %}
 </collection>

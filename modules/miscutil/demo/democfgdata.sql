@@ -3727,4 +3727,15 @@ INSERT INTO aidPERSONIDDATA (personid, tag, data) VALUES (5,'uid','6');
 INSERT INTO aidPERSONIDDATA (personid, tag, data) VALUES (6,'uid','7');
 INSERT INTO aidPERSONIDDATA (personid, tag, data) VALUES (7,'uid','8');
 
+update format set visibility=0 where code="hx";
+update format set visibility=0 where code="xe";
+update format set visibility=0 where code="hp";
+update format set visibility=0 where code="xe8x";
+update format set visibility=0 where code="hcs";
+update format set visibility=0 where code="xw";
+update format set visibility=0 where code="xo";
+update format set visibility=0 where code="xn";
+update format set visibility=0 where code="hc";
+
+
 -- end of file

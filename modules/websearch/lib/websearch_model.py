@@ -602,7 +602,6 @@ class Format(db.Model):
     @classmethod
     def get_export_formats(cls):
         return cls.query.filter(db.and_(
-            Format.content_type != 'text/html',
             Format.visibility == 1)
         ).order_by(Format.name).all()
 
