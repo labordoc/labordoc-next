@@ -866,7 +866,10 @@ def VoyagerHoldings(recid):
     kept_note = bfo.field("866_0z")
     voyager_sysno = bfo.field("970__a")
     voyager_sysno = re.sub('^LABORDOC-', '', voyager_sysno)
-    links = bfe_ILO_links.format_element(bfo, style='', prefix='', suffix='', separator='<br />', show_icons='no', focus_on_main_file='yes')
+    links = bfe_ILO_links.format_element(bfo, style='',
+                                         prefix_en='',
+                                         suffix='', separator='<br />',
+                                         show_icons='no', focus_on_main_file='yes')
     #request_url = '''http://golf.ilo.org/cgi-bin/Pwebrecon.cgi?bbid=%s&BIB=%s&PAGE=REQUESTBIB" onclick="newWin(this.href); return false;''' % (voyager_sysno, voyager_sysno)
     request_url = '''http://ringo.ilo.org:7008/vwebv/patronRequests?&sk=en_ILO&bibId=%s" onclick="newWin(this.href); return false;''' % (voyager_sysno)
  
@@ -915,7 +918,10 @@ def VoyagerHoldings(recid):
             out_table.append(row)
             HQ = True
         elif  row.find('Electronic') >= 1:
-              links = bfe_ILO_links.format_element(bfo, style='', prefix='', suffix='', separator='<br /', show_icons='no',  focus_on_main_file='yes')
+              links = bfe_ILO_links.format_element(bfo, style='',
+                                                   prefix_en='',
+                                                   suffix='', separator='<br /',
+                                                   show_icons='no',  focus_on_main_file='yes')
               links = '</td><td>' + links + '</td></tr>'
               row = re.sub('</td><td>.*</td></tr>', links, row)
               out_table.append(row)

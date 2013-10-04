@@ -26,7 +26,7 @@ from invenio.config import CFG_SITE_URL, CFG_CERN_SITE
 from cgi import escape
 
 def format_element(bfo, style, prefix_en="", prefix_es="",
-                   prefix_fr="", separator='; ',
+                   prefix_fr="", suffix="", separator='; ',
                    show_icons='no', focus_on_main_file='yes'):
     """
     This is the format for formatting fulltext links in the mini panel.
@@ -66,6 +66,7 @@ def format_element(bfo, style, prefix_en="", prefix_es="",
         additional_str = separator + '<small>(<a '+style+' href="'+CFG_SITE_URL+'/record/'+str(bfo.recID)+'/files/">%s</a>)</small>' % _("additional files")
 
     versions_str = ''
+    prefix = ""
 
     if main_urls or others_urls:
         if bfo.lang == 'es':
