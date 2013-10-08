@@ -21,12 +21,21 @@
 __revision__ = "$Id$"
 
 
-def format_element(bfo, separator=" ", highlight='no'):
+def format_element(bfo, prefix_en="", prefix_es="",
+                   prefix_fr="", separator=" ", highlight='no'):
 
     title = bfo.field('7730_t')
     relinfo = bfo.field('7730_g')
 
     out = ""
+    prefix = ""
+    if title or relinfo:
+        if bfo.lang == 'es':
+            prefix = prefix_es
+        elif bfo.lang == 'fr':
+            prefix = prefix_fr
+        else:
+            prefix = prefix_en
 
     if title != "sine loco":
         out += title + " "
@@ -35,4 +44,11 @@ def format_element(bfo, separator=" ", highlight='no'):
         out += relinfo
 
 
-    return out
+    return prefix + out
+
+def escape_values(bfo):
+    """
+    Called by BibFormat in order to check if output of this element
+    should be escaped.
+    """
+    return 0

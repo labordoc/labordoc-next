@@ -35,6 +35,7 @@ def format_element(bfo, prefix_en="", prefix_es="",
     publisher = re.sub(',$', '', publisher)
     place = bfo.field('260__a')
     place = re.sub(',$', '', place)
+    prefix = ""
 
     if len(place) == 0:
         place = bfo.field('7730_d')

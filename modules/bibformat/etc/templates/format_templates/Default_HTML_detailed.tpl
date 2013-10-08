@@ -61,9 +61,13 @@
     						       <div class="positionDetails">',
 						   suffix='</div>') }}
  
-    {{ bfe_ilo_imprint(bfo, prefix='<div class="formatRecordLabel"> In </div>
-    						        <div class="positionDetails detailsSmallSize">',
-					        suffix='</div>') }}
+    {{ bfe_ilo_imprint(bfo, prefix_en='<div id="imprint"><div class="formatRecordLabel"> In </div>
+										<div class="positionDetails detailsSmallSize">',
+							prefix_es='<div id="imprint"><div class="formatRecordLabel"> En </div>
+										<div class="positionDetails detailsSmallSize">',
+							prefix_fr='<div id="imprint"><div class="formatRecordLabel"> Dans </div>
+										<div class="positionDetails detailsSmallSize">',
+							suffix='</div></div>') }}
 
     {{ bfe_ilo_meeting(bfo, prefix='<div class="formatRecordLabel"> Meeting </div>
     						        <div class="positionDetails">',
