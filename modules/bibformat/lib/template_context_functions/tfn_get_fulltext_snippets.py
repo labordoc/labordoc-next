@@ -17,7 +17,7 @@
 ## along with Invenio; if not, write to the Free Software Foundation, Inc.,
 ## 59 Temple Place, Suite 330, Boston, MA 02111-1307, USA.
 
-"""WebTag List of tags in document view"""
+"""Template context function to get fulltext snippets via Solr."""
 
 from invenio.config import CFG_WEBSEARCH_FULLTEXT_SNIPPETS, \
                             CFG_WEBSEARCH_FULLTEXT_SNIPPETS_CHARS
@@ -47,7 +47,7 @@ def template_context_function(id_bibrec, pattern):
                     snippets = solr_get_snippet(terms, id_bibrec, nb_chars, max_snippets).decode('utf8')
                 except:
                     register_exception()
-                return snippets
+                return ' ... ' + snippets + ' ... '
         else:
             return ''
     else:
