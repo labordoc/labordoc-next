@@ -41,128 +41,128 @@
 
 {% macro collection_records(collection) %}
 
-<style>
-
-.websearch .nav > li > ul > li {
-  float: left;
-}
-.websearch .nav > li a {
-  display: inline;
-}
-.websearch .nav > li > a {
-  white-space: nowrap;
-}
-.websearch .nav > li > a:hover {
-  background-color: inherit;
-}
-.websearch ul.nav > li > ul {
-  clear: both;
-}
-.websearch ul.nav > li > ul > li {
-  display: inline;
-}
-.websearch ul.nav > li > ul > li > a {
-  display: inline;
-}
-.websearch .badge {
-  font-size: 80%;
-}
-
-.collection ul.nav-list {
-  padding-left: 22px;
-}
-
-.collection ul.nav-list ul.nav-list {
-  font-size: 100%;
-}
-
-.collection ul ul li a {
-  color: #333;
-  opacity: 0.8;
-}
-
-.collection .badge {
-  opacity:0.6;
-  font-size:80%;
-}
-
-.collection ul ul .badge {
-  color: #333;
-  background-color: #EEE;
-  border: 1px solid #999;
-}
-
-.collection ul.nav-list ul.nav-list li {
-  line-height: 25px;
-}
-
-.centercolls {
-  padding-left: 50px;
-}
-
-.focuscolls {
-  padding-top: 38px;
-}
-
-</style>
-
 {{ search_form(collection) }}
 
-<div class="row websearch clearfix centercolls"><!-- row 2 -->
+<div class="container special-colls-background"> <!-- special-collections --!>
+
+  <h4></h4>
+  <p></p>
+  <ul class="thumbnails special-colls">
+    <li>
+      <a href="http://labordoc.ilo.org/record/457349?ln=en" class="thumbnail">
+        <img src="http://www.ilo.org/wcmsp5/groups/public/---dgreports/---dcomm/documents/image/wcms_214480.jpg" alt="Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit">
+        <div class="label-special-colls">World of Work Report 2013</div>
+        <p></p>
+      </a>
+    </li>
+    <li>
+      <a href="http://10.9.18.248/search?jrec=1&ln=en&cc=invsbl focus3" class="thumbnail">
+        <img src="http://www.ilo.org/dyn/media/images/thumbs/e19718.jpg" alt="Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit">
+        <div class="label-special-colls">Child Labour</div>
+        <p></p>
+      </a>
+    </li>
+    <li>
+      <a href="http://10.9.18.248/search?jrec=1&ln=en&cc=invsbl focus4" class="thumbnail">
+        <img src="http://www.ilo.org/dyn/media/images/thumbs/e6304.jpg" alt="Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit">
+        <div class="label-special-colls">Collective bargaining in the public service</div>
+        <p></p>
+      </a>
+    </li>
+    <li>
+      <a href="http://10.9.18.248/search?jrec=1&ln=en&cc=invsbl focus5" class="thumbnail">
+        <img src="http://www.ilo.org/dyn/media/images/thumbs/e11292.jpg" alt="Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...">
+        <div class="label-special-colls">Employment in the new demographic context</div>
+        <p></p>
+      </a>
+    </li>
+    <li>
+      <a href="http://10.9.18.248/search?jrec=1&ln=en&cc=invsbl focus4" class="thumbnail">
+        <img src="http://www.ilo.org/dyn/media/images/thumbs/e9291.jpg" alt="Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit">
+        <div class="label-special-colls">Green jobs</div>
+        <p></p>
+      </a>
+    </li>
+    <li>
+      <a href="http://10.9.18.248/search?jrec=1&ln=en&cc=invsbl focus5" class="thumbnail">
+        <img src="http://www.ilo.org/dyn/media/images/thumbs/e13433.jpg" alt="Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit">
+        <div class="label-special-colls">Trade unions and social dialogue</div>
+        <p></p>
+      </a>
+    </li>
+  </ul> <!-- special-collections --!>
+
+</div><!-- /container -->
+
+<div class="row websearch clearfix">
   {{ portalbox_sidebar(portalboxes.lt, class="span2") }}
 
-  {% if collection.collection_children_r %}
-    <div class="span{{ '4' if collection.collection_children_v else '8' }} collection clearfix">
-      <h4>{{ _("Narrow by collection:") }}</h4>
-      {{ collection_tree(collection.collection_children_r, limit=2, class="nav nav-list clearfix") }}
+  <div class="customspan5 elements-main-page"> <!-- normal-collections --!>
+     <div class="collections-title titles-main-page"><h3 class="titles-main-page"> {{ _('Collections') }} </h3></div>
+	  {% if collection.collection_children_r %}
+	    <div class="collection clearfix">
+	      <!-- <h4>{{ _("Narrow by collection:") }}</h4> -->
+	      {{ collection_tree(collection.collection_children_r, limit=2, class="nav nav-list clearfix") }}
+	    </div>
+	  {% else %}
+	      <div class="span{{ '4' if collection.collection_children_v else '8' }}">
+	      {% if collection.is_restricted %}
+	        <strong>{{ _('This collection is restricted. If you are authorized to access it, please click on the Search button.') }}</strong>
+	      {% else %}
+	        {% if collection.reclist %}
+	        <div class="page-header">
+	          <h3>{{ _("Latest additions:") }}</h3>
+	        </div>
+	        {%- set of = request.values.get('of', 'hb') -%}
+	        {% for recid in collection.reclist[-10:]|reverse %}
+	        <div class="row-fluid">
+	          <div class="span12">
+	            {{ format_record(recid, of, ln=g.ln, brief_links=False)|safe }}
+	            {{ '<hr/>'|safe if not loop.last }}
+	          </div>
+	        </div>
+	        {% endfor %}
+	        {% if collection.reclist|length > 10 %}
+	          <a href="{{ url_for('search.search', cc=collection.name, ln=g.ln, jrec=11)|safe }}"
+	             class="pull-right muted">[&gt;&gt; {{ _('more')}}]</a>
+	        {% endif %}
+	        {% endif %}
+	      {% endif %}
+	      </div>
+	  {% endif %}
+
+	  {% if collection.collection_children_v %}
+	    <div class="collection clearfix focuscolls">
+	     <!-- <h4>{{ _("Focus on:") }}</h4> -->
+	      {{ collection_tree(collection.collection_children_v, limit=2, class="nav nav-list clearfix") }}
+
+	      {{ search_also(collection.externalcollections_2) }}
+	    </div>
+	  {% elif collection.externalcollections_2 %}
+	      <div class="span2">
+	        {{ search_also(collection.externalcollections_2) }}
+	      </div>
+	  {% endif %}
+
+	  {% if collection.externalcollections_2 %}
+	    {{ portalbox_sidebar(portalboxes.rt, class="span2") }}
+	  {% else %}
+	    {{ portalbox_sidebar(portalboxes.rt, class="offset1 span2") }}
+	  {% endif %}
+  </div>
+
+  <div class="row elements-main-page"> <!-- lastest-additions --!>
+    <div class="span7">
+      <div class="row"><h3 class="titles-main-page"> {{ _('New publications') }} </h3></div>
+      {% set recids = [446896, 448451, 442980, 442365, 446791] %}
+      {%- for recid in recids -%}
+         {{ format_record(recid, 'hb', ln=g.ln)|safe }}
+      {%- endfor -%}
     </div>
-  {% else %}
-      <div class="span{{ '4' if collection.collection_children_v else '8' }}">
-      {% if collection.is_restricted %}
-        <strong>{{ _('This collection is restricted. If you are authorized to access it, please click on the Search button.') }}</strong>
-      {% else %}
-        {% if collection.reclist %}
-        <div class="page-header">
-          <h3>{{ _("Latest additions:") }}</h3>
-        </div>
-        {%- set of = request.values.get('of', 'hb') -%}
-        {% for recid in collection.reclist[-10:]|reverse %}
-        <div class="row-fluid">
-          <div class="span12">
-            {{ format_record(recid, of, ln=g.ln, brief_links=False)|safe }}
-            {{ '<hr/>'|safe if not loop.last }}
-          </div>
-        </div>
-        {% endfor %}
-        {% if collection.reclist|length > 10 %}
-          <a href="{{ url_for('search.search', cc=collection.name, ln=g.ln, jrec=11)|safe }}"
-             class="pull-right muted">[&gt;&gt; {{ _('more')}}]</a>
-        {% endif %}
-        {% endif %}
-      {% endif %}
-      </div>
-  {% endif %}
-
-  {% if collection.collection_children_v %}
-    <div class="span5 collection clearfix focuscolls">
-     <!-- <h4>{{ _("Focus on:") }}</h4> -->
-      {{ collection_tree(collection.collection_children_v, limit=2, class="nav nav-list clearfix") }}
-
-      {{ search_also(collection.externalcollections_2) }}
-    </div>
-  {% elif collection.externalcollections_2 %}
-      <div class="span2">
-        {{ search_also(collection.externalcollections_2) }}
-      </div>
-  {% endif %}
-
-  {% if collection.externalcollections_2 %}
-    {{ portalbox_sidebar(portalboxes.rt, class="span2") }}
-  {% else %}
-    {{ portalbox_sidebar(portalboxes.rt, class="offset1 span2") }}
-  {% endif %}
+  </div>
 
 </div>
+
 {% endmacro %}
 
 {% block body %}

@@ -629,4 +629,313 @@ ul.OtherVersionsList li {
   text-align: right;
 }
 
+ .brand img {
+   height: 26px;
+   width: auto!important;
+   max-width: 200%!important;
+   opacity: 0.8;
+ }
+
+ .brand:hover img {
+   opacity: 0.95;
+ }
+
+ .brand-logo img {
+   height: 40px;
+   width: 123px;
+   max-width: 200%!important;
+   opacity: 0.8;
+   float: right;
+ }
+
+/* FOOTER and HEADER - */
+
+html,
+body {
+  height: 100%;
+}
+
+/* Wrapper for page content to push down footer */
+#wrap {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  /* Negative indent footer by it's height */
+  margin: 0 auto -80px;
+}
+
+/* Set the fixed height of the footer here */
+#push,
+#footer {
+  height: 80px;
+}
+
+#push {
+  margin-top: 60px;
+}
+
+#footer {
+  background-color: #1e5799;
+}
+
+footer a, footer a:hover {
+  color: #ffffff;
+}
+
+a.footer:visited {
+  color: #ffffff;
+  background: transparent;
+}
+
+a.footer:link {
+color: #ffffff;
+background: transparent;
+}
+
+footer, footer p {
+  font-size: 12px;
+  color: #ffffff;
+}
+
+/* Lastly, apply responsive CSS fixes as necessary */
+@media (max-width: 767px) {
+  footer {
+    margin-left: -20px;
+    margin-right: -20px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+/* http://www.colorzilla.com/gradient-editor/ */
+.navbar-inner, .navbar .btn-navbar {
+  background: #1e5799; /* Old browsers */
+  background: -moz-linear-gradient(45deg, #1e5799 28%, #2989d8 57%, #207cca 76%, #7db9e8 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left bottom, right top, color-stop(28%,#1e5799), color-stop(57%,#2989d8), color-stop(76%,#207cca), color-stop(100%,#7db9e8)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(45deg, #1e5799 28%,#2989d8 57%,#207cca 76%,#7db9e8 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(45deg, #1e5799 28%,#2989d8 57%,#207cca 76%,#7db9e8 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(45deg, #1e5799 28%,#2989d8 57%,#207cca 76%,#7db9e8 100%); /* IE10+ */
+  background: linear-gradient(45deg, #1e5799 28%,#2989d8 57%,#207cca 76%,#7db9e8 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#7db9e8',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+
+.navbar .divider-vertical {
+  background-color: #2989d8;
+  border-right: 1px solid #2989d8;
+ }
+
+.navbar .nav .active > a, .navbar .nav .active > a:hover {
+  background-color: #2989d8;
+ }
+
+.navbar .nav > li > a {
+  color: #ffffff;
+ }
+
+.navbar .nav > li > a:hover {color:white;}
+
+.navbar .nav .active > a, .navbar .nav .active > a:hover {color:white;}
+
+.navbar-fixed-top .brand {
+  color: #2989d8;
+  color: #2989d8;
+}
+
+.navbar .nav li.dropdown > a:hover .caret {
+  border-top-color: #555555;
+  border-bottom-color: #555555;
+}
+
+.navbar .nav li.dropdown.open > .dropdown-toggle,
+.navbar .nav li.dropdown.active > .dropdown-toggle,
+.navbar .nav li.dropdown.open.active > .dropdown-toggle {
+  background-color: #2989d8;
+  color: #555555;
+}
+
+.navbar .nav li.dropdown > .dropdown-toggle .caret {
+  border-top-color: #ffffff;
+  border-bottom-color: #ffffff;
+}
+
+.navbar .nav li.dropdown.open > .dropdown-toggle .caret,
+.navbar .nav li.dropdown.active > .dropdown-toggle .caret,
+.navbar .nav li.dropdown.open.active > .dropdown-toggle .caret {
+  border-top-color: #555555;
+  border-bottom-color: #555555;
+}
+
+/* end of FOOTER and HEADER - */
+
+legend [class*="icon-"] { vertical-align: baseline; }
+a.label, a.label:hover, .label a, .label a:hover { color: white;}
+.htmlbrief .media-heading { font-weight: 200; }
+.icon.muted { opacity: 0.6; }
+
+
+.centered {
+text-align: center;
+}
+
+.searchbox-title {
+# font-size: 18.5px;
+# line-height: 40px;
+margin: 10px 0;
+font-weight: bold;
+text-rendering: optimizelegibility;
+}
+
+.form-inline.search-settings {
+float: right;
+}
+
+.search-wrap {
+float: left;
+width: 100%;
+}
+
+.search-forms {
+padding: 0;
+margin: 0 auto;
+list-style-type: none;
+float: left;
+position: relative;
+left: 52%;
+}
+
+.search-forms form {
+float: left;
+position: relative;
+right: 50%;
+}
+
+.main-search-box {
+  margin-bottom: 25px;
+  margin-top: 25px;
+}
+
+.header-bottom {
+  margin-bottom: 100px;
+}
+
+.websearch .nav > li > ul > li {
+  float: left;
+}
+.websearch .nav > li a {
+  display: inline;
+}
+.websearch .nav > li > a {
+  white-space: nowrap;
+}
+.websearch .nav > li > a:hover {
+  background-color: inherit;
+}
+.websearch ul.nav > li > ul {
+  clear: both;
+}
+.websearch ul.nav > li > ul > li {
+  display: inline;
+}
+.websearch ul.nav > li > ul > li > a {
+  display: inline;
+}
+.websearch .badge {
+  font-size: 80%;
+}
+
+.collection ul.nav-list {
+  padding-left: 22px;
+  font-size: 15.5px;
+}
+
+.collection ul ul li a {
+  color: #333;
+  opacity: 0.8;
+}
+
+.collection .badge {
+  opacity:0.6;
+  font-size:80%;
+}
+
+.collection ul ul .badge {
+  color: #333;
+  background-color: #EEE;
+  border: 1px solid #999;
+}
+
+.collection li {
+  line-height: 25px;
+}
+
+.thumbnail {
+display: block;
+padding: 4px;
+line-height: 1;
+border: 1px solid #ddd;
+-webkit-border-radius: 4px;
+-moz-border-radius: 4px;
+border-radius: 4px;
+-webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075);
+-moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075);
+box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075);
+background: #F3F7F2;
+width: 140px;
+height: 160px;
+}
+
+.thumbnail > img {
+display: block;
+margin-left: auto;
+margin-right: auto;
+width: 200%;
+}
+
+a.thumbnail:hover {
+border-color: #2989d8;
+-webkit-box-shadow: 0 1px 4px rgba(0, 105, 214, 0.25);
+-moz-box-shadow: 0 1px 4px rgba(0, 105, 214, 0.25);
+box-shadow: 0 1px 4px rgba(0, 105, 214, 0.25);
+}
+
+.thumbnails {
+  margin-left: 27px;
+}
+
+.special-colls {
+  text-align: center;
+}
+
+.special-colls a:hover {
+   color:#2989d8;
+   text-decoration:none;
+}
+
+.special-colls-background {
+  background-color: #e3e3e3;
+}
+
+.label-special-colls {
+  font-size: 13.5px;
+  margin-top: 10px;
+  line-height: 20px;
+}
+
+.elements-main-page {
+  margin-top: 30px;
+}
+
+.customspan5 {
+  width: 450px;
+}
+
+.collections-title {
+  margin-left: 22px;
+}
+
+.titles-main-page {
+  font-weight: inherit;
+}
+
+
 /* end of invenio.css */

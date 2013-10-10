@@ -8,7 +8,7 @@
     {{ bfe_ilo_title_with_link(bfo, highlight="no") }}
   </div>
 
- <div class="detailsBriefContent span10" style="margin-left: 5%";>
+ <div class="detailsBriefContent" style="margin-left: 5%";>
 
   {{ bfe_ilo_authors(bfo, prefix_en='<div id="authors"><div class="formatRecordLabel"> Author(s) </div>
 					  		   <div class="positionDetailsBrief">',

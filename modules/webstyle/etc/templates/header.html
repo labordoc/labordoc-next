@@ -24,34 +24,8 @@
 ## {% include 'header.html' %}
 #}
 
-  <style>
-  .brand img {
-    height: 26px;
-    width: auto!important;
-    max-width: 200%!important;
-    opacity: 0.8;
-  }
-
-  .brand:hover img {
-    opacity: 0.95;
-  }
-
-  .brand-logo img {
-    height: 40px;
-    width: 123px;
-    max-width: 200%!important;
-    opacity: 0.8;
-    float: right;
-  }
-
-  .header_background {
-  background-color: #66CCFF;
-  background-image: none;
-}
-
-  </style>
-
-  <div class="navbar navbar-fixed-top navbar-inverse">
+<header class="header-bottom">
+  <div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
       <div class="container phone-margin">
         <a class="brand" href="{{ url_for('search.index') }}">
@@ -124,6 +98,4 @@
        </div>
       </div>
     </div>
-
-  <div class="visible-desktop" style="clear:both; height: 60px;"></div>
-
+</header>

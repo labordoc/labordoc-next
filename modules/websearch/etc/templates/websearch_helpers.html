@@ -30,20 +30,6 @@
       {%- endif -%}
     {%- endif -%}
 
-    <a class="text-success"
-       data-hotkey-action="click"
-       data-hotkey-value="g{{ i }}v"
-       href="{{ url_for('record.metadata', recid=recID) }}">
-      {{ _("Detailed record") }}
-    </a>
-     -
-    <a class="text-success"
-       data-hotkey-action="click"
-       data-hotkey-value="g{{ i }}s"
-       href="{{ url_for('search.search', p=similar, rm='wrd') }}">
-      {{ _("Similar records") }}
-    </a>
-
   {# Citations link #}
   {%- if config.CFG_BIBRANK_SHOW_CITATION_LINKS -%}
     {%- set num_citations = record['_cited_by_count'] -%}
@@ -90,12 +76,8 @@
 {%- set idxs = [0] -%}
 <ul {{ kwargs|xmlattr }}>
 {% for collection in collections recursive %}
+ <div id="collection">
   <li>
-    {# Do not show checkboxes in new UI
-    {% if idxs|length == 1 %}
-    <input type="checkbox" name="c" value="{{ collection.name }}" checked/>
-    {% endif %}
-    #}
     {%- if collection.name in ['ILRew','ILC','ILO_GB','ILOconventions','fundamentalconventions',
                                'governanceconventions','conventionsbysubject',
                                'conventionsparsujet','conveniosportema','finalarticles','technicalconventions'] -%}
@@ -114,6 +96,7 @@
     {%- do idxs.pop() -%}
   {% endif %}
   </li>
+ </div>
 {% endfor %}
 </ul>
 {% endmacro %}
@@ -325,226 +308,85 @@
 {% endmacro %}
 
 {% macro search_form(collection) %}
-  <div id="search-box-main" class="row">
-    <div class="span12">
-    <div class="well well-small"
-         style="margin-bottom: 20px; margin-left: -9px; margin-right: -9px;">
-      <div class="row">
 
-        <form action="{{ url_for('search.search') }}" name="settings" method="get"
-              style="margin-bottom: 0px; position: relative; z-index: 1;"
-              class="pull-right form-inline">
-          <input name="p" value="{{ request.args.get('p','') }}" type="hidden" />
+ <div id="search-box-main" class="row centered main-search-box">
 
+     <!-- div id="search-records-label" class="searchbox-title visible-desktop">
+        <label for="p" class="searchbox-title">
+          {%- set nbrecs = collection.nbrecs -%}
+          {%- if not collection.nbrecs -%}
+          {%- set nbrecs = 0 -%}
+          {%- endif -%}
+          <h3>{{ _("Search %s records for")|format(nbrecs) }}</h3>
+        </label>
+      </div --!> <!-- search-records-label --!>
 
-        <div id="settingsdropdown" class="pull-right btn-group dropdown">
-          <button class="btn dropdown-toggle add-open-permanent" data-target="#settingsdropdown" data-toggle="dropdown">
-            <i class="icon-cog"></i>
-            <span class="caret"></span>
-          </button>
-          <ul class="dropdown-menu donothide clearfix"
-              style="min-width: 300px; padding-bottom: 0px;">
-            <li class="nav-header">{{ _('Search settings') }}</li>
+  <div id="search-box-main" class="row search-wrap">
+     <div class="search-forms">
 
-            <li class="divider"></li>
-            <li class="clearfix nav-list">
+      <form action="{{ url_for('search.search') }}"
+            name="search"
+            method="get"
+            class="form-horizontal">
 
-          <div class="control-group clearfix">
-            <label class="control-label pull-left">{{ _('Display on page') }}</label>
-            <div class="controls pull-right">
-              <select
-                      name="rg"
-                      style="height: inherit; line-height: inherit;"
-                      class="btn-small span2">
-              {%- for i in [10, 25, 50, 100, 250, 500] -%}
-              {%- if i <= config.CFG_WEBSEARCH_MAX_RECORDS_IN_GROUPS -%}
-                <option value="{{ i }}"{{ ' selected' if request.args.get('rg',10)==i.__str__() }}>{{ i }} {{ _('results') }}</option>
-              {%- endif -%}
+         <div id="searchdropdown" class="dropdown">
+          <div class="input-prepend input-append">
+            <div class="dropdown add-on">
+              <a class="dropdown-toggle"
+                 rel="tooltip" title="{{ _('Search Tips and Examples') }}"
+                 data-placement="bottom"
+                 data-delay="100"
+                 data-toggle="dropdown" role="button"
+                 href="#"><i class="icon-question-sign"></i></a>
+              <ul class="searchexamples dropdown-menu" style="text-align: left;">
+                <li>
+                  <a href="/help/search-tips">
+                    <i class="pull-right icon-info-sign"></i>
+                    <strong>{{ _("Search Tips") }}</strong>
+                  </a>
+                </li>
+                <li>
+                  <a href="/help/search-guide">
+                    <i class="pull-right icon-leaf"></i>
+                    <strong>{{ _("Search Guide") }}</strong>
+                  </a>
+                </li>
+                {% if collection.examples %}
+                <li class="divider"></li>
+                <li class="nav-header">
+                  {{ _('Search examples') }}
+                </li>
+              {%- for e in collection.examples if e.body -%}
+                <li>
+                  <a href="{{ url_for('search.search', p=e.body) }}">
+                    <i class="pull-right icon-chevron-right"></i>
+                    <span class="after-fix">{{ e.body }}</span>
+                  </a>
+                </li>
               {%- endfor -%}
-              </select>
-            </div>
-          </div>
-
-
-          <div class="control-group clearfix">
-            <label class="control-label pull-left">{{ _('Output format') }}</label>
-            <div class="controls pull-right">
-              <select
-                      name="of"
-                      style="height: inherit; line-height: inherit;"
-                      class="btn-small span2">
-              {%- for i in collection.formatoptions if i.content_type == 'text/html' and i.visibility == 1 -%}
-                <option value="{{ i.code }}"{{ ' selected' if request.args.get('of','hb')==i.code }}>{{ i.name }}</option>
-              {%- endfor -%}
-              </select>
-            </div>
-          </div>
-
-          {% if collection.rnkMETHODs|length %}
-          <div class="control-group clearfix">
-            <label class="control-label pull-left">{{ _('Ranking') }}</label>
-            <div class="controls pull-right">
-              <select name='rm'
-                      style="height: inherit; line-height: inherit;"
-                      class="btn-small span2">
-              {% for rnk_method in collection.rnkMETHODs %}
-                <option value="{{ rnk_method.rnkMETHOD.name }}">
-                  {{ rnk_method.rnkMETHOD.get_name_ln() }}
-                </option>
-              {% endfor %}
-              </select>
-            </div>
-          </div>
-          {% endif %}
-
-          <div class="clearfix">
-            <label class="control-label pull-left">{{ _('Sort by most') }}</label>
-            <div class="controls pull-right">
-            <div class="btn-group" data-toggle="buttons-radio">
-            {%- for (k,v,vv) in [('recent', 'rm', ''), ('cited', 'rm', 'citation'), ('relevant', 'rm', 'wrd')] -%}
-              <label class="btn btn-mini {{ 'active' if request.args.get(v,'') == vv}}">
-                <input style="display:none;"
-                  type="radio"
-                  name="{{ v }}"
-                  value="{{ vv }}"
-                  {{ 'checked="checked"'|safe if request.args.get(v,'') == vv}}>
-                {{ _(k) }}
-              </label>
-            {%- endfor -%}
-            </div>
-            </div>
-          </div>
-
-            </li>
-
-            <li class="divider"></li>
-            <li class="clearfix nav-list">
-            <div class="control-group clearfix">
-              <label class="control-label pull-left">{{ _('Search form') }}</label>
-            <div class="controls pull-right">
-            <div class="btn-group" data-toggle="buttons-radio">
-            {%- for (k,v) in [(_('Simple'), 'simple'), (_('Advanced'), 'advanced')] -%}
-              {%- set active = v=='simple' -%}
-              <label class="btn btn-mini">
-                <input style="display:none;"
-                  type="radio"
-                  name="box"
-                  value="{{ v }}"
-                  {{ 'checked="checked"'|safe if active}}>
-                {{ k }}
-              </label>
-            {%- endfor -%}
-            </div>
-            </div>
-            </div>
-            </li>
-
-            <li class="modal-footer nav-list clearfix">
-              {%- if not current_user.is_guest -%}
-              <button name="action_save"
-                      rel="tooltip"
-                      title="{{ _('store permanently in user settings') }}"
-                      data-placement="bottom"
-                      class="btn btn-primary btn-small pull-left">
-                <i class="icon-hdd icon-white"></i> {{ _('Save') }}
-              </button>
+              {% endif %}
+              </ul>
+            </div><!--
+            No space!
+         --><input autocomplete="off"
+              data-provide="typeahead"
+              data-items="4"
+              name="p"
+              class="span6"
+              type="text"
+              style="min-width:200px;"
+              {# placeholder="{{ _('Example') }}: {{ search_placeholder }}" #}
+              tabindex="1"
+              value="{{ request.args.get('p', '') }}"
+              {%- if request.endpoint == 'search.index' -%}
+              autofocus
               {%- endif -%}
-              <button name="action_search"
-                      rel="tooltip"
-                      title="{{ _('use settings in current search') }}"
-                      data-placement="bottom"
-                      class="btn btn-small pull-right">
-                <i class="icon-ok"></i> {{ _('Apply') }}
-              </button>
-            </li>
-          </ul>
-        </div>
-        </form>
-
-
-
-        <form action="{{ url_for('search.search') }}"
-              name="search"
-              method="get"
-              style="margin-bottom: 0px;"
-              class="form-horizontal span11">
-        <div class="row">
-          <div class="span2 visible-desktop">
-            <label for="p"
-                style="padding-top: 5px; text-align: right; font-size: 90%;">
-              {%- set nbrecs = collection.nbrecs -%}
-              {%- if not collection.nbrecs -%}
-              {%- set nbrecs = 0 -%}
-              {%- endif -%}
-              {{ _("Search %s records for")|format(nbrecs) }}
-            </label>
+              /><!--
+            No space!
+         --><span data-toggle="dropdown" data-target="#searchdropdown" class="add-on btn add-open-permanent">
+              <i class="caret"></i>
+            </span>
           </div>
-          <div class="span9">
-            <div id="searchdropdown"
-                 class="dropdown">
-            {#
-            {% set search_placeholder = _('Input query') %}
-            {% if collection.examples %}
-              {% set search_placeholder = (collection.examples|random).body %}
-            {% endif %}
-            #}
-              <div class="input-prepend input-append">
-                <div class="dropdown add-on">
-                  <a class="dropdown-toggle"
-                     rel="tooltip" title="{{ _('Search Tips and Examples') }}"
-                     data-placement="bottom"
-                     data-delay="100"
-                     data-toggle="dropdown" role="button"
-                     href="#"><i class="icon-question-sign"></i></a>
-                  <ul class="searchexamples dropdown-menu" style="text-align: left;">
-                    <li>
-                      <a href="/help/search-tips">
-                        <i class="pull-right icon-info-sign"></i>
-                        <strong>{{ _("Search Tips") }}</strong>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="/help/search-guide">
-                        <i class="pull-right icon-leaf"></i>
-                        <strong>{{ _("Search Guide") }}</strong>
-                      </a>
-                    </li>
-                    {% if collection.examples %}
-                    <li class="divider"></li>
-                    <li class="nav-header">
-                      {{ _('Search examples') }}
-                    </li>
-                  {%- for e in collection.examples if e.body -%}
-                    <li>
-                      <a href="{{ url_for('search.search', p=e.body) }}">
-                        <i class="pull-right icon-chevron-right"></i>
-                        <span class="after-fix">{{ e.body }}</span>
-                      </a>
-                    </li>
-                  {%- endfor -%}
-                  {% endif %}
-                  </ul>
-                </div><!--
-                No space!
-             --><input autocomplete="off"
-                  data-provide="typeahead"
-                  data-items="4"
-                  name="p"
-                  class="span6"
-                  type="text"
-                  style="min-width:200px;"
-                  {# placeholder="{{ _('Example') }}: {{ search_placeholder }}" #}
-                  tabindex="1"
-                  value="{{ request.args.get('p', '') }}"
-                  {%- if request.endpoint == 'search.index' -%}
-                  autofocus
-                  {%- endif -%}
-                  /><!--
-                No space!
-             --><span data-toggle="dropdown" data-target="#searchdropdown" class="add-on btn add-open-permanent">
-                  <i class="caret"></i>
-                </span>
-              </div>
 
 {#
  # This is a dirty hack for browser without Javascript support.
@@ -556,37 +398,165 @@
 //]]>
 </script>
 
-              <!-- Hidden configuration fields -->
-              {% if collection.id != 1 %}
-              <input type="hidden" name="cc" value="{{ collection.name }}" />
-              {% endif %}
-              {{ _search_hidden_options() }}
-              <!-- end of configuration fields -->
+          <!-- Hidden configuration fields -->
+          {% if collection.id != 1 %}
+          <input type="hidden" name="cc" value="{{ collection.name }}" />
+          {% endif %}
+          {{ _search_hidden_options() }}
+          <!-- end of configuration fields -->
 
-              <button name="action_search" type="submit" class="btn btn-primary">
-                <i class="icon-search icon-white"></i>
-                <span class="hidden-phone">{{ _("Search") }}</span>
-              </button>
-              {#
-              <span class="help-inline">
-                <a href="/help/search-tips">{{ _("Search Tips") }}</a>
-              </span>
-              #}
-            </div>
-          </div><!-- end controls -->
+          <button name="action_search" type="submit" class="btn btn-primary">
+            <i class="icon-search icon-white"></i>
+            <span class="hidden-phone">{{ _("Search") }}</span>
+          </button>
+          {#
+          <span class="help-inline">
+            <a href="/help/search-tips">{{ _("Search Tips") }}</a>
+          </span>
+          #}
+      </div><!-- searchdropdown -->
+    </form> <!-- end Search form -->
+
+   <form action="{{ url_for('search.search') }}" name="settings" method="get"
+        class="form-inline search-settings">
+     <input name="p" value="{{ request.args.get('p','') }}" type="hidden" />
+
+    <div id="settingsdropdown" class="pull-right btn-group dropdown">
+      <button class="btn dropdown-toggle add-open-permanent"
+              data-target="#settingsdropdown" data-toggle="dropdown">
+        <i class="icon-cog"></i>
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu donothide clearfix"
+          style="min-width: 300px; padding-bottom: 0px;">
+        <li class="nav-header">{{ _('Search settings') }}</li>
+
+        <li class="divider"></li>
+        <li class="clearfix nav-list">
+
+      <div class="control-group clearfix">
+        <label class="control-label pull-left">{{ _('Display on page') }}</label>
+        <div class="controls pull-right">
+          <select
+                  name="rg"
+                  style="height: inherit; line-height: inherit;"
+                  class="btn-small span2">
+          {%- for i in [10, 25, 50, 100, 250, 500] -%}
+          {%- if i <= config.CFG_WEBSEARCH_MAX_RECORDS_IN_GROUPS -%}
+            <option value="{{ i }}"{{ ' selected' if request.args.get('rg',10)==i.__str__() }}>{{ i }} {{ _('results') }}</option>
+          {%- endif -%}
+          {%- endfor -%}
+          </select>
         </div>
-        </form>
+      </div>
 
-      </div><!-- end sub row -->
-    </div><!-- end span12 -->
-    </div>
-  </div><!-- end row -->
+      <div class="control-group clearfix">
+        <label class="control-label pull-left">{{ _('Output format') }}</label>
+        <div class="controls pull-right">
+          <select
+                  name="of"
+                  style="height: inherit; line-height: inherit;"
+                  class="btn-small span2">
+          {%- for i in collection.formatoptions if i.content_type == 'text/html' and i.visibility == 1 -%}
+            <option value="{{ i.code }}"{{ ' selected' if request.args.get('of','hb')==i.code }}>{{ i.name }}</option>
+          {%- endfor -%}
+          </select>
+        </div>
+      </div>
+
+      {% if collection.rnkMETHODs|length %}
+      <div class="control-group clearfix">
+        <label class="control-label pull-left">{{ _('Ranking') }}</label>
+        <div class="controls pull-right">
+          <select name='rm'
+                  style="height: inherit; line-height: inherit;"
+                  class="btn-small span2">
+          {% for rnk_method in collection.rnkMETHODs %}
+            <option value="{{ rnk_method.rnkMETHOD.name }}">
+              {{ rnk_method.rnkMETHOD.get_name_ln() }}
+            </option>
+          {% endfor %}
+          </select>
+        </div>
+      </div>
+      {% endif %}
+
+      <div class="clearfix">
+        <label class="control-label pull-left">{{ _('Sort by most') }}</label>
+        <div class="controls pull-right">
+        <div class="btn-group" data-toggle="buttons-radio">
+        {%- for (k,v,vv) in [('recent', 'rm', ''), ('cited', 'rm', 'citation'), ('relevant', 'rm', 'wrd')] -%}
+          <label class="btn btn-mini {{ 'active' if request.args.get(v,'') == vv}}">
+            <input style="display:none;"
+              type="radio"
+              name="{{ v }}"
+              value="{{ vv }}"
+              {{ 'checked="checked"'|safe if request.args.get(v,'') == vv}}>
+            {{ _(k) }}
+          </label>
+        {%- endfor -%}
+        </div>
+        </div>
+      </div>
+
+        </li>
+
+        <li class="divider"></li>
+        <li class="clearfix nav-list">
+        <div class="control-group clearfix">
+          <label class="control-label pull-left">{{ _('Search form') }}</label>
+        <div class="controls pull-right">
+        <div class="btn-group" data-toggle="buttons-radio">
+        {%- for (k,v) in [(_('Simple'), 'simple'), (_('Advanced'), 'advanced')] -%}
+          {%- set active = v=='simple' -%}
+          <label class="btn btn-mini">
+            <input style="display:none;"
+              type="radio"
+              name="box"
+              value="{{ v }}"
+              {{ 'checked="checked"'|safe if active}}>
+            {{ k }}
+          </label>
+        {%- endfor -%}
+        </div>
+        </div>
+        </div>
+        </li>
+
+        <li class="modal-footer nav-list clearfix">
+          {%- if not current_user.is_guest -%}
+          <button name="action_save"
+                  rel="tooltip"
+                  title="{{ _('store permanently in user settings') }}"
+                  data-placement="bottom"
+                  class="btn btn-primary btn-small pull-left">
+            <i class="icon-hdd icon-white"></i> {{ _('Save') }}
+          </button>
+          {%- endif -%}
+          <button name="action_search"
+                  rel="tooltip"
+                  title="{{ _('use settings in current search') }}"
+                  data-placement="bottom"
+                  class="btn btn-small pull-right">
+            <i class="icon-ok"></i> {{ _('Apply') }}
+          </button>
+        </li>
+      </ul>
+    </div> <!-- settingsdropdown --!>
+  </form>
+
+  </div><!-- end span12 -->
+ </div><!-- end row -->
+</div><!-- end row -->
+
   {% for category, msg in get_flashed_messages(with_categories=True, category_filter=['websearch-after-search-form']) %}
+
   <div class="row">
     <div class="span12">
       {{ msg|safe }}
     </div>
   </div>
+
   {% endfor %}
 {% endmacro %}
 
