@@ -1,7 +1,5 @@
 
- <div class="pull-right linksbox">
-   {{ tfn_get_back_to_search_links(record['recid']) }}
- </div>
+{{ tfn_get_back_to_search_links(record['recid'])|wrap(prefix='<div class="pull-right linksbox">', suffix='</div>') }}
 
 <div class="row">
 
