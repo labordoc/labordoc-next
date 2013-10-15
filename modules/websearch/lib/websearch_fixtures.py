@@ -771,8 +771,8 @@ class TagData(DataSet):
 
     class Tag_115:
         id = 115
-        value = u'8564_3'
-        name = u'fulltext'
+        value = u'8564_u'
+        name = u'url'
 
     class Tag_116:
         id = 116

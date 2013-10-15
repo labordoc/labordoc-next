@@ -18,7 +18,7 @@
 
 
 
-INSERT INTO `collection` VALUES (25,'ILO publications',NULL,0,'xc`@\0\0\0');
+INSERT INTO `collection` VALUES (25,'ILO-Publications',NULL,0,'xc`@\0\0\0');
 INSERT INTO `collection` VALUES (26,'Other publications',NULL,0,'xc`@\0\0\0');
 INSERT INTO `collection` VALUES (158,'ILOconventions',NULL,0,'xc`@\0\0\0');
 INSERT INTO `collection` VALUES (113,'Recently published','(946__d:2012-08-* or 946__d:2012-09-* or 946__d:2012-10-*) and (997__a:2011 or 997__a:2012) and (655_7a:\"ILO pub\" or 655_7a:\"pub OIT\") not callno:GB.* not callno:NYP',0,'xc`@\0\0\0');
