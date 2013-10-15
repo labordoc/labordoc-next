@@ -26,11 +26,15 @@ import cgi
 import string
 import re
 import os.path
+import urllib2
 
 def format_element(bfo):
     """
     Item type icon
     """
+
+    # hard-code
+    CFG_LABORDOC_URL = "http://labordoc.ilo.org"
 
     isbns = []    
     baseurl = CFG_SITE_URL + '/img/'
@@ -51,7 +55,7 @@ def format_element(bfo):
     isbn = ""
     nb_isbns = len(isbns)
 
-
+    # conventions
     if conv.startswith('ILOCONV'):
         if convt.startswith('Discus'):
             out = '<div class="convIteml">DP</div>'
@@ -69,10 +73,7 @@ def format_element(bfo):
             out = '<div class="convIteml">T</div>'
         if convt.startswith('Vot'):
             out = '<div class="convIteml">V</div>'
-        if len(out) > 0:
-            return out
-        else:
-            return  ''
+        return out
     
     test_ic_gb = gb1 + ' ' + gb2 + ' ' + gb3 + ' ' + gb4 + ' ' + ic1 + ' ' + ic2
     test_wp = wp1 + ' ' + wp2 + ' ' + wp3 
@@ -92,60 +93,59 @@ def format_element(bfo):
         isbn = isbntest
         isbn = re.sub(' .*','', isbn)
         imagepath = '/opt/invenio/var/www/img/cover/' + isbn + '-M.jpg'
-        if os.path.isfile(imagepath):
-            imageurl = CFG_SITE_URL + '/img/cover/' + isbn + '-M.jpg'
-            out = '''<img class="borderYes" src="%s">''' % imageurl
+#         if os.path.isfile(imagepath): sudo ln -s /opt/invenio/var/www/img/cover /data01/invenio-data/cover
+        imageurl = CFG_LABORDOC_URL + '/img/cover/' + isbn + '-M.jpg'
+        try:
+            f = urllib2.urlopen(urllib2.Request(imageurl))
+            image_exists = True
+        except:
+            image_exists = False
+
+        if image_exists:       
+            out = '''<img class="detailsImageCover" src="%s">''' % imageurl
             return out
     
-    if os.path.isfile(imagepath2):
-        imageurl = CFG_SITE_URL + '/img/cover/' + test + '-M.jpg'
-        out = '''<img class="borderYes" src="%s">''' % imageurl
+#     if os.path.isfile(imagepath2): sudo ln -s /opt/invenio/var/www/img/cover /data01/invenio-data/cover
+    try:
+        f = urllib2.urlopen(urllib2.Request(imagepath2))
+        image_exists = True
+    except:
+        image_exists = False
+
+    if image_exists:
+        imageurl = CFG_LABORDOC_URL + '/img/cover/' + test + '-M.jpg'
+        out = '''<img class="detailsImageCover" src="%s">''' % imageurl
         return out
 
     else:
         if item_type == "am":
             if test_ic_gb.find('conference') >= 1 or test_ic_gb.find('Governing body') >= 1 or test_ic_gb.find('International Labour Conference') >= 1:
-                #item_type_new = baseurl + "conferencepaper.png"
-                #item_type_new = baseurl + "empty.gif" 
                 item_type_new = "empty"
             elif test_wp.find('working paper') >= 1 or test_wp.find('document de travail') >= 1 or test_wp.find('documento de trabajo') >= 1:
-                #item_type_new = baseurl + "report.png"
                 item_type_new = baseurl + "empty.gif"
             else: 
-                #item_type_new = baseurl + "book.png"
                 item_type_new = "empty"
-                #item_type_new = baseurl + "empty.gif"
         
         elif item_type == "as" or item_type == "aa":
             if test_ic_gb.find('conference') >= 1 or test_ic_gb.find('Governing body') >= 1 or test_ic_gb.find('International Labour Conference') >= 1:
-                #item_type_new = baseurl + "conferencepaper.png"
-                #item_type_new = baseurl + "empty.gif"
                 item_type_new = "empty"
             else: 
-                #item_type_new = baseurl + "journalarticle.png"
-                #item_type_new = baseurl + "empty.gif"
                 item_type_new = "empty"
-
+    
         elif item_type == "gm" or item_type == "mm" or item_type == "cm":
-            #item_type_new = baseurl + "multimedia.png"
-            #item_type_new = baseurl + "empty.gif"
             item_type_new = "empty"
         else:
-            #item_type_new = baseurl + "book.png"
-            #item_type_new = baseurl + "empty.gif"
             item_type_new = "empty"
        
         if item_type_new:
             if isbn != '' and item_type_new != 'empty':
-                out = '''<img class="borderNone" src='http://covers.openlibrary.org/b/isbn/%s-S.jpg?default=false' onerror="this.src='%s';">''' % (isbn, item_type_new)
+                out = '''<img class="detailsImageCover" src='http://covers.openlibrary.org/b/isbn/%s-S.jpg?default=false' onerror="this.src='%s';">''' % (isbn, item_type_new)
                 return out
-            elif item_type_new == 'empty':
-                return '&nbsp;'
             else:
-                out = '''<img class="borderYes" src="%s">''' % (item_type_new)
-                return out
+                return ""
         else:
-            return '&nbsp;'
+            return ""
+
 
 def escape_values(bfo):
     """
@@ -153,5 +153,3 @@ def escape_values(bfo):
     should be escaped.
     """
     return 0
-
-

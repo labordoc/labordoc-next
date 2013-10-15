@@ -63,7 +63,7 @@ def format_element(bfo, style, prefix_en="", prefix_es="",
 
     additional_str = ''
     if additionals:
-        additional_str = separator + '<small>(<a '+style+' href="'+CFG_SITE_URL+'/record/'+str(bfo.recID)+'/files/">%s</a>)</small>' % _("additional files")
+        additional_str = separator + '<small>(<a target=_blank '+style+' href="'+CFG_SITE_URL+'/record/'+str(bfo.recID)+'/files/">%s</a>)</small>' % _("additional files")
 
     versions_str = ''
     prefix = ""
@@ -121,7 +121,7 @@ def format_element(bfo, style, prefix_en="", prefix_es="",
                 else:
                     print_name = ""
                 last_name = name
-                url_list.append(print_name + '<a '+style+' href="'+escape(url)+'">'+file_icon+format.upper()+'</a>')
+                url_list.append(print_name + '<a target=_blank '+style+' href="'+escape(url)+'">'+file_icon+format.upper()+'</a>')
             out += separator + separator.join(url_list) + \
                    additional_str + versions_str + '</div>'
 
@@ -188,19 +188,19 @@ def format_element(bfo, style, prefix_en="", prefix_es="",
                 non_libdoc_pdf = url
             elif url.find('.pdf') > -1 and url.find('libdoc') > -1:
                 libdoc_pdf = url
-                url_list.append('<a '+style+' href="'+escape(libdoc_pdf)+'">'+pdf_icon+escape(str(descr))+'</a>')
+                url_list.append('<a target=_blank '+style+' href="'+escape(libdoc_pdf)+'">'+pdf_icon+escape(str(descr))+'</a>')
             elif url.find('.epub') > -1 and url.find('libdoc') > -1:
                 libdoc_epub = url
-                url_list.append('<a '+style+' href="'+escape(libdoc_epub)+'">'+epub_icon+escape(str(descr))+'</a>')
+                url_list.append('<a target=_blank '+style+' href="'+escape(libdoc_epub)+'">'+epub_icon+escape(str(descr))+'</a>')
             elif journal_title != '' and (descr.find('ccess') > -1 or descr.find('assword') > -1):
                 pass
             else:
-                url_list.append('<a '+style+' href="'+escape(url)+'">'+web_icon+escape(str(descr))+'</a>')
+                url_list.append('<a target=_blank '+style+' href="'+escape(url)+'">'+web_icon+escape(str(descr))+'</a>')
         if len(libdoc_pdf) > 0:
             pass
         else: 
             if len(non_libdoc_pdf) != 0:
-                url_list.append('<a '+style+' href="'+escape(non_libdoc_pdf)+'">'+pdf_icon+escape(str(descr))+'</a>')
+                url_list.append('<a target=_blank '+style+' href="'+escape(non_libdoc_pdf)+'">'+pdf_icon+escape(str(descr))+'</a>')
         out += separator.join(url_list)
 
     if out.endswith('<br />'):

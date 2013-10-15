@@ -12,7 +12,7 @@
     <div class="bfe-actions span3 pull-right">
 
      <div id="itemsymbol" class="detailsCover">
-	   {{ bfe_ilo_itemsymbol_detailed_test(bfo) }}
+	   {{ bfe_ilo_itemsymbol_detailed(bfo) }}
 	 </div>
 
      <div id="actions">

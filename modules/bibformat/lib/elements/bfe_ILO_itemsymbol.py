@@ -26,14 +26,18 @@ import cgi
 import string
 import re
 import os.path
+import urllib2
 
 def format_element(bfo):
     """
     Item type icon
     """
 
+    # hard-code
+    CFG_LABORDOC_URL = "http://labordoc.ilo.org"
+
     isbns = []    
-    baseurl = CFG_SITE_URL + '/img/'
+    baseurl = CFG_LABORDOC_URL + '/img/'
     conv = bfo.field('970__a')
     convt = bfo.field('980__c')
     isbns = bfo.fields('020%%a')
@@ -50,28 +54,27 @@ def format_element(bfo):
     out = ""
     isbn = ""
     nb_isbns = len(isbns)
+    recid = bfo.control_field('001') 
 
+    # conventions
     if conv.startswith('ILOCONV'):
         if convt.startswith('Discus'):
-            out = '<div class="convItem" title=" Discussion in plenary&#x0a; Discussion en séance plénière&#x0a; Discusión en sesión plenaria">DP</div></td><td>'
+            out = '<div class="convItem" title=" Discussion in plenary&#x0a; Discussion en séance plénière&#x0a; Discusión en sesión plenaria">DP</div>'
         if convt.startswith('Documen') or convt.startswith('Preparatory docu'):
-            out = '<div class="convItem" title=" Preparatory document&#x0a; Document préparatoire&#x0a; Documento preparatorio">Pre</div></td><td>'
+            out = '<div class="convItem" title=" Preparatory document&#x0a; Document préparatoire&#x0a; Documento preparatorio">Pre</div>'
         if convt.startswith('Informe') or convt.startswith('Report') or convt.startswith('Rappor'):
-            out = '<div class="convItem" title=" Report of the Committee&#x0a; Rapport de la commission&#x0a; Informe de la Comisión">Com</div></td><td>'
+            out = '<div class="convItem" title=" Report of the Committee&#x0a; Rapport de la commission&#x0a; Informe de la Comisión">Com</div>'
         if convt.startswith('List'):
-            out = '<div class="convItem" title=" List of participants&#x0a; Liste de participants&#x0a; Lista de participantes">LP</div></td><td>'
+            out = '<div class="convItem" title=" List of participants&#x0a; Liste de participants&#x0a; Lista de participantes">LP</div>'
         if convt.startswith('Recom'):
             out = '<div class="convItem" title=" Recommendation&#x0a; Recommandation&#x0a; Recomendación">Rec</div></td><td>'
         if convt.startswith('Resolu') or convt.startswith('Résolut'):
             out = '<div class="convItem" title=" Resolution&#x0a; Résolution&#x0a; Resolución">Res</div></td><td>'
         if convt.startswith('Text'):
-            out = '<div class="convItem" title=" Text of the Convention&#x0a; Texte de la convention&#x0a; Texto del Convenio">T</div></td><td>'
+            out = '<div class="convItem" title=" Text of the Convention&#x0a; Texte de la convention&#x0a; Texto del Convenio">T</div>'
         if convt.startswith('Vot'):
-            out = '<div class="convItem" title=" Vote&#x0a; Votación">V</div></td><td>'
-        if len(out) > 0:
-            return out
-        else:
-            return  '</td><td>'
+            out = '<div class="convItem" title=" Vote&#x0a; Votación">V</div>'
+        return out
     
     test_ic_gb = gb1 + ' ' + gb2 + ' ' + gb3 + ' ' + gb4 + ' ' + ic1 + ' ' + ic2
     test_wp = wp1 + ' ' + wp2 + ' ' + wp3 
@@ -91,16 +94,31 @@ def format_element(bfo):
         isbn = isbntest
         isbn = re.sub(' .*','', isbn)
         imagepath = '/opt/invenio/var/www/img/cover/' + isbn + '-S.jpg'
-        if os.path.isfile(imagepath):
-            imageurl = CFG_SITE_URL + '/img/cover/' + isbn + '-S.jpg'
-            out = '''<img class="borderYes" src="%s"></td><td>''' % imageurl
+#         if os.path.isfile(imagepath):
+        imageurl = CFG_LABORDOC_URL + '/img/cover/' + isbn + '-S.jpg'
+        try:
+            f = urllib2.urlopen(urllib2.Request(imageurl))
+            image_exists = True
+        except:
+            image_exists = False
+
+        if image_exists:
+            out = '''<a href="%s/record/%s?ln=%s"> 
+                        <img class="detailsImageCoverBrief" src="%s">''' % (CFG_SITE_URL, recid, bfo.lang, imageurl)
             return out                
     
-    if os.path.isfile(imagepath2):
-        imageurl = CFG_SITE_URL + '/img/cover/' + test + '-S.jpg'
-        out = '''<img class="borderYes"  src="%s"></td><td>''' % imageurl
-        return out
+#     if os.path.isfile(imagepath2):
+    try:
+        f = urllib2.urlopen(urllib2.Request(imagepath2))
+        image_exists = True
+    except:
+        image_exists = False
 
+    if image_exists:
+        imageurl = CFG_LABORDOC_URL + '/img/cover/' + test + '-S.jpg'
+        out = '''<a href="%s/record/%s?ln=%s">
+                    <img class="detailsImageCoverBrief" src="%s"></a>''' % (CFG_SITE_URL, recid, bfo.lang, imageurl)
+        return out
     else:
         if item_type == "am":
             if test_ic_gb.find('conference') >= 1 or test_ic_gb.find('Governing body') >= 1 or test_ic_gb.find('International Labour Conference') >= 1:
@@ -115,19 +133,22 @@ def format_element(bfo):
                 item_type_new = baseurl + "conferencepaper.png"
             else: 
                 item_type_new = baseurl + "journalarticle.png"
-
+    
         elif item_type == "gm" or item_type == "mm" or item_type == "cm":
             item_type_new = baseurl + "multimedia.png"
-
+    
         else:
             item_type_new = baseurl + "book.png"
        
         if item_type_new:
             if isbn != '':
-                out = '''<img class="borderNone" src='http://covers.openlibrary.org/b/isbn/%s-S.jpg?default=false' onerror="this.src='%s';"></td><td>''' % (isbn, item_type_new)
+                out = '''<a href="%s/record/%s?ln=%s">
+                             <img class="detailsIconCoverBrief" src='http://covers.openlibrary.org/b/isbn/%s-S.jpg?default=false' 
+                             onerror="this.src='%s';"></a>''' % (CFG_SITE_URL, recid, bfo.lang, isbn, item_type_new)
                 return out
             else:
-                out = '''<img class="borderNone" src="%s"></td><td>''' % (item_type_new)
+                out = '''<a href="%s/record/%s?ln=%s"> 
+                            <img class="detailsIconCoverBrief" src="%s"></a>''' % (CFG_SITE_URL, recid, bfo.lang, item_type_new)
                 return out
         else:
             return ''

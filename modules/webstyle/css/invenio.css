@@ -532,8 +532,26 @@ h2.articleTitle {
 }
 
 .detailsImageCover {
-  height: 150px;
-  weight: 100px;
+  height: 120px;
+  # border: 1px solid #ccc;
+}
+
+.detailsImageCoverBrief {
+  height: 70px;
+  # border: 1px solid #ccc;
+}
+
+.detailsIconCoverBrief {
+  height: 35px;
+  # border: 1px solid #ccc;
+}
+
+.borderYes {
+  border: 1px solid #ccc;
+}
+
+.borderNone {
+  border: 0;
 }
 
 .detailsContents {
@@ -923,6 +941,11 @@ box-shadow: 0 1px 4px rgba(0, 105, 214, 0.25);
 
 .elements-main-page {
   margin-top: 30px;
+  margin-left: 40px;
+}
+
+.customspan1 {
+  width: 50px;
 }
 
 .customspan5 {
@@ -937,5 +960,12 @@ box-shadow: 0 1px 4px rgba(0, 105, 214, 0.25);
   font-weight: inherit;
 }
 
+.convItem {
+  font-size: 1.6em;
+  padding-top: 20px;
+  color: #990000;
+  font-weight: bold;
+  text-align: center;
+}
 
 /* end of invenio.css */

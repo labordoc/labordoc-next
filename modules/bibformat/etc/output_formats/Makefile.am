@@ -26,15 +26,16 @@ etc_DATA = HA.bfo HB.bfo HC.bfo HD.bfo HM.bfo HP.bfo HS.bfo HX.bfo \
            XD.bfo XE.bfo XE8X.bfo XM.bfo XN.bfo XP.bfo XR.bfo XW.bfo \
            XOAIDC.bfo XO.bfo XOAIMARC.bfo \
            WAPAFF.bfo \
-	   BCALL.bfo \
-	   CIP.bfo \
-	   HL.bfo \
- 	   HTEST.bfo \
-	   IBIB.bfo \
-	   ISBN.bfo \
-	   RDIFP1.bfo \
-	   RDIFP2.bfo \
-	   XILODC.bfo
+		   BCALL.bfo \
+		   CIP.bfo \
+		   HL.bfo \
+		   HTEST.bfo \
+		   IBIB.bfo \
+		   ISBN.bfo \
+		   RDIFP1.bfo \
+		   RDIFP2.bfo \
+		   XILODC.bfo \
+		   HNP.bfo
 
 tmpdir = $(prefix)/var/tmp
 

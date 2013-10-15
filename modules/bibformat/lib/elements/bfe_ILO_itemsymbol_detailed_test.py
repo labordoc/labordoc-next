@@ -31,10 +31,11 @@ def format_element(bfo):
     """
     Item type icon
     """
+
     url_example = 'http://bearcat-careers.ism-online.org/files/2013/03/ilo-logo.jpg'
     out_example = '''<img class="detailsImageCover" src="%s">''' % (url_example)
+    CFG_LABORDOC_URL = "http://labordoc.ilo.org"
 
-    out = ""
     isbns = []    
     baseurl = CFG_SITE_URL + '/img/'
     conv = bfo.field('970__a')
@@ -50,11 +51,11 @@ def format_element(bfo):
     gb2  = bfo.field('7102_a')
     gb3  = bfo.field('7102_b')
     gb4  = bfo.field('7112_a')
-    out = ""
     isbn = ""
+    out = ""
     nb_isbns = len(isbns)
 
-
+    # conventions
     if conv.startswith('ILOCONV'):
         if convt.startswith('Discus'):
             out = '<div class="convIteml">DP</div>'
@@ -72,6 +73,7 @@ def format_element(bfo):
             out = '<div class="convIteml">T</div>'
         if convt.startswith('Vot'):
             out = '<div class="convIteml">V</div>'
+        return out
     
     test_ic_gb = gb1 + ' ' + gb2 + ' ' + gb3 + ' ' + gb4 + ' ' + ic1 + ' ' + ic2
     test_wp = wp1 + ' ' + wp2 + ' ' + wp3 
@@ -94,12 +96,14 @@ def format_element(bfo):
         if os.path.isfile(imagepath):
             imageurl = CFG_SITE_URL + '/img/cover/' + isbn + '-M.jpg'
             out = '''<img class="detailsImageCover" src="%s">''' % imageurl
+            return out
     
     if os.path.isfile(imagepath2):
         imageurl = CFG_SITE_URL + '/img/cover/' + test + '-M.jpg'
         out = '''<img class="detailsImageCover" src="%s">''' % imageurl
-
+        return out
     else:
+        item_type_new = ""
         if item_type == "am":
             if test_ic_gb.find('conference') >= 1 or test_ic_gb.find('Governing body') >= 1 or test_ic_gb.find('International Labour Conference') >= 1:
                 item_type_new = "empty"
@@ -107,7 +111,7 @@ def format_element(bfo):
                 item_type_new = baseurl + "empty.gif"
             else: 
                 item_type_new = "empty"
-        
+
         elif item_type == "as" or item_type == "aa":
             if test_ic_gb.find('conference') >= 1 or test_ic_gb.find('Governing body') >= 1 or test_ic_gb.find('International Labour Conference') >= 1:
                 item_type_new = "empty"
@@ -122,13 +126,13 @@ def format_element(bfo):
         if item_type_new:
             if isbn != '' and item_type_new != 'empty':
                 out = '''<img class="detailsImageCover" src='http://covers.openlibrary.org/b/isbn/%s-S.jpg?default=false' onerror="this.src='%s';">''' % (isbn, item_type_new)
+                return out
             else:
-                out = out_example
-
-    if not out:
-        return out_example
-    else:
-        return out
+#                 return ""
+                return out_example
+        else:
+#             return ""
+            return out_example
 
 def escape_values(bfo):
     """
@@ -136,5 +140,6 @@ def escape_values(bfo):
     should be escaped.
     """
     return 0
+
 
 
