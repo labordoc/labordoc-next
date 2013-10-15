@@ -21,4 +21,4 @@
 
 from invenio.websearch_facet_builders import FacetBuilder
 
-facet = FacetBuilder('language', order=3)
+facet = FacetBuilder('language', order=4)

@@ -230,7 +230,7 @@ class FulltextFacetBuilder(FacetBuilder):
                                        get_field_tags(self.name))
         fulltext_facets = {'Full text': 0, 'Booklet': 0}
         for i in all_facets:
-            if i[0].startswith("Full text"):
+            if i[0].startswith("Full"):
                 fulltext_facets["Full text"] = fulltext_facets["Full text"] + i[1]
             elif i[0].startswith("Booklet"):
                 fulltext_facets["Booklet"] = fulltext_facets["Booklet"] + i[1]
@@ -238,5 +238,11 @@ class FulltextFacetBuilder(FacetBuilder):
                 pass
             else:
                 fulltext_facets[i[0]] = i[1]
-        return fulltext_facets.items()
+        if fulltext_facets["Full text"] == 0:
+            fulltext_facets.pop("Full text")
+        if fulltext_facets["Booklet"] == 0:
+            fulltext_facets.pop("Booklet")
 
+        res = fulltext_facets.items()
+        res.sort(key=lambda tup: tup[1], reverse=True)
+        return res
