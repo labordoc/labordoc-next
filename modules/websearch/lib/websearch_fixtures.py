@@ -196,6 +196,10 @@ class FieldData(DataSet):
         id = 33
         name = u'location'
 
+    class Field_34:
+        code = u'attachment'
+        id = 34
+        name = u'attachment'
 
 class TagData(DataSet):
 
@@ -921,8 +925,13 @@ class TagData(DataSet):
 
     class Tag_145:
         id = 145
-        value = u'964__m'
+        value = u'964__p'
         name = u'location'
+
+    class Tag_146:
+        id = 146
+        value = u'913__a'
+        name = u'attachment'
 
 class FormatData(DataSet):
 
@@ -1903,3 +1912,8 @@ class FieldTagData(DataSet):
         score = 100
         id_tag = TagData.Tag_145.ref('id')
         id_field = FieldData.Field_33.ref('id')
+
+    class FieldTag_34_146:
+        score = 100
+        id_tag = TagData.Tag_146.ref('id')
+        id_field = FieldData.Field_34.ref('id')
