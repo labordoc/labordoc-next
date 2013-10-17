@@ -294,10 +294,10 @@ def get_words_from_fulltext(url_direct_or_indirect, stemming_language=None, reci
                 text = get_entire_fulltext(recid)
                 if indexer == 'SOLR' and CFG_SOLR_URL:
                     solr_add_fulltext(recid, text)
-                    write_message("... indexing recid %s in Solr" % recid, verbose=2)
+                    write_message("Indexing recid %s in Solr ..." % recid)
                 elif indexer == 'XAPIAN' and CFG_XAPIAN_ENABLED:
                     xapian_add(recid, 'fulltext', text)
-                    write_message("... indexing recid %s in Xapian" % recid, verbose=2)
+                    write_message("Indexing recid %s in Xapian ..." % recid)
                 fulltext_added.add(recid)
             # we are relying on an external information retrieval system
             # to provide full-text indexing, so dispatch text to it and
@@ -320,7 +320,7 @@ def get_words_from_fulltext(url_direct_or_indirect, stemming_language=None, reci
                     write_message("... %s is external URL but indexing only local files" % url_direct_or_indirect, verbose=2)
                     return []
                 write_message("... %s is an external URL" % url_direct_or_indirect, verbose=2)
-                urls_to_index = get_urls_to_index()
+                urls_to_index = get_urls_to_index(url_direct_or_indirect)
                 write_message("... will extract words from %s" % ', '.join(urls_to_index), verbose=2)
                 words = {}
                 for url in urls_to_index:
@@ -336,7 +336,7 @@ def get_words_from_fulltext(url_direct_or_indirect, stemming_language=None, reci
 
 
 def get_entire_fulltext(recid):
-    # Get the fulltexts from the public/intranet ILO url(s) specified in the 8564_u field(s) 
+    # Get the fulltexts from the public/intranet ILO url(s) specified in the 8564_u field(s)
     # of the metadata of the record.
     fulltext_parts = []
     urls = get_fieldvalues(recid, '8564_u')
