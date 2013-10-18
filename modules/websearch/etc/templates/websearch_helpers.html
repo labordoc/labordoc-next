@@ -101,6 +101,7 @@
 </ul>
 {% endmacro %}
 
+
 {% macro portalbox_sidebar(portalboxes, width=2) %}
   {% if portalboxes %}
   <div {{ kwargs|xmlattr }}>
@@ -117,6 +118,25 @@
   </div>
   {% endif %}
 {% endmacro %}
+
+
+{% macro portalbox_specialcolls(portalboxes, width=2) %}
+  {% if portalboxes %}
+  <div {{ kwargs|xmlattr }}>
+    <ul class="thumbnails">
+    {% for cp in portalboxes %}
+    <li class="span{{ width }}">
+    <div class="row plan well">
+      <div class="span2 special-image">{{ cp.portalbox.title|safe }}</div>
+      <div class="span4">{{ cp.portalbox.body|safe }}</div>
+    </div>
+    </li>
+    {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+{% endmacro %}
+
 
 {% macro search_also(externalcollections) %}
   {% if externalcollections %}

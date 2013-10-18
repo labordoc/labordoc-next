@@ -898,8 +898,12 @@ border-radius: 4px;
 -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075);
 box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075);
 background: #F3F7F2;
-width: 140px;
-height: 160px;
+
+}
+
+.special-colls-size {
+  width: 140px;
+  height: 160px;
 }
 
 .thumbnail > img {
@@ -916,12 +920,9 @@ border-color: #2989d8;
 box-shadow: 0 1px 4px rgba(0, 105, 214, 0.25);
 }
 
-.thumbnails {
-  margin-left: 27px;
-}
-
 .special-colls {
   text-align: center;
+  margin-left: 27px;
 }
 
 .special-colls a:hover {
@@ -937,6 +938,20 @@ box-shadow: 0 1px 4px rgba(0, 105, 214, 0.25);
   font-size: 13.5px;
   margin-top: 10px;
   line-height: 20px;
+}
+
+.portalbox-special-colls {
+  display: inline-block;
+}
+
+.title-portalbox-special-colls {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.special-image img {
+  width: 160px;
+  overflow: hidden;
 }
 
 .elements-main-page {
@@ -966,6 +981,15 @@ box-shadow: 0 1px 4px rgba(0, 105, 214, 0.25);
   color: #990000;
   font-weight: bold;
   text-align: center;
+}
+
+.plan {
+  border-radius: 5px;
+  text-align: left;
+  background-color: #f3f3f3;
+  -moz-box-shadow: 0 0 6px 2px #b0b2ab;
+  -webkit-box-shadow: 0 0 6px 2px #b0b2ab;
+  box-shadow: 0 0 6px 2px #b0b2ab;
 }
 
 /* end of invenio.css */
