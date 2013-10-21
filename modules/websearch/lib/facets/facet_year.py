@@ -19,6 +19,6 @@
 
 """Year Facet"""
 
-from invenio.websearch_facet_builders import FacetBuilder
+from invenio.websearch_facet_builders import YearFacetBuilder
 
-facet = FacetBuilder('year', order=3)
+facet = YearFacetBuilder('year', order=3)

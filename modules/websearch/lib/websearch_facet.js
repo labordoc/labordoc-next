@@ -360,7 +360,7 @@
     badge: $('<span/>', {style: 'float:left; line-height: 18px; margin-right: 5px', 'class': 'badge'}),
     close: $('<a/>', {'class': 'close', html:'&nbsp;×'}),
     op_classes: {'+': 'badge-info', '-': 'badge-important'},
-    split_by: 5, // display by chunks of N elements
+    split_by: 3, // display by chunks of N elements
     title_exclude: 'Exclude', // translationable title
     title_limit_to: 'Limit to', // translationable title
     title_clear: 'Clear', // translationable title
