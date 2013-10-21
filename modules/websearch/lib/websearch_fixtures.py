@@ -1190,11 +1190,21 @@ class FormatData(DataSet):
     class Format_29:
         code = u'cip'
         last_updated = None
-        description = u'ILO Cataloguing in Publication Data.'
+        description = u'ILO Cataloguing in Publication Data format.'
         content_type = u'text/html'
         id = 29
         visibility = 0
         name = u'CIP'
+
+    class Format_30:
+        code = u'ibib'
+        last_updated = None
+        description = u'ILO Bibliography format.'
+        content_type = u'text/html'
+        id = 30
+        visibility = 1
+        name = u'Bibliography'
+
 
 class FieldTagData(DataSet):
 
