@@ -383,7 +383,7 @@ INSERT INTO idxINDEX VALUES (5,'keyword','This index contains words/phrases from
 INSERT INTO idxINDEX VALUES (6,'reference','This index contains words/phrases from references fields.','0000-00-00 00:00:00', '', 'native');
 INSERT INTO idxINDEX VALUES (7,'reportnumber','This index contains words/phrases from report numbers fields.','0000-00-00 00:00:00', '', 'native');
 INSERT INTO idxINDEX VALUES (8,'title','This index contains words/phrases from title fields.','0000-00-00 00:00:00', '', 'native');
-INSERT INTO idxINDEX VALUES (9,'fulltext','This index contains words/phrases from fulltext fields.','0000-00-00 00:00:00', '', 'native');
+INSERT INTO idxINDEX VALUES (9,'fulltext','This index contains words/phrases from fulltext fields.','0000-00-00 00:00:00', '', 'SOLR');
 INSERT INTO idxINDEX VALUES (10,'year','This index contains words/phrases from year fields.','0000-00-00 00:00:00', '', 'native');
 INSERT INTO idxINDEX VALUES (11,'journal','This index contains words/phrases from journal publication information fields.','0000-00-00 00:00:00', '', 'native');
 INSERT INTO idxINDEX VALUES (12,'collaboration','This index contains words/phrases from collaboration name fields.','0000-00-00 00:00:00', '', 'native');
