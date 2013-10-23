@@ -47,7 +47,7 @@
     <label class="checkbox">
       {{ form.remember(class_="checkbox") }} {{ form.remember.label.text }}
     </label>
-    {{ form.submit(class_="btn btn-info btn-block") }}
+    {{ form.submit(class_="btn btn-primary btn-block") }}
     </form>
     <p class="text-right">
       <a href="{{ url_for('webaccount.lost') }}">
@@ -140,7 +140,7 @@
                       box-sizing: border-box;"
                type="text" name="identifier" value=""
                placeholder="{{ label|format(provider=provider) }}">
-        <button class="btn btn-info btn-block" type="submit">
+        <button class="btn btn-primary btn-block" type="submit">
           {{ _('Continue') }}&nbsp;<i class="icon-chevron-right icon-white"></i>
         </button>
       </form>

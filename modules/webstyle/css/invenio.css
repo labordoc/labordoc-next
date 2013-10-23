@@ -18,11 +18,30 @@
    along with Invenio; if not, write to the Free Software Foundation, Inc.,
    59 Temple Place, Suite 330, Boston, MA 02111-1307, USA.
 */
-
+/*#D47F19*/
 body div {
 word-break: break-word;
 }
-
+.btn-primary:hover, .btn-primary:active, .btn-primary.active, .btn-primary.disabled, .btn-primary[disabled] {
+    background-color: #CF7100;
+}
+.btn-primary {
+    background-color: #CF7100;
+    *background-color: #CF7100;
+    background-image: -moz-linear-gradient(top, #FF9819, #CF7100);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#FF9819), to(#CF7100));
+    background-image: -webkit-linear-gradient(top, #FF9819, #CF7100);
+    background-image: -o-linear-gradient(top, #FF9819, #CF7100);
+    background-image: linear-gradient(to bottom, #FF9819, #CF7100);
+    border-color: #CF7100 #CF7100 #002a80;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0088cc', endColorstr='#ff0044cc', GradientType=0);
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+}
+.label,
+.badge {
+   background-color: #858585;
+}
 .navtrailbox {
    color: #36c;
    background: #fff;
@@ -733,6 +752,7 @@ footer, footer p {
   background: -webkit-linear-gradient(45deg, #1e5799 28%,#2989d8 57%,#207cca 76%,#7db9e8 100%); /* Chrome10+,Safari5.1+ */
   background: -o-linear-gradient(45deg, #1e5799 28%,#2989d8 57%,#207cca 76%,#7db9e8 100%); /* Opera 11.10+ */
   background: -ms-linear-gradient(45deg, #1e5799 28%,#2989d8 57%,#207cca 76%,#7db9e8 100%); /* IE10+ */
+/*  background: linear-gradient(45deg, #1e5799 28%,#2989d8 57%,#207cca 80%,#CF7100  90%); /* W3C */
   background: linear-gradient(45deg, #1e5799 28%,#2989d8 57%,#207cca 76%,#7db9e8 100%); /* W3C */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#7db9e8',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 }
