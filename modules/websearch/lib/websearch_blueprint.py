@@ -132,12 +132,25 @@ def index():
     collection = Collection.query.get_or_404(1)
     # inject functions to the template
 
+    ILO_publications_recids = perform_request_search(p="992__a:'ILO publication'")
+    dict_creation_date_per_recid = {}
+    for recid in ILO_publications_recids:
+        dict_creation_date_per_recid.update({recid:get_creation_date(recid,
+                                                                     fmt="%Y-%m-%d %H:%i:%S")})
+
+    sorted_dict_creation_date_per_recid = sorted(dict_creation_date_per_recid.items(),
+                                                 key=lambda x:x[1])
+    new_ilo_publications = sorted_dict_creation_date_per_recid[-5:]
+    new_ilo_publications.reverse()
+    new_ilo_publications_recids = [t[0] for t in new_ilo_publications]
+
     @register_template_context_processor
     def index_context():
         return dict(
             easy_search_form=EasySearchForm(csrf_enabled=False),
             format_record=print_record,
-            get_creation_date=get_creation_date
+            get_creation_date=get_creation_date,
+            new_ilo_publications_recids=new_ilo_publications_recids
         )
     return dict(collection=collection)
 

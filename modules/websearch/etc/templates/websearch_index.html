@@ -152,14 +152,14 @@
 	  {% endif %}
   </div>
 
-  <div class="row elements-main-page"> <!-- lastest-additions --!>
+  <div class="row elements-main-page"> <!-- new-ILO-publications --!>
     <div class="span7">
-      <div class="row"><h3 class="titles-main-page"> {{ _('New publications') }} </h3></div>
-      {% set recids = [447566, 446935, 447736, 442365, 446791] %}
-      {%- for recid in recids -%}
+      <div class="row"><h3 class="titles-main-page"> {{ _('New ILO publications') }} </h3></div>
+      {%- for recid in new_ilo_publications_recids -%}
          {{ format_record(recid, 'hnp', ln=g.ln)|safe }}
 		 <hr />
       {%- endfor -%}
+
     </div>
   </div>
 
