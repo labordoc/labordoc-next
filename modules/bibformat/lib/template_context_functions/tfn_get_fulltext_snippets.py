@@ -25,9 +25,9 @@ from invenio.errorlib import register_exception
 from invenio.solrutils_bibindex_searcher import solr_get_snippet
 #from invenio.bibformat_utils import get_pdf_snippets
 from invenio.search_engine_utils import get_fulltext_terms_from_search_pattern
+from invenio.websearch_cache import get_pattern_from_cache
 
-
-def template_context_function(id_bibrec, pattern):
+def template_context_function(id_bibrec, pattern, qid):
     """
     @param id_bibrec ID of record
     @param pattern search pattern
@@ -37,6 +37,7 @@ def template_context_function(id_bibrec, pattern):
     nb_chars = CFG_WEBSEARCH_FULLTEXT_SNIPPETS_CHARS.get('', 0)
     max_snippets = CFG_WEBSEARCH_FULLTEXT_SNIPPETS.get('', 0)
 
+    if not pattern: pattern = get_pattern_from_cache(qid)
     if id_bibrec and pattern:
         # Requires search in fulltext field
         if CFG_WEBSEARCH_FULLTEXT_SNIPPETS and 'fulltext:' in pattern:
