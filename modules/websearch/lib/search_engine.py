@@ -5836,9 +5836,9 @@ def prs_store_results_in_cache(query_representation_in_cache, results_in_any_col
         if req:
             from flask import request
             req = request
-        search_results_cache.set(query_representation_in_cache + '::p',
-                                 req.values.get('p', ''),
-                                 timeout=CFG_WEBSEARCH_SEARCH_CACHE_TIMEOUT)
+            search_results_cache.set(query_representation_in_cache + '::p',
+                                     req.values.get('p', ''),
+                                     timeout=CFG_WEBSEARCH_SEARCH_CACHE_TIMEOUT)
     if verbose and of.startswith("h"):
         write_warning(req, "Search stage 3: storing query results in cache.", req=req)
 
