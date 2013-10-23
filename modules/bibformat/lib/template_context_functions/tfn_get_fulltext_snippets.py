@@ -45,9 +45,10 @@ def template_context_function(id_bibrec, pattern):
                 snippets = ''
                 try:
                     snippets = solr_get_snippet(terms, id_bibrec, nb_chars, max_snippets).decode('utf8')
+                    if snippets: return ' ... ' + snippets + ' ... '
                 except:
                     register_exception()
-                return ' ... ' + snippets + ' ... '
+                return ''
         else:
             return ''
     else:
