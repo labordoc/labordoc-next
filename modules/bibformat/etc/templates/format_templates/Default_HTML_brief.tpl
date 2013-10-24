@@ -7,7 +7,6 @@
     </div>
 
 	<div class="span9">
-
       <div id="title">
 	    {{ bfe_ilo_title_with_link(bfo, highlight="no") }}
       </div>
