@@ -438,7 +438,7 @@
     </form> <!-- end Search form -->
 
    <form action="{{ url_for('search.search') }}" name="settings" method="get"
-        class="form-inline search-settings">
+        class="form-inline search-settings" style="margin-left: 3px;">
      <input name="p" value="{{ request.args.get('p','') }}" type="hidden" />
 
     <div id="settingsdropdown" class="pull-right btn-group dropdown">

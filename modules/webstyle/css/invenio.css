@@ -848,12 +848,8 @@ right: 50%;
 }
 
 .main-search-box {
-  margin-bottom: 25px;
-  margin-top: 25px;
-}
-
-.header-bottom {
-  margin-bottom: 100px;
+  margin-bottom: 20px;
+  margin-top: 15px;
 }
 
 .websearch .nav > li > ul > li {
