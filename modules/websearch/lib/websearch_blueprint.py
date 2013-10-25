@@ -115,18 +115,21 @@ def response_formated_records(recids, collection, of, **kwargs):
     response.mimetype = get_output_format_content_type(of)
     return response
 
-def get_autocompletion_terms(recids=None):
+def get_autocompletion_terms(ln, recids=None):
     from invenio.websearch_external_collections_utils import get_collection_name_by_id
     from invenio.search_engine import get_field_tags, \
                                       get_most_popular_field_values, \
                                       get_collection_reclist
-
     if recids is None:
         recids = list(get_collection_reclist(get_collection_name_by_id(1)))
 
     authors = get_most_popular_field_values(recids, get_field_tags('exactauthor'))[0:200]
-    subjects = get_most_popular_field_values(recids, get_field_tags('subject'))
-    return [i[0] for i in authors+subjects]
+
+    tag_dicc = {'en': '9051_a', 'fr': '9061_a', 'es': '9071_a'}
+    subject_tag = tag_dicc[ln]
+    subjects = get_most_popular_field_values(recids, subject_tag)
+
+    return [i[0] for i in authors + subjects]
 
 @blueprint.route('/index.py', methods=['GET', 'POST'])
 @blueprint.route('/', methods=['GET', 'POST'])
@@ -163,7 +166,7 @@ def index():
             format_record=print_record,
             get_creation_date=get_creation_date,
             new_ilo_publications_recids=new_ilo_publications_recids,
-            autocompletion_terms=get_autocompletion_terms()
+            autocompletion_terms=get_autocompletion_terms(ln=g.ln)
         )
     return dict(collection=collection)
 
@@ -181,7 +184,7 @@ def collection(name):
             format_record=print_record,
             easy_search_form=EasySearchForm(csrf_enabled=False),
             get_creation_date=get_creation_date,
-            autocompletion_terms=get_autocompletion_terms())
+            autocompletion_terms=get_autocompletion_terms(ln=g.ln))
     return dict(collection=collection)
 
 
@@ -328,7 +331,7 @@ def browse(collection, p, f, of, so, rm, rg, jrec):
                     pagination=Pagination(int(ceil(jrec / float(rg))), rg, len(records)),
                     rg=rg, p=p, f=f,
                     easy_search_form=EasySearchForm(csrf_enabled=False),
-                    autocompletion_terms=get_autocompletion_terms()
+                    autocompletion_terms=get_autocompletion_terms(ln=g.ln)
                     )
 
     return dict(records=records)
@@ -422,7 +425,7 @@ def search(collection, p, of, so, rm):
                qid=qid, rg=rg,
                create_nearest_terms_box=lambda: _create_neareset_term_box(argd_orig),
                easy_search_form=EasySearchForm(csrf_enabled=False),
-               autocompletion_terms=get_autocompletion_terms(recids=recids)
+               autocompletion_terms=get_autocompletion_terms(recids=recids, ln=g.ln)
                )
 
     return response_formated_records(recids, collection, of, **ctx)
