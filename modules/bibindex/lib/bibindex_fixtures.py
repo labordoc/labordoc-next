@@ -55,29 +55,29 @@ class IdxINDEXData(DataSet):
         indexer = u'native'
         name = u'author'
 
-    class IdxINDEX_5:
-        last_updated = None
-        description = u'This index contains words/phrases from keyword fields.'
-        stemming_language = u''
-        id = 5
-        indexer = u'native'
-        name = u'keyword'
+#     class IdxINDEX_5:
+#         last_updated = None
+#         description = u'This index contains words/phrases from keyword fields.'
+#         stemming_language = u''
+#         id = 5
+#         indexer = u'native'
+#         name = u'keyword'
 
-    class IdxINDEX_6:
-        last_updated = None
-        description = u'This index contains words/phrases from references fields.'
-        stemming_language = u''
-        id = 6
-        indexer = u'native'
-        name = u'reference'
+#     class IdxINDEX_6:
+#         last_updated = None
+#         description = u'This index contains words/phrases from references fields.'
+#         stemming_language = u''
+#         id = 6
+#         indexer = u'native'
+#         name = u'reference'
 
-    class IdxINDEX_7:
-        last_updated = None
-        description = u'This index contains words/phrases from report numbers fields.'
-        stemming_language = u''
-        id = 7
-        indexer = u'native'
-        name = u'reportnumber'
+#     class IdxINDEX_7:
+#         last_updated = None
+#         description = u'This index contains words/phrases from report numbers fields.'
+#         stemming_language = u''
+#         id = 7
+#         indexer = u'native'
+#         name = u'reportnumber'
 
     class IdxINDEX_8:
         last_updated = None
@@ -103,29 +103,29 @@ class IdxINDEXData(DataSet):
         indexer = u'native'
         name = u'year'
 
-    class IdxINDEX_11:
-        last_updated = None
-        description = u'This index contains words/phrases from journal publication information fields.'
-        stemming_language = u''
-        id = 11
-        indexer = u'native'
-        name = u'journal'
+#     class IdxINDEX_11:
+#         last_updated = None
+#         description = u'This index contains words/phrases from journal publication information fields.'
+#         stemming_language = u''
+#         id = 11
+#         indexer = u'native'
+#         name = u'journal'
 
-    class IdxINDEX_12:
-        last_updated = None
-        description = u'This index contains words/phrases from collaboration name fields.'
-        stemming_language = u''
-        id = 12
-        indexer = u'native'
-        name = u'collaboration'
-
-    class IdxINDEX_13:
-        last_updated = None
-        description = u'This index contains words/phrases from institutional affiliation fields.'
-        stemming_language = u''
-        id = 13
-        indexer = u'native'
-        name = u'affiliation'
+#     class IdxINDEX_12:
+#         last_updated = None
+#         description = u'This index contains words/phrases from collaboration name fields.'
+#         stemming_language = u''
+#         id = 12
+#         indexer = u'native'
+#         name = u'collaboration'
+# 
+#     class IdxINDEX_13:
+#         last_updated = None
+#         description = u'This index contains words/phrases from institutional affiliation fields.'
+#         stemming_language = u''
+#         id = 13
+#         indexer = u'native'
+#         name = u'affiliation'
 
     class IdxINDEX_14:
         last_updated = None
@@ -135,13 +135,13 @@ class IdxINDEXData(DataSet):
         indexer = u'native'
         name = u'exactauthor'
 
-    class IdxINDEX_15:
-        last_updated = None
-        description = u'This index contains exact words/phrases from figure captions.'
-        stemming_language = u''
-        id = 15
-        indexer = u'native'
-        name = u'caption'
+#     class IdxINDEX_15:
+#         last_updated = None
+#         description = u'This index contains exact words/phrases from figure captions.'
+#         stemming_language = u''
+#         id = 15
+#         indexer = u'native'
+#         name = u'caption'
 
     class IdxINDEX_16:
         last_updated = None
@@ -175,6 +175,13 @@ class IdxINDEXData(DataSet):
         indexer = u'native'
         name = u'exacttitle'
 
+    class IdxINDEX_20:
+        last_updated = None
+        description = u'This index contains words/phrases from subject fields.'
+        stemming_language = u''
+        id = 20
+        indexer = u'native'
+        name = u'subject'
 
 class IdxINDEXFieldData(DataSet):
 
@@ -184,23 +191,23 @@ class IdxINDEXFieldData(DataSet):
         id_idxINDEX = IdxINDEXData.IdxINDEX_10.ref('id')
         id_field = FieldData.Field_12.ref('id')
 
-    class IdxINDEXField_11_19:
-        regexp_alphanumeric_separators = u''
-        regexp_punctuation = u'[.,:;?!"]'
-        id_idxINDEX = IdxINDEXData.IdxINDEX_11.ref('id')
-        id_field = FieldData.Field_19.ref('id')
+#     class IdxINDEXField_11_19:
+#         regexp_alphanumeric_separators = u''
+#         regexp_punctuation = u'[.,:;?!"]'
+#         id_idxINDEX = IdxINDEXData.IdxINDEX_11.ref('id')
+#         id_field = FieldData.Field_19.ref('id')
 
-    class IdxINDEXField_12_20:
-        regexp_alphanumeric_separators = u''
-        regexp_punctuation = u'[.,:;?!"]'
-        id_idxINDEX = IdxINDEXData.IdxINDEX_12.ref('id')
-        id_field = FieldData.Field_20.ref('id')
+#     class IdxINDEXField_12_20:
+#         regexp_alphanumeric_separators = u''
+#         regexp_punctuation = u'[.,:;?!"]'
+#         id_idxINDEX = IdxINDEXData.IdxINDEX_12.ref('id')
+#         id_field = FieldData.Field_20.ref('id')
 
-    class IdxINDEXField_13_21:
-        regexp_alphanumeric_separators = u''
-        regexp_punctuation = u'[.,:;?!"]'
-        id_idxINDEX = IdxINDEXData.IdxINDEX_13.ref('id')
-        id_field = FieldData.Field_21.ref('id')
+#     class IdxINDEXField_13_21:
+#         regexp_alphanumeric_separators = u''
+#         regexp_punctuation = u'[.,:;?!"]'
+#         id_idxINDEX = IdxINDEXData.IdxINDEX_13.ref('id')
+#         id_field = FieldData.Field_21.ref('id')
 
     class IdxINDEXField_14_22:
         regexp_alphanumeric_separators = u''
@@ -208,11 +215,11 @@ class IdxINDEXFieldData(DataSet):
         id_idxINDEX = IdxINDEXData.IdxINDEX_14.ref('id')
         id_field = FieldData.Field_22.ref('id')
 
-    class IdxINDEXField_15_27:
-        regexp_alphanumeric_separators = u''
-        regexp_punctuation = u'[.,:;?!"]'
-        id_idxINDEX = IdxINDEXData.IdxINDEX_15.ref('id')
-        id_field = FieldData.Field_27.ref('id')
+#     class IdxINDEXField_15_27:
+#         regexp_alphanumeric_separators = u''
+#         regexp_punctuation = u'[.,:;?!"]'
+#         id_idxINDEX = IdxINDEXData.IdxINDEX_15.ref('id')
+#         id_field = FieldData.Field_27.ref('id')
 
     class IdxINDEXField_16_28:
         regexp_alphanumeric_separators = u''
@@ -262,23 +269,23 @@ class IdxINDEXFieldData(DataSet):
         id_idxINDEX = IdxINDEXData.IdxINDEX_4.ref('id')
         id_field = FieldData.Field_3.ref('id')
 
-    class IdxINDEXField_5_5:
-        regexp_alphanumeric_separators = u''
-        regexp_punctuation = u'[.,:;?!"]'
-        id_idxINDEX = IdxINDEXData.IdxINDEX_5.ref('id')
-        id_field = FieldData.Field_5.ref('id')
+#     class IdxINDEXField_5_5:
+#         regexp_alphanumeric_separators = u''
+#         regexp_punctuation = u'[.,:;?!"]'
+#         id_idxINDEX = IdxINDEXData.IdxINDEX_5.ref('id')
+#         id_field = FieldData.Field_5.ref('id')
 
-    class IdxINDEXField_6_8:
-        regexp_alphanumeric_separators = u''
-        regexp_punctuation = u'[.,:;?!"]'
-        id_idxINDEX = IdxINDEXData.IdxINDEX_6.ref('id')
-        id_field = FieldData.Field_8.ref('id')
+#     class IdxINDEXField_6_8:
+#         regexp_alphanumeric_separators = u''
+#         regexp_punctuation = u'[.,:;?!"]'
+#         id_idxINDEX = IdxINDEXData.IdxINDEX_6.ref('id')
+#         id_field = FieldData.Field_8.ref('id')
 
-    class IdxINDEXField_7_6:
-        regexp_alphanumeric_separators = u''
-        regexp_punctuation = u'[.,:;?!"]'
-        id_idxINDEX = IdxINDEXData.IdxINDEX_7.ref('id')
-        id_field = FieldData.Field_6.ref('id')
+#     class IdxINDEXField_7_6:
+#         regexp_alphanumeric_separators = u''
+#         regexp_punctuation = u'[.,:;?!"]'
+#         id_idxINDEX = IdxINDEXData.IdxINDEX_7.ref('id')
+#         id_field = FieldData.Field_6.ref('id')
 
     class IdxINDEXField_8_2:
         regexp_alphanumeric_separators = u''
@@ -291,3 +298,9 @@ class IdxINDEXFieldData(DataSet):
         regexp_punctuation = u'[.,:;?!"]'
         id_idxINDEX = IdxINDEXData.IdxINDEX_9.ref('id')
         id_field = FieldData.Field_9.ref('id')
+
+    class IdxINDEXField_20_7:
+        regexp_alphanumeric_separators = u''
+        regexp_punctuation = u'[.,:;?!"]'
+        id_idxINDEX = IdxINDEXData.IdxINDEX_20.ref('id')
+        id_field = FieldData.Field_7.ref('id')

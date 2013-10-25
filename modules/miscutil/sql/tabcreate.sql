@@ -2055,6 +2055,24 @@ CREATE TABLE IF NOT EXISTS idxWORD19R (
   PRIMARY KEY (id_bibrec,type)
 ) ENGINE=MyISAM;
 
+
+CREATE TABLE IF NOT EXISTS idxWORD20F (
+  id mediumint(9) unsigned NOT NULL auto_increment,
+  term varchar(50) default NULL,
+  hitlist longblob,
+  PRIMARY KEY  (id),
+  UNIQUE KEY term (term)
+) ENGINE=MyISAM;
+
+
+CREATE TABLE IF NOT EXISTS idxWORD20R (
+  id mediumint(9) unsigned NOT NULL auto_increment,
+  term varchar(50) default NULL,
+  hitlist longblob,
+  PRIMARY KEY  (id),
+  UNIQUE KEY term (term)
+) ENGINE=MyISAM;
+
 CREATE TABLE IF NOT EXISTS idxPAIR01F (
   id mediumint(9) unsigned NOT NULL auto_increment,
   term varchar(100) default NULL,
@@ -2334,6 +2352,20 @@ CREATE TABLE IF NOT EXISTS idxPAIR19F (
 ) ENGINE=MyISAM;
 
 CREATE TABLE IF NOT EXISTS idxPAIR19R (
+  id_bibrec mediumint(9) unsigned NOT NULL,
+  termlist longblob,
+  type enum('CURRENT','FUTURE','TEMPORARY') NOT NULL default 'CURRENT',
+  PRIMARY KEY (id_bibrec,type)
+) ENGINE=MyISAM;
+
+CREATE TABLE IF NOT EXISTS idxPAIR20F (
+  id_bibrec mediumint(9) unsigned NOT NULL,
+  termlist longblob,
+  type enum('CURRENT','FUTURE','TEMPORARY') NOT NULL default 'CURRENT',
+  PRIMARY KEY (id_bibrec,type)
+) ENGINE=MyISAM;
+
+CREATE TABLE IF NOT EXISTS idxPAIR20R (
   id_bibrec mediumint(9) unsigned NOT NULL,
   termlist longblob,
   type enum('CURRENT','FUTURE','TEMPORARY') NOT NULL default 'CURRENT',
@@ -2623,6 +2655,22 @@ CREATE TABLE IF NOT EXISTS idxPHRASE19R (
   termlist longblob,
   type enum('CURRENT','FUTURE','TEMPORARY') NOT NULL default 'CURRENT',
   PRIMARY KEY (id_bibrec,type)
+) ENGINE=MyISAM;
+
+CREATE TABLE IF NOT EXISTS idxPHRASE20F (
+  id mediumint(9) unsigned NOT NULL auto_increment,
+  term text default NULL,
+  hitlist longblob,
+  PRIMARY KEY  (id),
+  KEY term (term(50))
+) ENGINE=MyISAM;
+
+CREATE TABLE IF NOT EXISTS idxPHRASE20R (
+  id mediumint(9) unsigned NOT NULL auto_increment,
+  term text default NULL,
+  hitlist longblob,
+  PRIMARY KEY  (id),
+  KEY term (term(50))
 ) ENGINE=MyISAM;
 
 -- tables for ranking:

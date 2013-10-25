@@ -649,6 +649,7 @@
             op = (op1=='a' && val=="")?'':op1_fn[op1],
             author = $('#author').val(),
             title = $('#title').val(),
+            subject = $('#subject').val(),
             rn = $('#rn').val(),
             aff = $('#aff').val()
             cn = $('#cn').val(),
@@ -666,6 +667,7 @@
         var query = [];
         if (author !== '') { query.push('author:' + author); }
         if (title !== '') { query.push('title:' + title); }
+        if (subject !== '') { query.push('subject:' + subject); }
         if (rn !== '') { query.push('reportnumber:' + rn); }
         if (aff !== '') { query.push('affiliation:' + aff); }
         if (cn !== '') { query.push('collaboration:' + cn); }

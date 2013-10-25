@@ -74,12 +74,13 @@ class InvenioWebSearchWildcardLimitError(Exception):
 CFG_WEBSEARCH_SEARCH_WITHIN = ['title',
                                'author',
                                'abstract',
-                               'keyword',
-                               'report number',
-                               'journal',
+#                                'keyword',
+#                                'report number',
+#                                'journal',
                                'year',
                                'fulltext',
-                               'reference']
+#                                'reference',
+                               'subject']
 
 
 CFG_WEBSEACH_MATCHING_TYPES = [

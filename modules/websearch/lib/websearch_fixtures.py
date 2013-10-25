@@ -51,25 +51,25 @@ class FieldData(DataSet):
         id = 4
         name = u'abstract'
 
-    class Field_5:
-        code = u'keyword'
-        id = 5
-        name = u'keyword'
+#     class Field_5:
+#         code = u'keyword'
+#         id = 5
+#         name = u'keyword'
 
-    class Field_6:
-        code = u'reportnumber'
-        id = 6
-        name = u'report number'
+#     class Field_6:
+#         code = u'reportnumber'
+#         id = 6
+#         name = u'report number'
 
     class Field_7:
         code = u'subject'
         id = 7
         name = u'subject'
 
-    class Field_8:
-        code = u'reference'
-        id = 8
-        name = u'reference'
+#     class Field_8:
+#         code = u'reference'
+#         id = 8
+#         name = u'reference'
 
     class Field_9:
         code = u'fulltext'
@@ -81,20 +81,20 @@ class FieldData(DataSet):
         id = 10
         name = u'collection'
 
-    class Field_11:
-        code = u'division'
-        id = 11
-        name = u'division'
+#     class Field_11:
+#         code = u'division'
+#         id = 11
+#         name = u'division'
 
     class Field_12:
         code = u'year'
         id = 12
         name = u'year'
 
-    class Field_13:
-        code = u'experiment'
-        id = 13
-        name = u'experiment'
+#     class Field_13:
+#         code = u'experiment'
+#         id = 13
+#         name = u'experiment'
 
     class Field_14:
         code = u'recid'
@@ -121,20 +121,20 @@ class FieldData(DataSet):
         id = 18
         name = u'language'
 
-    class Field_19:
-        code = u'journal'
-        id = 19
-        name = u'journal'
+#     class Field_19:
+#         code = u'journal'
+#         id = 19
+#         name = u'journal'
 
-    class Field_20:
-        code = u'collaboration'
-        id = 20
-        name = u'collaboration'
+#     class Field_20:
+#         code = u'collaboration'
+#         id = 20
+#         name = u'collaboration'
 
-    class Field_21:
-        code = u'affiliation'
-        id = 21
-        name = u'affiliation'
+#     class Field_21:
+#         code = u'affiliation'
+#         id = 21
+#         name = u'affiliation'
 
     class Field_22:
         code = u'exactauthor'
@@ -151,20 +151,20 @@ class FieldData(DataSet):
         id = 24
         name = u'date modified'
 
-    class Field_25:
-        code = u'refersto'
-        id = 25
-        name = u'refers to'
+#     class Field_25:
+#         code = u'refersto'
+#         id = 25
+#         name = u'refers to'
 
-    class Field_26:
-        code = u'citedby'
-        id = 26
-        name = u'cited by'
-
-    class Field_27:
-        code = u'caption'
-        id = 27
-        name = u'caption'
+#     class Field_26:
+#         code = u'citedby'
+#         id = 26
+#         name = u'cited by'
+# 
+#     class Field_27:
+#         code = u'caption'
+#         id = 27
+#         name = u'caption'
 
     class Field_28:
         code = u'firstauthor'
@@ -181,10 +181,10 @@ class FieldData(DataSet):
         id = 30
         name = u'author count'
 
-    class Field_31:
-        code = u'rawref'
-        id = 31
-        name = u'reference to'
+#     class Field_31:
+#         code = u'rawref'
+#         id = 31
+#         name = u'reference to'
 
     class Field_32:
         code = u'exacttitle'
@@ -1213,20 +1213,20 @@ class FieldTagData(DataSet):
         id_tag = TagData.Tag_11.ref('id')
         id_field = FieldData.Field_10.ref('id')
 
-    class FieldTag_11_14:
-        score = 100
-        id_tag = TagData.Tag_14.ref('id')
-        id_field = FieldData.Field_11.ref('id')
+#     class FieldTag_11_14:
+#         score = 100
+#         id_tag = TagData.Tag_14.ref('id')
+#         id_field = FieldData.Field_11.ref('id')
 
     class FieldTag_12_15:
         score = 10
         id_tag = TagData.Tag_15.ref('id')
         id_field = FieldData.Field_12.ref('id')
 
-    class FieldTag_13_116:
-        score = 10
-        id_tag = TagData.Tag_116.ref('id')
-        id_field = FieldData.Field_13.ref('id')
+#     class FieldTag_13_116:
+#         score = 10
+#         id_tag = TagData.Tag_116.ref('id')
+#         id_field = FieldData.Field_13.ref('id')
 
     class FieldTag_14_117:
         score = 100
@@ -1253,10 +1253,10 @@ class FieldTagData(DataSet):
         id_tag = TagData.Tag_121.ref('id')
         id_field = FieldData.Field_18.ref('id')
 
-    class FieldTag_19_131:
-        score = 100
-        id_tag = TagData.Tag_131.ref('id')
-        id_field = FieldData.Field_19.ref('id')
+#     class FieldTag_19_131:
+#         score = 100
+#         id_tag = TagData.Tag_131.ref('id')
+#         id_field = FieldData.Field_19.ref('id')
 
     class FieldTag_1_100:
         score = 10
@@ -1793,20 +1793,20 @@ class FieldTagData(DataSet):
         id_tag = TagData.Tag_99.ref('id')
         id_field = FieldData.Field_1.ref('id')
 
-    class FieldTag_20_132:
-        score = 100
-        id_tag = TagData.Tag_132.ref('id')
-        id_field = FieldData.Field_20.ref('id')
+#     class FieldTag_20_132:
+#         score = 100
+#         id_tag = TagData.Tag_132.ref('id')
+#         id_field = FieldData.Field_20.ref('id')
 
-    class FieldTag_21_133:
-        score = 100
-        id_tag = TagData.Tag_133.ref('id')
-        id_field = FieldData.Field_21.ref('id')
+#     class FieldTag_21_133:
+#         score = 100
+#         id_tag = TagData.Tag_133.ref('id')
+#         id_field = FieldData.Field_21.ref('id')
 
-    class FieldTag_21_134:
-        score = 90
-        id_tag = TagData.Tag_134.ref('id')
-        id_field = FieldData.Field_21.ref('id')
+#     class FieldTag_21_134:
+#         score = 90
+#         id_tag = TagData.Tag_134.ref('id')
+#         id_field = FieldData.Field_21.ref('id')
 
     class FieldTag_22_1:
         score = 100
@@ -1818,10 +1818,10 @@ class FieldTagData(DataSet):
         id_tag = TagData.Tag_2.ref('id')
         id_field = FieldData.Field_22.ref('id')
 
-    class FieldTag_27_135:
-        score = 100
-        id_tag = TagData.Tag_135.ref('id')
-        id_field = FieldData.Field_27.ref('id')
+#     class FieldTag_27_135:
+#         score = 100
+#         id_tag = TagData.Tag_135.ref('id')
+#         id_field = FieldData.Field_27.ref('id')
 
     class FieldTag_28_1:
         score = 100
@@ -1878,25 +1878,25 @@ class FieldTagData(DataSet):
         id_tag = TagData.Tag_5.ref('id')
         id_field = FieldData.Field_4.ref('id')
 
-    class FieldTag_5_6:
-        score = 100
-        id_tag = TagData.Tag_6.ref('id')
-        id_field = FieldData.Field_5.ref('id')
+#     class FieldTag_5_6:
+#         score = 100
+#         id_tag = TagData.Tag_6.ref('id')
+#         id_field = FieldData.Field_5.ref('id')
 
-    class FieldTag_6_7:
-        score = 30
-        id_tag = TagData.Tag_7.ref('id')
-        id_field = FieldData.Field_6.ref('id')
+#     class FieldTag_6_7:
+#         score = 30
+#         id_tag = TagData.Tag_7.ref('id')
+#         id_field = FieldData.Field_6.ref('id')
 
-    class FieldTag_6_8:
-        score = 10
-        id_tag = TagData.Tag_8.ref('id')
-        id_field = FieldData.Field_6.ref('id')
-
-    class FieldTag_6_9:
-        score = 20
-        id_tag = TagData.Tag_9.ref('id')
-        id_field = FieldData.Field_6.ref('id')
+#     class FieldTag_6_8:
+#         score = 10
+#         id_tag = TagData.Tag_8.ref('id')
+#         id_field = FieldData.Field_6.ref('id')
+# 
+#     class FieldTag_6_9:
+#         score = 20
+#         id_tag = TagData.Tag_9.ref('id')
+#         id_field = FieldData.Field_6.ref('id')
 
     class FieldTag_7_12:
         score = 100
@@ -1908,10 +1908,10 @@ class FieldTagData(DataSet):
         id_tag = TagData.Tag_13.ref('id')
         id_field = FieldData.Field_7.ref('id')
 
-    class FieldTag_8_10:
-        score = 100
-        id_tag = TagData.Tag_10.ref('id')
-        id_field = FieldData.Field_8.ref('id')
+#     class FieldTag_8_10:
+#         score = 100
+#         id_tag = TagData.Tag_10.ref('id')
+#         id_field = FieldData.Field_8.ref('id')
 
     class FieldTag_9_115:
         score = 100

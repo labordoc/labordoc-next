@@ -491,7 +491,7 @@ def results(qid, p, of, so, rm):
     return make_results()
 
 
-@blueprint.route('/list/<any(exactauthor, keyword, affiliation, reportnumber, collaboration):field>', methods=['GET', 'POST'])
+@blueprint.route('/list/<any(exactauthor, subject):field>', methods=['GET', 'POST'])
 @blueprint.invenio_wash_urlargd({'q': (min_length(3), '')})
 def autocomplete(field, q):
     """
