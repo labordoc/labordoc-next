@@ -736,8 +736,9 @@
       }
     })
 
+    var autocomplete_list = {{ autocompletion_terms|tojson|safe  }};
     var source = $.map({{ collection.search_within[1:]|tojson|safe }},
-          function(val, i) { return val[0]+':';}); //['author:', 'title:', 'isbn:'];
+          function(val, i) { return val[0]+':';}).concat(autocomplete_list); //['author:', 'title:', 'isbn:'];
     source.push('AND ');
     source.push('OR ');
     source.push('AND NOT ');

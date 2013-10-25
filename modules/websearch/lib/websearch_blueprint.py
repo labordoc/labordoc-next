@@ -52,7 +52,7 @@ from invenio.websearch_facet_builders import \
 from invenio.search_engine import get_creation_date, perform_request_search,\
     print_record, create_nearest_terms_box, browse_pattern_phrases
 from invenio.paginationutils import Pagination
-    
+
 blueprint = InvenioBlueprint('search', __name__, url_prefix="",
                              config='invenio.search_engine_config',
                              breadcrumbs=[],
@@ -115,6 +115,18 @@ def response_formated_records(recids, collection, of, **kwargs):
     response.mimetype = get_output_format_content_type(of)
     return response
 
+def get_autocompletion_terms(recids=None):
+    from invenio.websearch_external_collections_utils import get_collection_name_by_id
+    from invenio.search_engine import get_field_tags, \
+                                      get_most_popular_field_values, \
+                                      get_collection_reclist
+
+    if recids is None:
+        recids = list(get_collection_reclist(get_collection_name_by_id(1)))
+
+    authors = get_most_popular_field_values(recids, get_field_tags('exactauthor'))[0:200]
+    subjects = get_most_popular_field_values(recids, get_field_tags('subject'))
+    return [i[0] for i in authors+subjects]
 
 @blueprint.route('/index.py', methods=['GET', 'POST'])
 @blueprint.route('/', methods=['GET', 'POST'])
@@ -150,7 +162,8 @@ def index():
             easy_search_form=EasySearchForm(csrf_enabled=False),
             format_record=print_record,
             get_creation_date=get_creation_date,
-            new_ilo_publications_recids=new_ilo_publications_recids
+            new_ilo_publications_recids=new_ilo_publications_recids,
+            autocompletion_terms=get_autocompletion_terms()
         )
     return dict(collection=collection)
 
@@ -167,7 +180,8 @@ def collection(name):
         return dict(
             format_record=print_record,
             easy_search_form=EasySearchForm(csrf_enabled=False),
-            get_creation_date=get_creation_date)
+            get_creation_date=get_creation_date,
+            autocompletion_terms=get_autocompletion_terms())
     return dict(collection=collection)
 
 
@@ -314,6 +328,7 @@ def browse(collection, p, f, of, so, rm, rg, jrec):
                     pagination=Pagination(int(ceil(jrec / float(rg))), rg, len(records)),
                     rg=rg, p=p, f=f,
                     easy_search_form=EasySearchForm(csrf_enabled=False),
+                    autocompletion_terms=get_autocompletion_terms()
                     )
 
     return dict(records=records)
@@ -406,7 +421,9 @@ def search(collection, p, of, so, rm):
                records=len(get_current_user_records_that_can_be_displayed(qid)),
                qid=qid, rg=rg,
                create_nearest_terms_box=lambda: _create_neareset_term_box(argd_orig),
-               easy_search_form=EasySearchForm(csrf_enabled=False))
+               easy_search_form=EasySearchForm(csrf_enabled=False),
+               autocompletion_terms=get_autocompletion_terms(recids=recids)
+               )
 
     return response_formated_records(recids, collection, of, **ctx)
 
@@ -489,7 +506,7 @@ def autocomplete(field, q):
     IdxPHRASE = BibIndex.__getattribute__('IdxPHRASE%02dF' %
                                           get_index_id_from_index_name(field))
 
-    results = IdxPHRASE.query.filter(IdxPHRASE.term.contains(q)).limit(20).all()
+    results = IdxPHRASE.query.filter(IdxPHRASE.term.contains(q)).limit(200).all()
     results = map(lambda r: r.term, results)
 
     return jsonify(results=results)
