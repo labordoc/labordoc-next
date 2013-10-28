@@ -92,7 +92,7 @@ class IdxINDEXData(DataSet):
         description = u'This index contains words/phrases from fulltext fields.'
         stemming_language = u''
         id = 9
-        indexer = u'native'
+        indexer = u'SOLR'
         name = u'fulltext'
 
     class IdxINDEX_10:
