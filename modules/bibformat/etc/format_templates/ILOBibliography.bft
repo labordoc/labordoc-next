@@ -1,5 +1,6 @@
 <name>ILO Bibliography</name>
 <description></description>
+
 <BFE_ILO_TITLE_FOR_BIBL prefix=''
 suffix='<br />' />
 
@@ -18,5 +19,4 @@ separator='<br />' default='' show_icons='no'/>
 
 <br />
 <br />
-<hr />
 

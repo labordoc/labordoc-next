@@ -17,26 +17,35 @@
 ## 59 Temple Place, Suite 330, Boston, MA 02111-1307, USA.
 -#}
 
-{% block body %}
-	{# add button to print output #}
-	<div class="button-print-ibib">
+{# add button to print output #}
 
-		<div id="print-button">
-			 <button class="btn btn-primary" style="float:right;position:relative;font-size:16px;" onclick="printbib()">
-			 <i class="icon-search icon-white"></i>
-			 <span class="hidden-phone">Print</span>
-			 </button>
-		</div>
-		<div id="records">
-			{% for recid in recids %}
-			  <br />
-              <br />
-			  {{ format_record(recid, of).decode('utf-8') }}
-			{% endfor %}
-		</div>
+<style>
 
+.ibib-body {
+ font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+ font-size: 14px;
+ line-height: 20px;
+}
+
+</style>
+
+<div class="button-print-ibib">
+
+	<div id="print-button">
+		 <button style="float:right;position:relative;font-size:16px;" onclick="printbib()">
+		 <i class="fa fa-print"></i>
+		 <span>Print</span>
+		 </button>
 	</div>
-{% endblock %}
+	<br />
+    <br />
+	<div id="records" class="ibib-body">
+		{% for recid in recids %}
+		  {{ format_record(recid, of).decode('utf-8') }}
+		{% endfor %}
+	</div>
+
+</div>
 
 {% block javascript %}
 	<script>
