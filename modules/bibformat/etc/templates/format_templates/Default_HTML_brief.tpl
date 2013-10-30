@@ -50,7 +50,7 @@
 				          separator='<br />', default='', show_icons='yes') }}
 	
 	  <div id="snippets">
-	    {{ tfn_get_fulltext_snippets(record['recid'], request.args['p']) | wrap(prefix='<div class="formatRecordLabel"> Snippets </div>
+	    {{ tfn_get_fulltext_snippets(record['recid'], request.args['p'], qid) | wrap(prefix='<div class="formatRecordLabel"> Snippets </div>
 	                                                                   					<div class="positionDetailsBrief">', suffix='</div>') }}
 	  </div>
 	

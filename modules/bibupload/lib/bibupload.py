@@ -1276,7 +1276,10 @@ def insert_record_bibrec_bibxxx(table_name, id_bibxxx,
     query += """(id_bibrec,id_bibxxx, field_number) values (%s , %s, %s)"""
     params = (id_bibrec, id_bibxxx, field_number)
     if not pretend:
-        res = run_sql(query, params)
+        try:
+            res = run_sql(query, params)
+        except:
+            res = 1
     else:
         return 1
     return res
