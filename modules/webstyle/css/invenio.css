@@ -38,6 +38,26 @@ word-break: break-word;
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0088cc', endColorstr='#ff0044cc', GradientType=0);
     filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
 }
+
+hr {
+  border-top: 1px solid #DD9C4D;
+}
+
+a:hover .caret {
+  border-top-color: #CF7100;
+  border-bottom-color: #CF7100;
+}
+
+.well {
+  background-color: #f5f5f5;
+  border: 1px solid #FFA333;
+}
+
+.breadcrumb {
+  background-color: #f5f5f5;
+  border: 1px solid #FFA333;
+}
+
 .label,
 .badge {
    background-color: #858585;
@@ -780,8 +800,8 @@ footer, footer p {
 }
 
 .navbar .nav li.dropdown > a:hover .caret {
-  border-top-color: #555555;
-  border-bottom-color: #555555;
+  border-top-color: #CF7100;
+  border-bottom-color: #CF7100;
 }
 
 .navbar .nav li.dropdown.open > .dropdown-toggle,

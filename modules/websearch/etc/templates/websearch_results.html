@@ -98,10 +98,10 @@
         </p>
 
         <div class="btn-group pull-right">
-          <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+          <span class="btn dropdown-toggle" data-toggle="dropdown" href="#">
             <i class="icon-random"></i> {{ _('Sort by') }}
             <span class="caret"></span>
-          </a>
+          </span>
 
           {%- set args = request.values.copy().to_dict() -%}
           {%- set form_args = request.form.copy().to_dict() -%}
@@ -144,10 +144,10 @@
         </div>
 
         <div class="btn-group pull-right" style="margin-right: 5px;">
-          <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+          <span class="btn dropdown-toggle" data-toggle="dropdown" href="#">
             <i class="icon-th"></i> {{ _('Display') }}
             <span class="caret"></span>
-          </a>
+          </span>
           <ul class="dropdown-menu">
           {%- for i in collection.formatoptions if i.content_type == 'text/html' and i.visibility == 1 -%}
             {%- set used_args = new_args.copy() -%}
