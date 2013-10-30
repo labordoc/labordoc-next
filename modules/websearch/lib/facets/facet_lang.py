@@ -19,6 +19,6 @@
 
 """Language Facet"""
 
-from invenio.websearch_facet_builders import FacetBuilder
+from invenio.websearch_facet_builders import LanguageFacetBuilder
 
-facet = FacetBuilder('language', order=4)
+facet = LanguageFacetBuilder('language', order=4)

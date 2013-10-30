@@ -232,6 +232,23 @@ class FulltextFacetBuilder(FacetBuilder):
         return filter(lambda x: x[0] == "Yes", facet)
 
 
+class LanguageFacetBuilder(FacetBuilder):
+    """Custom implementation of language facet builder."""
+
+    def get_facets_for_query(self, qid, limit=20, parent=None):
+        from invenio.search_engine_config import CFG_LANGUAGE_DICT as language_dict
+        facet = get_most_popular_field_values(self.get_recids(qid),
+                                              get_field_tags(self.name)
+                                              )[0:limit]
+        nicer_facet = []
+        for i in facet:
+            if i[0] in language_dict.keys():
+                nicer_facet.append((i[0], i[1], language_dict[i[0]]))
+            elif i[0] not in ('N/A',):
+                nicer_facet.append(i[0], i[1], i[0])
+        return nicer_facet
+
+
 class YearFacetBuilder(FacetBuilder):
     """Custom implementation of year facet builder."""
 
