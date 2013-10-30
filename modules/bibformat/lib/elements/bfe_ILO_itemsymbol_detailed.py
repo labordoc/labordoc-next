@@ -33,9 +33,6 @@ def format_element(bfo):
     Item type icon
     """
 
-    # hard-code
-    CFG_LABORDOC_URL = "http://labordoc.ilo.org"
-
     isbns = []    
     baseurl = CFG_SITE_URL + '/img/'
     conv = bfo.field('970__a')
@@ -93,27 +90,27 @@ def format_element(bfo):
         isbn = isbntest
         isbn = re.sub(' .*','', isbn)
         imagepath = '/opt/invenio/var/www/img/cover/' + isbn + '-M.jpg'
-#         if os.path.isfile(imagepath): sudo ln -s /opt/invenio/var/www/img/cover /data01/invenio-data/cover
-        imageurl = CFG_LABORDOC_URL + '/img/cover/' + isbn + '-M.jpg'
-        try:
-            f = urllib2.urlopen(urllib2.Request(imageurl))
-            image_exists = True
-        except:
-            image_exists = False
+        if os.path.isfile(imagepath):
+            imageurl = CFG_SITE_URL + '/img/cover/' + isbn + '-M.jpg'
+        #try:
+            #f = urllib2.urlopen(urllib2.Request(imageurl))
+            #image_exists = True
+        #except:
+            #image_exists = False
 
-        if image_exists:       
+        #if image_exists:       
             out = '''<img class="detailsImageCover" src="%s">''' % imageurl
             return out
     
-#     if os.path.isfile(imagepath2): sudo ln -s /opt/invenio/var/www/img/cover /data01/invenio-data/cover
-    try:
-        f = urllib2.urlopen(urllib2.Request(imagepath2))
-        image_exists = True
-    except:
-        image_exists = False
+    if os.path.isfile(imagepath2):
+    #try:
+        #f = urllib2.urlopen(urllib2.Request(imagepath2))
+        #image_exists = True
+    #except:
+        #image_exists = False
 
-    if image_exists:
-        imageurl = CFG_LABORDOC_URL + '/img/cover/' + test + '-M.jpg'
+    #if image_exists:
+        imageurl = CFG_SITE_URL + '/img/cover/' + test + '-M.jpg'
         out = '''<img class="detailsImageCover" src="%s">''' % imageurl
         return out
 

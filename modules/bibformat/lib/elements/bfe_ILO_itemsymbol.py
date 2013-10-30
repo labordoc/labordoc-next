@@ -33,11 +33,8 @@ def format_element(bfo):
     Item type icon
     """
 
-    # hard-code
-    CFG_LABORDOC_URL = "http://labordoc.ilo.org"
-
     isbns = []    
-    baseurl = CFG_LABORDOC_URL + '/img/'
+    baseurl = CFG_SITE_URL + '/img/'
     conv = bfo.field('970__a')
     convt = bfo.field('980__c')
     isbns = bfo.fields('020%%a')
@@ -94,28 +91,28 @@ def format_element(bfo):
         isbn = isbntest
         isbn = re.sub(' .*','', isbn)
         imagepath = '/opt/invenio/var/www/img/cover/' + isbn + '-S.jpg'
-#         if os.path.isfile(imagepath):
-        imageurl = CFG_LABORDOC_URL + '/img/cover/' + isbn + '-S.jpg'
-        try:
-            f = urllib2.urlopen(urllib2.Request(imageurl))
-            image_exists = True
-        except:
-            image_exists = False
+        if os.path.isfile(imagepath):
+            imageurl = CFG_SITE_URL + '/img/cover/' + isbn + '-S.jpg'
+        #try:
+            #f = urllib2.urlopen(urllib2.Request(imageurl))
+            #image_exists = True
+        #except:
+            #image_exists = False
 
-        if image_exists:
+        #if image_exists:
             out = '''<a href="%s/record/%s?ln=%s"> 
                         <img class="detailsImageCoverBrief" src="%s">''' % (CFG_SITE_URL, recid, bfo.lang, imageurl)
             return out                
     
-#     if os.path.isfile(imagepath2):
-    try:
-        f = urllib2.urlopen(urllib2.Request(imagepath2))
-        image_exists = True
-    except:
-        image_exists = False
+    if os.path.isfile(imagepath2):
+        imageurl = CFG_SITE_URL + '/img/cover/' + test + '-S.jpg'
+    #try:
+        #f = urllib2.urlopen(urllib2.Request(imagepath2))
+        #image_exists = True
+    #except:
+        #image_exists = False
 
-    if image_exists:
-        imageurl = CFG_LABORDOC_URL + '/img/cover/' + test + '-S.jpg'
+    #if image_exists:
         out = '''<a href="%s/record/%s?ln=%s">
                     <img class="detailsImageCoverBrief" src="%s"></a>''' % (CFG_SITE_URL, recid, bfo.lang, imageurl)
         return out
@@ -159,5 +156,4 @@ def escape_values(bfo):
     should be escaped.
     """
     return 0
-
 

@@ -2,11 +2,12 @@
 <div class="row">
 
   <div>
-    <div id="symbol" class="span1" style="text-align:right;">
+    <div id="symbol" class="span-hit" style="text-align:right;">
 	  {{ bfe_ilo_itemsymbol(bfo) }}
     </div>
 
 	<div class="span9">
+
       <div id="title">
 	    {{ bfe_ilo_title_with_link(bfo, highlight="no") }}
       </div>
@@ -49,7 +50,7 @@
 				          separator='<br />', default='', show_icons='yes') }}
 	
 	  <div id="snippets">
-	    {{ tfn_get_fulltext_snippets(record['recid'], request.args['p'], qid) | wrap(prefix='<div class="formatRecordLabel"> Snippets </div>
+	    {{ tfn_get_fulltext_snippets(record['recid'], request.args['p']) | wrap(prefix='<div class="formatRecordLabel"> Snippets </div>
 	                                                                   					<div class="positionDetailsBrief">', suffix='</div>') }}
 	  </div>
 	

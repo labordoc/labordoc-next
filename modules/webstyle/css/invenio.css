@@ -38,7 +38,6 @@ word-break: break-word;
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0088cc', endColorstr='#ff0044cc', GradientType=0);
     filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
 }
-
 .label,
 .badge {
    background-color: #858585;
@@ -552,13 +551,13 @@ h2.articleTitle {
 }
 
 .detailsImageCover {
-  height: 120px;
-  # border: 1px solid #ccc;
+  height: 200px;
+  border: 1px solid #ccc;
 }
 
 .detailsImageCoverBrief {
-  height: 70px;
-  # border: 1px solid #ccc;
+  height: 80px;
+  border: 1px solid #ccc;
 }
 
 .detailsIconCoverBrief {
@@ -1009,4 +1008,7 @@ box-shadow: 0 1px 4px rgba(0, 105, 214, 0.25);
   box-shadow: 0 0 6px 2px #b0b2ab;
 }
 
+.row-fluid .span-hit { 
+  width: 65px;
+}
 /* end of invenio.css */

@@ -167,7 +167,7 @@
         {%- for recid in recids[(pagination.page-1)*rg:pagination.page*rg] -%}
           {%- if of[0] == 'h' -%}
             <div class="row-fluid">
-              <div class="span1">
+              <div class="span-hit">
                 <label class="checkbox">
                   <input name="recid" type="checkbox" value="{{ recid }}" />
                   <abbr class="unapi-id" title="{{ recid }}"></abbr>
@@ -175,7 +175,7 @@
                 </label>
               </div>
               <div class="span10">
-                {{ format_record(recid, of, ln=g.ln, qid=qid)|safe }}
+                {{ format_record(recid, of, ln=g.ln)|safe }}
                 {{ '<hr/>'|safe if not loop.last }}
               </div>
             </div>
