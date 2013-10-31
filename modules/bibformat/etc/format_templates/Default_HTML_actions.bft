@@ -12,7 +12,7 @@
   <a href="<BFE_SERVER_INFO var='CFG_SITE_URL'/>record/<BFE_RECORD_ID/>/export/xd?ln=<BFE_CLIENT_INFO var='ln'/>">DC</a>,
   <a href="<BFE_SERVER_INFO var='CFG_SITE_URL'/>record/<BFE_RECORD_ID/>/export/cip?ln=<BFE_CLIENT_INFO var='ln'/>">CIP</a>
 
- <h4><i class="icon-wrench">   </i>_(Other options)_</h4>
+  <h4><i class="icon-wrench">   </i>_("Other options")</h4>
   <div>
 	<BFE_SIMILAR_RECORDS />
   </div>

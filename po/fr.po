@@ -13505,6 +13505,46 @@ msgstr ""
 msgid "Correct my publication lists!"
 msgstr "Corriger ma liste de publications!"
 
+#: modules/websearch/etc/templates/websearch_index.html:55
+msgid "World of Work Report 2013"
+msgstr "Rapport sur le travail dans le monde 2013"
+
+#: modules/websearch/etc/templates/websearch_index.html:62
+msgid "Child Labour"
+msgstr "Travail des enfants"
+
+#: modules/websearch/etc/templates/websearch_index.html:69
+msgid "Collective bargaining in the public service"
+msgstr "Négociation collective dans les services publics"
+
+#: modules/websearch/etc/templates/websearch_index.html:76
+msgid "Employment in the new demographic context"
+msgstr "Emploi dans le nouveau contexte démographique"
+
+#: modules/websearch/etc/templates/websearch_index.html:83
+msgid "Green jobs"
+msgstr "Emplois verts"
+
+#: modules/websearch/etc/templates/websearch_index.html:90
+msgid "Trade unions and social dialogue"
+msgstr "Syndicats et dialogue social"
+
+#: modules/websearch/etc/templates/websearch_index.html:157
+msgid "New ILO publications"
+msgstr "Nouvelles publications du BIT"
+
+#: modules/websearch/lib/websearchadminlib.py:3403
+msgid "Find in an ILO Library"
+msgstr "Trouver dans une bibliothèque du BIT"
+
+#: modules/bibformat/etc/format_templates/Default_HTML_actions.bft:15
+msgid "Other options"
+msgstr "Autres options"
+
+#: modules/bibformat/lib/elements/bfe_ILO_request_button.py:52
+msgid "Request item"
+msgstr "Demander une copie"
+
 #~ msgid "This book is sent to you ..."
 #~ msgstr "Ce livre vous a été envoyé..."
 
