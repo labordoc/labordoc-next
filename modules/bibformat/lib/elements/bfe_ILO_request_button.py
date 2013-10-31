@@ -22,9 +22,12 @@ bfe_ILO_request_button.py Create button for requesting the item from old Labordo
 """
 
 import re
+from invenio.messages import gettext_set_language
 
 def format_element(bfo):
-    
+
+    _ = gettext_set_language(bfo.lang)    # load the right message language
+
 #     # prepare variables
 #     voyager_sysno = bfo.field("970__a")
 #     voyager_sysno = re.sub('^LABORDOC-', '', voyager_sysno)
@@ -49,7 +52,7 @@ def format_element(bfo):
 
 
     # the html
-    out_html ="""<a title="Request Button" href="%s"> <h4><i class="icon-book">   </i> Request item </h4> </a>""" % (request_url)
+    out_html ="""<a title="Request Button" href="%s"> <h4><i class="icon-book">   </i> %s </h4> </a>""" % (request_url, _("Request item"))
 #          <div class="RequestButton"> <a title="Request Button" href="%s"> Request <div class="RequestArrows">  &nbsp;&#187; </div> </a> </div> 
 #          """ % (request_url)
     return out_html

@@ -13458,6 +13458,47 @@ msgstr ""
 msgid "Correct my publication lists!"
 msgstr "Corrijan mi lista de publicaciones"
 
+#: modules/websearch/etc/templates/websearch_index.html:55
+msgid "World of Work Report 2013"
+msgstr "Informe Sobre el Trabajo en el Mundo 2013"
+
+#: modules/websearch/etc/templates/websearch_index.html:62
+msgid "Child Labour"
+msgstr "Trabajo infantil"
+
+#: modules/websearch/etc/templates/websearch_index.html:69
+msgid "Collective bargaining in the public service"
+msgstr "Negociación colectiva en los servicios públicos"
+
+#: modules/websearch/etc/templates/websearch_index.html:76
+msgid "Employment in the new demographic context"
+msgstr "Empleo en el nuevo contexto demográfico"
+
+#: modules/websearch/etc/templates/websearch_index.html:83
+msgid "Green jobs"
+msgstr "Empleos verdes"
+
+#: modules/websearch/etc/templates/websearch_index.html:90
+msgid "Trade unions and social dialogue"
+msgstr "Sindicatos y diálogo social"
+
+#: modules/websearch/etc/templates/websearch_index.html:157
+msgid "New ILO publications"
+msgstr "Nuevas publicaciones de la OIT"
+
+#: modules/websearch/lib/websearchadminlib.py:3403
+msgid "Find in an ILO Library"
+msgstr "Encuéntralo en una biblioteca de la OIT"
+
+#: modules/miscutil/lib/urlutils.py:942
+#: modules/bibformat/lib/elements/bfe_ILO_request_button.py:55
+msgid "Request item"
+msgstr "Solicita un artículo"
+
+#: modules/bibformat/etc/format_templates/Default_HTML_actions.bft:15
+msgid "Other options"
+msgstr "Otras opciones"
+
 #~ msgid "Make sure we match the right names!"
 #~ msgstr "¡Asegúrese que los nombres se correspondan!"
 

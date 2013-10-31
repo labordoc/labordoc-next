@@ -849,9 +849,12 @@ def VoyagerHoldings(recid):
 
     from invenio.bibformat_engine import BibFormatObject
     from invenio.bibformat_elements import bfe_ILO_links
+    from invenio.messages import gettext_set_language
     # prepare variables
- 
+
+    from flask import g
     bfo = BibFormatObject(recid)
+    _ = gettext_set_language(g.ln)    # load the right message language
     holdings = {}
     out_table = []
     out_html = ''
@@ -936,7 +939,7 @@ def VoyagerHoldings(recid):
  
     out_table.sort()
     out_html += ''.join(out_table) +  '</tbody></table></div>'
-    out_html += """<div class="span2 requestButton"> <a title="Request Button" href="%s">
-                   <h4><i class="icon-book"> </i>  Request item </h4></a> </div></div>""" % request_url
+    out_html += """<div class="span2 requestButton"> <a href="%s">
+                   <h4><i class="icon-book"> </i>  %s </h4></a> </div></div>""" % (request_url, _("Request item"))
 
     return out_html
