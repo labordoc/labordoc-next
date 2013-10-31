@@ -13541,6 +13541,7 @@ msgstr "Trouver dans une bibliothèque du BIT"
 msgid "Other options"
 msgstr "Autres options"
 
+#: modules/miscutil/lib/urlutils.py:942
 #: modules/bibformat/lib/elements/bfe_ILO_request_button.py:52
 msgid "Request item"
 msgstr "Demander une copie"
