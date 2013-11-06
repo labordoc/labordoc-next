@@ -89,11 +89,11 @@ INSERT INTO `collection` VALUES (94,'books','996__a:am -992__a:\'ILO publication
 INSERT INTO `collection` VALUES (95,'journal articles','996__a:aa -992__a:\'ILO publication\'',0,'xc`@\0\0\0');
 INSERT INTO `collection` VALUES (97,'ILO journal articles','992__a:\'ILO publication\' 996__a:aa -4900_a:\'working paper*\' -4901_a:\'working paper*\' -440_0a:\'working paper*\' -4900_a:\'travail\' -4901_a:\'travail\' -440_0a:\'travail\' -4900_a:\'documento de trabajo\' -4901_a:\'documento de trabajo\' -440_0a:\'documento de trabajo\' -subject:\'teaching material\' -subject:\'manual\' -subject:\'guide\' -subject:\'textbook\' -1102_b:\'governing body\' -7112_a:\'governing body\' -7102_b:\'governing body\' -7112_a:\'international labour conference\'',0,'xc`\0\0\0\0'),(153,'invsbl other ILO publications','992__a:\'ILO publication\' AND 996__a:aa AND (1102_b:\'governing body\' OR 7112_a:\'governing body\' OR 7102_b:\'governing body\' OR 7112_a:\'international labour conference\') OR (992__a:\'ILO publication\' -996__:am -996__:aa -4900_a:\'working paper*\' -4901_a:\'working paper*\' -440_0a:\'working paper*\' -4900_a:\'travail\' -4901_a:\'travail\' -440_0a:\'travail\' -4900_a:\'documento de trabajo\' -4901_a:\'documento de trabajo\' -440_0a:\'documento de trabajo\' -subject:\'teaching material\' -subject:\'manual\' -subject:\'guide\' -subject:\'textbook\')',0,'xc`@\0\0\0');
 INSERT INTO `collection` VALUES (148,'invsbl focus1','(subject:"green jobs")',0, NULL);
-INSERT INTO `collection` VALUES (149,'invsbl focus2','(5050_a:\'rights at work\') or (title:\'rights at work\') or (abstract:\'rights at work\') or (5050_a:\'fundamental principles\') or (title:\'fundamental principles\') or (abstract:\'fundamental principles\') or (5050_a:\'droits fondamentaux\') or (title:\'droits fondamentaux\') or (abstract:\'droits fondamentaux\') or (5050_a:\'derechos fundamentales\') or (title:\'derechos fundamentales\') or (abstract:\'derechos fundamentales\')',0,'xc`@\0\0\0');
-INSERT INTO `collection` VALUES (150,'invsbl focus3','subject:\"youth employment\"',0,'xc`@\0\0\0');
+INSERT INTO `collection` VALUES (149,'invsbl focus2','(subject:"migration" OR subject:"migrant")',0,'xc`@\0\0\0');
+INSERT INTO `collection` VALUES (150,'invsbl focus3','subject:"child labour"',0,'xc`@\0\0\0');
 INSERT INTO `collection` VALUES (151,'invsbl focus4','subject:"collective bargaining" AND (public OR labour) AND (subject:service OR subject:administration)',0,NULL);
-INSERT INTO `collection` VALUES (152,'invsbl focus5','subject:\"hiv/aids\"',0,'xc`@\0\0\0');
-INSERT INTO `collection` VALUES (154,'invsbl focus6','(subject:"trade union" and subject:"social dialogue")', 0, NULL);
+INSERT INTO `collection` VALUES (152,'invsbl focus5','(subject:"youth" OR subject:"young") AND (subject:"employment")',0,'xc`@\0\0\0');
+INSERT INTO `collection` VALUES (154,'invsbl focus6','(subject:"trade union") and (subject:"social dialogue")', 0, NULL);
 INSERT INTO `collection` VALUES (160,'fundamentalconventions',NULL,0,'xc`@\0\0\0');
 INSERT INTO `collection` VALUES (233,'C138','980__n:C138',0,'xc`@\0\0\0');
 INSERT INTO `collection` VALUES (161,'finalarticles',NULL,0,'xc`@\0\0\0');
@@ -2252,7 +2252,7 @@ INSERT INTO collection_rnkMETHOD (id_collection,id_rnkMETHOD,score) VALUES (308,
 INSERT INTO collection_rnkMETHOD (id_collection,id_rnkMETHOD,score) VALUES (309,1,0);
 INSERT INTO collection_rnkMETHOD (id_collection,id_rnkMETHOD,score) VALUES (310,1,0);
 INSERT INTO collection_rnkMETHOD (id_collection,id_rnkMETHOD,score) VALUES (313,1,0);
-INSERT INTO collection_rnkMETHOD (id_collection,id_rnkMETHOD,score) VALUES (314,1,0);
+INSERT INTO collection_rnkMETHOD (id_collection,id_rnkMETHOD,score) VALUES (154,1,0);
 INSERT INTO collection_rnkMETHOD (id_collection,id_rnkMETHOD,score) VALUES (312,1,0);
 INSERT INTO collection_rnkMETHOD (id_collection,id_rnkMETHOD,score) VALUES (204,2,0);
 INSERT INTO collection_rnkMETHOD (id_collection,id_rnkMETHOD,score) VALUES (203,2,0);
@@ -2469,7 +2469,7 @@ INSERT INTO collection_rnkMETHOD (id_collection,id_rnkMETHOD,score) VALUES (308,
 INSERT INTO collection_rnkMETHOD (id_collection,id_rnkMETHOD,score) VALUES (309,2,0);
 INSERT INTO collection_rnkMETHOD (id_collection,id_rnkMETHOD,score) VALUES (310,2,0);
 INSERT INTO collection_rnkMETHOD (id_collection,id_rnkMETHOD,score) VALUES (313,2,0);
-INSERT INTO collection_rnkMETHOD (id_collection,id_rnkMETHOD,score) VALUES (314,2,0);
+INSERT INTO collection_rnkMETHOD (id_collection,id_rnkMETHOD,score) VALUES (154,2,0);
 INSERT INTO collection_rnkMETHOD (id_collection,id_rnkMETHOD,score) VALUES (312,2,0);
 INSERT INTO collection_rnkMETHOD (id_collection,id_rnkMETHOD,score) VALUES (204,3,0);
 INSERT INTO collection_rnkMETHOD (id_collection,id_rnkMETHOD,score) VALUES (203,3,0);
@@ -2686,7 +2686,7 @@ INSERT INTO collection_rnkMETHOD (id_collection,id_rnkMETHOD,score) VALUES (308,
 INSERT INTO collection_rnkMETHOD (id_collection,id_rnkMETHOD,score) VALUES (309,3,0);
 INSERT INTO collection_rnkMETHOD (id_collection,id_rnkMETHOD,score) VALUES (310,3,0);
 INSERT INTO collection_rnkMETHOD (id_collection,id_rnkMETHOD,score) VALUES (313,3,0);
-INSERT INTO collection_rnkMETHOD (id_collection,id_rnkMETHOD,score) VALUES (314,3,0);
+INSERT INTO collection_rnkMETHOD (id_collection,id_rnkMETHOD,score) VALUES (154,3,0);
 INSERT INTO collection_rnkMETHOD (id_collection,id_rnkMETHOD,score) VALUES (312,3,0);
 INSERT INTO collection_rnkMETHOD (id_collection,id_rnkMETHOD,score) VALUES (204,4,0);
 INSERT INTO collection_rnkMETHOD (id_collection,id_rnkMETHOD,score) VALUES (203,4,0);
@@ -2903,7 +2903,7 @@ INSERT INTO collection_rnkMETHOD (id_collection,id_rnkMETHOD,score) VALUES (308,
 INSERT INTO collection_rnkMETHOD (id_collection,id_rnkMETHOD,score) VALUES (309,4,0);
 INSERT INTO collection_rnkMETHOD (id_collection,id_rnkMETHOD,score) VALUES (310,4,0);
 INSERT INTO collection_rnkMETHOD (id_collection,id_rnkMETHOD,score) VALUES (313,4,0);
-INSERT INTO collection_rnkMETHOD (id_collection,id_rnkMETHOD,score) VALUES (314,4,0);
+INSERT INTO collection_rnkMETHOD (id_collection,id_rnkMETHOD,score) VALUES (154,4,0);
 INSERT INTO collection_rnkMETHOD (id_collection,id_rnkMETHOD,score) VALUES (312,4,0);
 INSERT INTO collection_rnkMETHOD (id_collection,id_rnkMETHOD,score) VALUES (204,5,0);
 INSERT INTO collection_rnkMETHOD (id_collection,id_rnkMETHOD,score) VALUES (203,5,0);
@@ -3120,7 +3120,7 @@ INSERT INTO collection_rnkMETHOD (id_collection,id_rnkMETHOD,score) VALUES (308,
 INSERT INTO collection_rnkMETHOD (id_collection,id_rnkMETHOD,score) VALUES (309,5,0);
 INSERT INTO collection_rnkMETHOD (id_collection,id_rnkMETHOD,score) VALUES (310,5,0);
 INSERT INTO collection_rnkMETHOD (id_collection,id_rnkMETHOD,score) VALUES (313,5,0);
-INSERT INTO collection_rnkMETHOD (id_collection,id_rnkMETHOD,score) VALUES (314,5,0);
+INSERT INTO collection_rnkMETHOD (id_collection,id_rnkMETHOD,score) VALUES (154,5,0);
 INSERT INTO collection_rnkMETHOD (id_collection,id_rnkMETHOD,score) VALUES (312,5,0);
 
 INSERT INTO `externalcollection` VALUES (1,'Amazon'),(2,'CERN EDMS'),(3,'CERN Indico'),(4,'CERN Intranet'),(5,'CiteSeer'),(6,'Google Books'),(7,'Google Scholar'),(8,'Google Web'),(9,'IEC'),(10,'IHS'),(11,'INSPEC'),(12,'ISO'),(13,'KISS Books/Journals'),(14,'KISS Preprints'),(15,'NEBIS'),(16,'SLAC Library Catalog'),(17,'INSPIRE'),(18,'Scirus'),(19,'Atlantis Institute Books'),(20,'Atlantis Institute Articles');
