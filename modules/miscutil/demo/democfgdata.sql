@@ -361,7 +361,7 @@ INSERT INTO `collectionname` VALUES (156,'en','ln','International Labour Confere
 INSERT INTO `collectionname` VALUES (155,'en','ln','other none ILO publications');
 INSERT INTO `collectionname` VALUES (158,'en','ln','ILO Conventions: background and preparatory work');
 INSERT INTO `collectionname` VALUES (148,'en','ln','Green jobs');
-INSERT INTO `collectionname` VALUES (149,'en','ln','Fundamental principles and rights at work');
+INSERT INTO `collectionname` VALUES (149,'en','ln','Labour migration');
 INSERT INTO `collectionname` VALUES (150,'en','ln','Child labour');
 INSERT INTO `collectionname` VALUES (151,'en','ln','Collective bargaining in the public service');
 INSERT INTO `collectionname` VALUES (152,'en','ln','Employment in the new demographic context');
@@ -370,8 +370,8 @@ INSERT INTO `collectionname` VALUES (154,'es','ln','Sindicatos y diálogo social
 INSERT INTO `collectionname` VALUES (154,'fr','ln','Syndicats et dialogue social');
 INSERT INTO `collectionname` VALUES (148,'es','ln','Empleos verdes');
 INSERT INTO `collectionname` VALUES (148,'fr','ln','Emplois verts ');
-INSERT INTO `collectionname` VALUES (149,'es','ln','Principios y derechos fundamentales en el trabajo');
-INSERT INTO `collectionname` VALUES (149,'fr','ln','Principes et droits fondamentaux au travail');
+INSERT INTO `collectionname` VALUES (149,'es','ln','Migraciones laborales');
+INSERT INTO `collectionname` VALUES (149,'fr','ln','Migrations de main-d\'oeuvre');
 INSERT INTO `collectionname` VALUES (150,'es','ln','Trabajo infantil');
 INSERT INTO `collectionname` VALUES (150,'fr','ln','Travail des enfants');
 INSERT INTO `collectionname` VALUES (151,'fr','ln','Négociation collective dans les services publics');
@@ -1386,7 +1386,9 @@ INSERT INTO `collection_portalbox` VALUES (148,12,'fr','rt',1);
 INSERT INTO `collection_portalbox` VALUES (154,13,'en','rt',1);
 INSERT INTO `collection_portalbox` VALUES (154,14,'es','rt',1);
 INSERT INTO `collection_portalbox` VALUES (154,15,'fr','rt',1);
-
+INSERT INTO `collection_portalbox` VALUES (149,16,'en','rt',1);
+INSERT INTO `collection_portalbox` VALUES (149,17,'es','rt',1);
+INSERT INTO `collection_portalbox` VALUES (149,18,'fr','rt',1);
 
 INSERT INTO example VALUES (1,'author search','author:"Ellis, J"');
 INSERT INTO example VALUES (2,'word search','quantum');
@@ -1462,6 +1464,9 @@ INSERT INTO portalbox VALUES (13,'<img src="http://www.ilo.org/dyn/media/images/
 INSERT INTO portalbox VALUES (14,'<img src="http://www.ilo.org/dyn/media/images/thumbs/e13433.jpg">', '<h5 class="title-portalbox-special-colls"> SOBRE Trade unions and social dialogue </h5> <div>Trade unions and social dialogue collection is a temporary collection that is being used for testing. </div> <div> You can check more here <a title="Trade unions and social dialogue" href="http://www.ilo.org/brussels/information-resources/news/WCMS_205060/lang--en/index.htm"> Trade unions and social dialogue </a></div>');
 INSERT INTO portalbox VALUES (15,'<img src="http://www.ilo.org/dyn/media/images/thumbs/e13433.jpg">', '<h5 class="title-portalbox-special-colls"> SUR Trade unions and social dialogue </h5> <div>Trade unions and social dialogue collection is a temporary collection that is being used for testing. </div> <div> You can check more here <a title="Trade unions and social dialogue" href="http://www.ilo.org/brussels/information-resources/news/WCMS_205060/lang--en/index.htm"> Trade unions and social dialogue </a></div>');
 
+INSERT INTO portalbox VALUES (16,'<img src="http://www.ilo.org/dyn/media/images/thumbs/e5760.jpg">', '<h5 class="title-portalbox-special-colls"> ABOUT Labour migration </h5> <div>Labour migration collection is a temporary collection that is being used for testing. </div> <div> You can check more here <a title="Labour migration" href="http://www.ilo.org/global/topics/labour-migration/lang--en/index.htm"> Labour migration </a></div>');
+INSERT INTO portalbox VALUES (17,'<img src="http://www.ilo.org/dyn/media/images/thumbs/e5760.jpg">', '<h5 class="title-portalbox-special-colls"> SOBRE Migraciones laborales </h5> <div>Trade unions and social dialogue collection is a temporary collection that is being used for testing. </div> <div> You can check more here <a title="Trade unions and social dialogue" href="http://www.ilo.org/global/topics/labour-migration/lang--en/index.htm"> Migraciones laborales </a></div>');
+INSERT INTO portalbox VALUES (18,'<img src="http://www.ilo.org/dyn/media/images/thumbs/e5760.jpg">', '<h5 class="title-portalbox-special-colls"> SUR Migrations de main-d\'oeuvre </h5> <div>Migrations de main-d\'oeuvre collection is a temporary collection that is being used for testing. </div> <div> You can check more here <a title="Migrations de main-d\'oeuvre" href="http://www.ilo.org/global/topics/labour-migration/lang--en/index.htm"> Migrations de main-d\'oeuvre </a></div>');
 
 INSERT INTO sbmCOLLECTION VALUES (36,'Document Types');
 

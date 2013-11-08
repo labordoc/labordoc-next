@@ -49,10 +49,10 @@
   <p></p>
   <ul class="thumbnails special-colls">
     <li>
-      <a href="http://labordoc.ilo.org/record/457349?ln=en" class="thumbnail special-colls-size">
-        <img src="http://www.ilo.org/wcmsp5/groups/public/---dgreports/---dcomm/documents/image/wcms_214480.jpg" 
+      <a href="{{ url_for('search.search', cc='invsbl focus2', ln=g.ln, jrec=1)|safe }}" class="thumbnail special-colls-size">
+        <img src="http://www.ilo.org/dyn/media/images/thumbs/e5760.jpg"
         alt="">
-        <div class="label-special-colls">{{ _("World of Work Report 2013") }}</div>
+        <div class="label-special-colls">{{ _("Labour migration") }}</div>
         <p></p>
       </a>
     </li>

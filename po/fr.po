@@ -13506,8 +13506,8 @@ msgid "Correct my publication lists!"
 msgstr "Corriger ma liste de publications!"
 
 #: modules/websearch/etc/templates/websearch_index.html:55
-msgid "World of Work Report 2013"
-msgstr "Rapport sur le travail dans le monde 2013"
+msgid "Labour migration"
+msgstr "Migrations de main-d'oeuvre"
 
 #: modules/websearch/etc/templates/websearch_index.html:62
 msgid "Child Labour"
