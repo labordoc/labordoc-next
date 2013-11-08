@@ -292,9 +292,10 @@ def get_words_from_fulltext(url_direct_or_indirect, stemming_language=None, reci
             # Adds fulltexts of all files once per records
             if not recid in fulltext_added:
                 text = get_entire_fulltext(recid)
-                if indexer == 'SOLR' and CFG_SOLR_URL:
-                    solr_add_fulltext(recid, text)
-                    write_message("Indexing recid %s in Solr ..." % recid)
+                if text and indexer == 'SOLR' and CFG_SOLR_URL:
+                    if solr_add_fulltext(recid, text):
+                        write_message("Indexed recid %s in Solr ..." % recid)
+                    else: write_message("WARNING: Indexing  of recid %s in Solr failed ..." % recid)
                 elif indexer == 'XAPIAN' and CFG_XAPIAN_ENABLED:
                     xapian_add(recid, 'fulltext', text)
                     write_message("Indexing recid %s in Xapian ..." % recid)
@@ -341,8 +342,9 @@ def get_entire_fulltext(recid):
     fulltext_parts = []
     urls = get_fieldvalues(recid, '8564_u')
     for url in urls:
-        if 'libdoc' in url:
-            write_message("... will extract words from %s" % url, verbose=2)
+        url = url.replace('.PDF', '.pdf')
+        if 'libdoc' in url and '.pdf' in url:
+            write_message("... will extract words from %s" % url, verbose=3)
             fulltext_parts.append(get_extracted_text_of_url(url, ''))
 
     return ' '.join(fulltext_parts)
