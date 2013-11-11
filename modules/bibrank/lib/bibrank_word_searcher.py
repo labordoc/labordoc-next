@@ -152,7 +152,7 @@ def sort_record_relevance_findsimilar(recdict, rec_termcount, hitset, rank_limit
         else:
             recdict[j] = 0
 
-    hitset -= recdict.keys()
+    hitset = set(hitset) - set(recdict.keys())
     #gives each record a score between 0-100
     divideby = max(recdict.values())
     for (j, w) in recdict.iteritems():
@@ -280,7 +280,7 @@ def sort_record_relevance(recdict, rec_termcount, hitset, rank_limit_relevance, 
     reclist = []
 
     #remove all ranked documents so that unranked can be added to the end
-    hitset -= recdict.keys()
+    hitset = set(hitset) - set(recdict.keys())
 
     #gives each record a score between 0-100
     divideby = max(recdict.values())
