@@ -23,6 +23,7 @@ import json
 import string
 import functools
 import cStringIO
+import os
 from math import ceil
 from flask import make_response, g, request, flash, jsonify, \
     redirect, url_for, current_app, abort, session
@@ -33,7 +34,7 @@ from invenio.bibindex_engine import get_index_id_from_index_name
 from invenio.bibformat import get_output_format_content_type, print_records
 from invenio.cache import cache
 from invenio.config import CFG_WEBSEARCH_RSS_TTL, \
-    CFG_WEBSEARCH_PREV_NEXT_HIT_LIMIT
+    CFG_WEBSEARCH_PREV_NEXT_HIT_LIMIT, CFG_TMPDIR
 from invenio.websearch_cache import \
     get_search_query_id, get_collection_name_from_cache
 from invenio.access_control_engine import acc_authorize_action
@@ -147,17 +148,14 @@ def index():
     collection = Collection.query.get_or_404(1)
     # inject functions to the template
 
-    ILO_publications_recids = perform_request_search(p="992__a:'ILO publication'")
-    dict_creation_date_per_recid = {}
-    for recid in ILO_publications_recids:
-        dict_creation_date_per_recid.update({recid:get_creation_date(recid,
-                                                                     fmt="%Y-%m-%d %H:%i:%S")})
-
-    sorted_dict_creation_date_per_recid = sorted(dict_creation_date_per_recid.items(),
-                                                 key=lambda x:x[1])
-    new_ilo_publications = sorted_dict_creation_date_per_recid[-5:]
-    new_ilo_publications.reverse()
-    new_ilo_publications_recids = [t[0] for t in new_ilo_publications]
+    # get new ILO publications
+    if os.path.isfile(CFG_TMPDIR + "/new_ILO_publications"):
+        new_ILO_publications_file = open(CFG_TMPDIR + "/new_ILO_publications", "r")
+        new_ILO_publications_recids = new_ILO_publications_file.read()
+        new_ILO_publications_file.close()
+        new_ILO_publications_recids = [str(recid).strip() for recid in eval(new_ILO_publications_recids)]
+    else:
+        new_ILO_publications_recids = []
 
     @register_template_context_processor
     def index_context():
@@ -165,7 +163,7 @@ def index():
             easy_search_form=EasySearchForm(csrf_enabled=False),
             format_record=print_record,
             get_creation_date=get_creation_date,
-            new_ilo_publications_recids=new_ilo_publications_recids,
+            new_ILO_publications_recids=new_ILO_publications_recids,
             autocompletion_terms=get_autocompletion_terms(ln=g.ln)
         )
     return dict(collection=collection)

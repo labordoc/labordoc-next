@@ -155,11 +155,12 @@
   <div class="row elements-main-page"> <!-- new-ILO-publications --!>
     <div class="span7">
       <div class="row"><h3 class="titles-main-page"> {{ _('New ILO publications') }} </h3></div>
-      {%- for recid in new_ilo_publications_recids -%}
-         {{ format_record(recid, 'hnp', ln=g.ln)|safe }}
-		 <hr />
-      {%- endfor -%}
-
+      {% if new_ILO_publications_recids %}
+         {%- for recid in new_ILO_publications_recids -%}
+            {{ format_record(recid, 'hnp', ln=g.ln)|safe }}
+		    <hr />
+         {%- endfor -%}
+      {% endif %}
     </div>
   </div>
 
