@@ -22,18 +22,33 @@ from invenio.search_engine import perform_request_search
 from invenio.config import CFG_TMPDIR
 from invenio.bibtask import task_update_progress
 from invenio.search_engine import get_creation_date
+from invenio.dbquery import run_sql
+import datetime
+import dateutil.relativedelta
+
 
 def bst_get_new_ilo_publications(number_results_to_display=5):
     """
     Bibtasklet responsible of the generation of the list
-    containing the most recent ILO publications.
+    containing the most recent ILO publications and to update
+    automatically the query to get the most recent ILO publications.
     @param number_results_to_display: number of results to display
     to users in main page.
     """
 
-    task_update_progress("Start calculating new ILO publications")
+    task_update_progress("Start updating query for collection Latest publications by ILO")
+    # get current month and get the 2 previous ones
+    now = datetime.datetime.now()
+    month_1 = (now + dateutil.relativedelta.relativedelta(months=-1)).month
+    month_2 = (now + dateutil.relativedelta.relativedelta(months=-2)).month
+    # update also tab collection where id=113
+    dbquery = """(946__d:2013-%s-* or 946__d:2013-%s-* or 946__d:2013-%s-*) and (997__a:2012 or 997__a:2013) and (992__a:"ILO publication") not callno:GB.* not callno:NYP""" % (now.month, month_1, month_2)
+    query = """update collection set dbquery='%s' where id=113;""" % dbquery
+    run_sql(query)
+    task_update_progress("Finished updating query for collection Latest publications by ILO")
 
-    ILO_publications_recids = perform_request_search(p="992__a:'ILO publication'")
+    task_update_progress("Start calculating new ILO publications")
+    ILO_publications_recids = perform_request_search(p=dbquery)
     dict_creation_date_per_recid = {}
     for recid in ILO_publications_recids:
         dict_creation_date_per_recid.update({recid:get_creation_date(recid,
@@ -47,5 +62,4 @@ def bst_get_new_ilo_publications(number_results_to_display=5):
     new_ilo_publications_file = open(CFG_TMPDIR + "/new_ILO_publications", "w")
     new_ilo_publications_file.write(repr(new_ilo_publications_recids))
     new_ilo_publications_file.close()
-    
     task_update_progress("Finished calculating new ILO publications")
