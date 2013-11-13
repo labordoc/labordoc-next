@@ -645,6 +645,6 @@ CFG_STOPWORDS_FR = ['alors', 'au', 'aucuns', 'aussi', 'autre', 'avant', 'avec',
                     'tels', 'tes', 'ton', 'tous', 'tout', 'trop', 'tr\\xc3\\xa8s',
                     'tu', 'valeur', 'voie', 'voient', 'vont', 'votre', 'vous', 'vu',
                     '\\xc3\\xa7a', '\\xc3\\xa9taient', '\\xc3\\xa9tat', '\\xc3\\xa9tions',
-                    '\\xc3\\xa9t\\xc3\\xa9', '\\xc3\\xaatre'
+                    '\\xc3\\xa9t\\xc3\\xa9', '\\xc3\\xaatre']
 
 CFG_STOPWORDS = CFG_STOPWORDS_EN + CFG_STOPWORDS_ES + CFG_STOPWORDS_FR

@@ -24,7 +24,8 @@ from werkzeug.utils import cached_property
 from flask import g, url_for, request, abort, current_app
 
 from invenio.websearch_cache import search_results_cache, \
-                                    get_search_results_cache_key_from_qid
+                                    get_search_results_cache_key_from_qid, \
+                                    get_pattern_from_cache
 from invenio.intbitset import intbitset
 from invenio.config import CFG_WEBSEARCH_SEARCH_CACHE_TIMEOUT, CFG_PYLIBDIR
 from invenio.importutils import autodiscover_modules
@@ -38,7 +39,6 @@ from invenio.search_engine import search_pattern, \
 
 from invenio.config import CFG_SITE_LANG
 from invenio.messages import gettext_set_language, wash_language
-
 
 def get_current_user_records_that_can_be_displayed(qid):
     """
@@ -137,7 +137,12 @@ class FacetLoader(object):
 
     def config(self, *args, **kwargs):
         """Returns facet config for all loaded plugins."""
-        return map(lambda x: x.get_conf(*args, **kwargs), self.sorted_list)
+        pattern = get_pattern_from_cache(kwargs.get('qid'))
+        if pattern == "":
+           facets_list = filter(lambda x: x.order == 1, self.sorted_list)
+        else:
+            facets_list = self.sorted_list
+        return map(lambda x: x.get_conf(*args, **kwargs), facets_list)
 
 
 class FacetBuilder(object):
