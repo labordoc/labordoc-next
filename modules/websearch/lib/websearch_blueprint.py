@@ -399,24 +399,31 @@ def search(collection, p, of, so, rm):
     collection_breadcrumbs(collection)
 
     qid = get_search_query_id(**argd)
-    recids = perform_request_search(req=request.get_legacy_request(), **argd)
-    recids = sort_and_rank_records(recids, so=so, rm=rm, p=p)
-    #if so or rm:
-    #    if len(of)>0 and of[0] == 'h':
-    #        recids.reverse()
 
-    # back-to-search related code
-    if request and not isinstance(request.get_legacy_request(), cStringIO.OutputType):
-        # store the last search results page
-        session['websearch-last-query'] = request.get_legacy_request().unparsed_uri
-        if len(recids) > CFG_WEBSEARCH_PREV_NEXT_HIT_LIMIT:
-            last_query_hits = None
-        else:
-            last_query_hits = recids
-        # store list of results if user wants to display hits
-        # in a single list, or store list of collections of records
-        # if user displays hits split by collections:
-        session["websearch-last-query-hits"] = last_query_hits
+    # check conditions (empty pattern, stop words) to decide
+    # if we should display results or not
+    from invenio.search_engine_config import CFG_STOPWORDS
+    if (not argd['p'].strip() and collection.id == 1) or \
+        (not argd['p'].strip() and "action_search" in request.args):
+        recids = "emptysearch"
+    elif (argd['p'].strip() in CFG_STOPWORDS) or (len(argd['p'].strip()) == 1):
+        recids = "stopword"
+    else:
+        recids = perform_request_search(req=request.get_legacy_request(), **argd)
+        recids = sort_and_rank_records(recids, so=so, rm=rm, p=p)
+
+        # back-to-search related code
+        if request and not isinstance(request.get_legacy_request(), cStringIO.OutputType):
+            # store the last search results page
+            session['websearch-last-query'] = request.get_legacy_request().unparsed_uri
+            if len(recids) > CFG_WEBSEARCH_PREV_NEXT_HIT_LIMIT:
+                last_query_hits = None
+            else:
+                last_query_hits = recids
+            # store list of results if user wants to display hits
+            # in a single list, or store list of collections of records
+            # if user displays hits split by collections:
+            session["websearch-last-query-hits"] = last_query_hits
 
     ctx = dict(facets=FACETS.config(collection=collection, qid=qid),
                records=len(get_current_user_records_that_can_be_displayed(qid)),

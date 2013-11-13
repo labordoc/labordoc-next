@@ -120,6 +120,26 @@ body {
   </div>
 </div>
 
+{% elif recids == "emptysearch" %}
+
+ <div class="row">
+  <div class="span12">
+    <p>
+      <strong>{{ _('Please enter any search term(s).') }}</strong>
+    </p>
+  </div>
+</div>
+
+{% elif recids == "stopword" %}
+
+ <div class="row">
+  <div class="span12">
+    <p>
+      <strong>{{ _('Search term not valid. Please enter another search term(s).') }}</strong>
+    </p>
+  </div>
+</div>
+
 {% else %}
 
 <div class="row">
