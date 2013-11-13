@@ -25,7 +25,8 @@ from flask import g, url_for, request, abort, current_app
 
 from invenio.websearch_cache import search_results_cache, \
                                     get_search_results_cache_key_from_qid, \
-                                    get_pattern_from_cache
+                                    get_pattern_from_cache, \
+                                    get_collection_name_from_cache
 from invenio.intbitset import intbitset
 from invenio.config import CFG_WEBSEARCH_SEARCH_CACHE_TIMEOUT, CFG_PYLIBDIR
 from invenio.importutils import autodiscover_modules
@@ -39,6 +40,8 @@ from invenio.search_engine import search_pattern, \
 
 from invenio.config import CFG_SITE_LANG
 from invenio.messages import gettext_set_language, wash_language
+from invenio.websearch_external_collections_utils import get_collection_id
+
 
 def get_current_user_records_that_can_be_displayed(qid):
     """
@@ -138,7 +141,13 @@ class FacetLoader(object):
     def config(self, *args, **kwargs):
         """Returns facet config for all loaded plugins."""
         pattern = get_pattern_from_cache(kwargs.get('qid'))
-        if pattern == "":
+        collection_name = get_collection_name_from_cache(kwargs.get('qid'))
+        collection_id = get_collection_id(collection_name)
+        collection_id_set = intbitset()
+        collection_id_set.add(collection_id)
+        descendants = Collection.query.get(collection_id).descendants_ids
+
+        if pattern == "" and descendants.difference(collection_id_set):
            facets_list = filter(lambda x: x.order == 1, self.sorted_list)
         else:
             facets_list = self.sorted_list
