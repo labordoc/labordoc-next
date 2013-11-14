@@ -78,10 +78,17 @@
 {% for collection in collections recursive %}
  <div id="collection">
   <li>
-    <a href="{{ url_for('search.search', cc=collection.name, ln=g.ln, _external=True) }}">
-       {{ collection.name_ln }}
-    </a>
-    <small class="muted">({{ collection.nbrecs }})</small>&nbsp;
+     {% if collection.collection_children|length > 0 %}
+        <a href="{{ url_for(".collection", name=collection.name, ln=g.ln, _external=True) }}">
+          {{ collection.name_ln }}
+        </a>
+     {% else %}
+        <a href="{{ url_for('search.search', cc=collection.name, ln=g.ln, _external=True) }}">
+           {{ collection.name_ln }}
+        </a>
+     {% endif %}
+     <small class="muted">({{ collection.nbrecs }})</small>&nbsp;
+
   {% if collection.collection_children and idxs|length < limit %}
     {%- do idxs.append(loop.index) -%}
     <ul {{ kwargs|xmlattr }}>

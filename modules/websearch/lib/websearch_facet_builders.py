@@ -141,11 +141,10 @@ class FacetLoader(object):
     def config(self, *args, **kwargs):
         """Returns facet config for all loaded plugins."""
         pattern = get_pattern_from_cache(kwargs.get('qid'))
-        collection_name = get_collection_name_from_cache(kwargs.get('qid'))
-        collection_id = get_collection_id(collection_name)
+        collection = kwargs.get('collection')
         collection_id_set = intbitset()
-        collection_id_set.add(collection_id)
-        descendants = Collection.query.get(collection_id).descendants_ids
+        collection_id_set.add(collection.id)
+        descendants = Collection.query.get(collection.id).descendants_ids
 
         if pattern == "" and descendants.difference(collection_id_set):
            facets_list = filter(lambda x: x.order == 1, self.sorted_list)
