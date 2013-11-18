@@ -286,9 +286,9 @@ def collection_breadcrumbs(collection, endpoint=None):
         qargs = request.args.to_dict()
         k = 'cc' if 'cc' in qargs else 'c'
         del qargs[k]
-        b = [(_('Home'), endpoint, qargs)] + collection.breadcrumbs(
+        b = [(_('Home'), ".index", qargs)] + collection.breadcrumbs(
             builder=crumb_builder(endpoint), ln=g.ln)[1:]
-    current_app.config['breadcrumbs_map'][request.endpoint] = b
+    current_app.config['breadcrumbs_map'][endpoint] = b
 
 
 @blueprint.route('/browse', methods=['GET', 'POST'])
