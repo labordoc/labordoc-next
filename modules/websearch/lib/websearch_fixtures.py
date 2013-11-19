@@ -201,6 +201,21 @@ class FieldData(DataSet):
         id = 34
         name = u'attachment'
 
+    class Field_35:
+        code = u'subject_en'
+        id = 35
+        name = u'subject_en'
+
+    class Field_36:
+        code = u'subject_fr'
+        id = 36
+        name = u'subject_fr'
+
+    class Field_37:
+        code = u'subject_es'
+        id = 37
+        name = u'subject_es'
+
 class TagData(DataSet):
 
     class Tag_1:
@@ -932,6 +947,21 @@ class TagData(DataSet):
         id = 146
         value = u'913__a'
         name = u'attachment'
+
+    class Tag_147:
+        id = 147
+        value = u'9051_a'
+        name = u'subject_en'
+
+    class Tag_148:
+        id = 148
+        value = u'9061_a'
+        name = u'subject_fr'
+
+    class Tag_149:
+        id = 149
+        value = u'9071_a'
+        name = u'subject_es'
 
 class FormatData(DataSet):
 
@@ -1927,3 +1957,18 @@ class FieldTagData(DataSet):
         score = 100
         id_tag = TagData.Tag_146.ref('id')
         id_field = FieldData.Field_34.ref('id')
+
+    class FieldTag_35_147:
+        score = 100
+        id_tag = TagData.Tag_147.ref('id')
+        id_field = FieldData.Field_35.ref('id')
+
+    class FieldTag_36_148:
+        score = 100
+        id_tag = TagData.Tag_148.ref('id')
+        id_field = FieldData.Field_36.ref('id')
+
+    class FieldTag_37_149:
+        score = 100
+        id_tag = TagData.Tag_149.ref('id')
+        id_field = FieldData.Field_37.ref('id')

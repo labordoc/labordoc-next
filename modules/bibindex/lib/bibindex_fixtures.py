@@ -183,6 +183,30 @@ class IdxINDEXData(DataSet):
         indexer = u'native'
         name = u'subject'
 
+    class IdxINDEX_21:
+        last_updated = None
+        description = u'This index contains words/phrases from subject fields in english.'
+        stemming_language = u''
+        id = 21
+        indexer = u'native'
+        name = u'subject_en'
+
+    class IdxINDEX_22:
+        last_updated = None
+        description = u'This index contains words/phrases from subject fields in french.'
+        stemming_language = u''
+        id = 22
+        indexer = u'native'
+        name = u'subject_fr'
+
+    class IdxINDEX_23:
+        last_updated = None
+        description = u'This index contains words/phrases from subject fields in spanish.'
+        stemming_language = u''
+        id = 23
+        indexer = u'native'
+        name = u'subject_es'
+
 class IdxINDEXFieldData(DataSet):
 
     class IdxINDEXField_10_12:
@@ -304,3 +328,21 @@ class IdxINDEXFieldData(DataSet):
         regexp_punctuation = u'[.,:;?!"]'
         id_idxINDEX = IdxINDEXData.IdxINDEX_20.ref('id')
         id_field = FieldData.Field_7.ref('id')
+
+    class IdxINDEXField_21_35:
+        regexp_alphanumeric_separators = u''
+        regexp_punctuation = u'[.,:;?!"]'
+        id_idxINDEX = IdxINDEXData.IdxINDEX_21.ref('id')
+        id_field = FieldData.Field_35.ref('id')
+
+    class IdxINDEXField_22_36:
+        regexp_alphanumeric_separators = u''
+        regexp_punctuation = u'[.,:;?!"]'
+        id_idxINDEX = IdxINDEXData.IdxINDEX_22.ref('id')
+        id_field = FieldData.Field_36.ref('id')
+
+    class IdxINDEXField_23_37:
+        regexp_alphanumeric_separators = u''
+        regexp_punctuation = u'[.,:;?!"]'
+        id_idxINDEX = IdxINDEXData.IdxINDEX_23.ref('id')
+        id_field = FieldData.Field_37.ref('id')

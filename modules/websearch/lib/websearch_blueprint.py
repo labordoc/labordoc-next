@@ -116,21 +116,29 @@ def response_formated_records(recids, collection, of, **kwargs):
     response.mimetype = get_output_format_content_type(of)
     return response
 
+
 def get_autocompletion_terms(ln, recids=None):
     from invenio.websearch_external_collections_utils import get_collection_name_by_id
     from invenio.search_engine import get_field_tags, \
                                       get_most_popular_field_values, \
                                       get_collection_reclist
+
     if recids is None:
         recids = list(get_collection_reclist(get_collection_name_by_id(1)))
 
-    authors = get_most_popular_field_values(recids, get_field_tags('exactauthor'))[0:200]
+    if len(recids) > 100000:
+        authors = autocomplete(field="exactauthor", return_list=True)
+        subjects = autocomplete(field="subject_" + ln, return_list=True)
+        #subjects = autocomplete(field="subject", return_list=True)
+        return [i for i in authors + subjects]
 
-    tag_dicc = {'en': '9051_a', 'fr': '9061_a', 'es': '9071_a'}
-    subject_tag = tag_dicc[ln]
-    subjects = get_most_popular_field_values(recids, subject_tag)
+    else:
+        authors = get_most_popular_field_values(recids, get_field_tags('exactauthor'))[0:20]
+        tag_dicc = {'en': '9051_a', 'fr': '9061_a', 'es': '9071_a'}
+        subject_tag = tag_dicc[ln]
+        subjects = get_most_popular_field_values(recids, subject_tag)[0:20]
+        return [i[0] for i in authors + subjects]
 
-    return [i[0] for i in authors + subjects]
 
 @blueprint.route('/index.py', methods=['GET', 'POST'])
 @blueprint.route('/', methods=['GET', 'POST'])
@@ -498,7 +506,7 @@ def results(qid, p, of, so, rm):
 
 @blueprint.route('/list/<any(exactauthor, subject):field>', methods=['GET', 'POST'])
 @blueprint.invenio_wash_urlargd({'q': (min_length(3), '')})
-def autocomplete(field, q):
+def autocomplete(field, q, return_list=False):
     """
     Autocompletes data from indexes.
 
@@ -517,7 +525,10 @@ def autocomplete(field, q):
     results = IdxPHRASE.query.filter(IdxPHRASE.term.contains(q)).limit(200).all()
     results = map(lambda r: r.term, results)
 
-    return jsonify(results=results)
+    if return_list:
+        return results
+    else:
+        return jsonify(results=results)
 
 
 @blueprint.route('/search/dispatch', methods=['GET', 'POST'])
