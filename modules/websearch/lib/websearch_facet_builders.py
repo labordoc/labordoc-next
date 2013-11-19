@@ -258,7 +258,7 @@ class LanguageFacetBuilder(FacetBuilder):
             if i[0] in language_dict.keys():
                 nicer_facet.append((i[0], i[1], language_dict[i[0]]))
             elif i[0] not in ('N/A',):
-                nicer_facet.append(i[0], i[1], i[0])
+                nicer_facet.append((i[0], i[1], i[0]))
         return nicer_facet
 
 
