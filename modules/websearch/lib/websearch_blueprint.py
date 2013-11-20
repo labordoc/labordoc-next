@@ -267,7 +267,7 @@ def sort_and_rank_records(recids, so=None, rm='yt', p=''):
         output.reverse()
     elif rm:
         from invenio.bibrank_record_sorter import rank_records
-        ranked = rank_records(rm, 0, output, p.split())
+        ranked = rank_records(rm, 0, set(output), p.split())
         if ranked[0]:
             output = ranked[0]
             output.reverse()

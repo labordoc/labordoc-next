@@ -116,6 +116,23 @@ def _facet_plugin_checker(plugin_code):
     raise ValueError('%s is not a valid facet plugin' % plugin_code.__name__)
 
 
+def is_correct_year(year):
+    """Validates if given year is correct or not"""
+
+    import datetime
+    today = datetime.datetime.now()
+
+    try:
+        date = datetime.datetime(year=int(year), month=today.month, day=today.day)
+    except:
+        return False
+
+    if date.year <= today.year:
+        return True
+    else:
+        return False
+
+
 class FacetLoader(object):
 
     @cached_property
@@ -267,29 +284,8 @@ class YearFacetBuilder(FacetBuilder):
 
     def get_facets_for_query(self, qid, limit=20, parent=None):
         facet = get_most_popular_field_values(self.get_recids(qid),
-                                             get_field_tags(self.name)
-                                             )[0:limit]
-        return sorted(facet, key=lambda x: x[0], reverse=True)
+                                             get_field_tags(self.name))
+        nicer_facet = [i for i in facet if is_correct_year(i[0])]
 
+        return sorted(nicer_facet, key=lambda x: x[0], reverse=True)[0:limit]
 
-#    def get_facets_for_query(self, qid, limit=20, parent=None):
-#        all_facets = get_most_popular_field_values(self.get_recids(qid),
-#                                       get_field_tags(self.name))
-#        fulltext_facets = {'Full text': 0, 'Booklet': 0}
-#        for i in all_facets:
-#            if i[0].startswith("Full"):
-#                fulltext_facets["Full text"] = fulltext_facets["Full text"] + i[1]
-#            elif i[0].startswith("Booklet"):
-#                fulltext_facets["Booklet"] = fulltext_facets["Booklet"] + i[1]
-#            elif i[0].startswith("http"):
-#                pass
-#            else:
-#                fulltext_facets[i[0]] = i[1]
-#        if fulltext_facets["Full text"] == 0:
-#            fulltext_facets.pop("Full text")
-#        if fulltext_facets["Booklet"] == 0:
-#            fulltext_facets.pop("Booklet")
-#
-#        res = fulltext_facets.items()
-#        res.sort(key=lambda tup: tup[1], reverse=True)
-#        return res
