@@ -56,7 +56,10 @@ def gettext_set_language(ln, use_unicode=False):
     """
     if use_unicode:
         def unicode_gettext_wrapper(*args, **kwargs):
-            return _LANG_GT_D[ln].gettext(*args, **kwargs).decode('utf-8')
+            try:
+                return _LANG_GT_D[ln].gettext(*args, **kwargs).decode("utf-8")
+            except:
+                return _LANG_GT_D[ln].gettext(*args, **kwargs)
         return unicode_gettext_wrapper
     return _LANG_GT_D[ln].gettext
 

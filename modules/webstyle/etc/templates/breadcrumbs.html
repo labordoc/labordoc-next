@@ -29,7 +29,7 @@
       {% set url_args = breadcrumb[2] or {} %}
       <a href="{{ url_for(breadcrumb[1], **url_args) }}"
          class="navtrail">
-        {{ breadcrumb[0] }}
+        {{ _(breadcrumb[0]) }}
       </a> <span class="divider">/</span>
     </li>
     {% endif %}

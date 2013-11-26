@@ -35,7 +35,7 @@
     {%- set num_citations = record['_cited_by_count'] -%}
     {%- if num_citations -%}
      -
-    <a href="{{ url_for('search.search', p="refersto:recid:%d" % recID) }}"
+    <a href="{{ url_for('search.search', p="refersto:recid:%d" % recID, ln=g.ln) }}"
        data-hotkey-action="click"
        data-hotkey-value="g{{ i }}r">
       {{ _("Cited by %i records") % num_citations if num_citations > 1 else _("Cited by 1 record") }}
@@ -48,7 +48,7 @@
     {%- set num_comments = record['_number_of_comments'] -%}
     {%- if num_comments -%}
      -
-    <a href="{{ url_for('webcomment.comments', recid=recID) }}"
+    <a href="{{ url_for('webcomment.comments', recid=recID, ln=g.ln) }}"
        data-hotkey-action="click"
        data-hotkey-value="g{{ i }}c">
       <i class="icon-comment"></i>
@@ -62,7 +62,7 @@
     {%- set num_reviews = record['_number_of_reviews'] -%}
     {%- if num_reviews -%}
      -
-    <a href="{{ url_for('webcomment.reviews', recid=recID) }}">
+    <a href="{{ url_for('webcomment.reviews', recid=recID, ln=g.ln) }}">
       <i class="icon-eye-open"></i>
       {{ _("%i reviews") % num_reviews if num_reviews > 1 else _("1 review") }}
     </a>
@@ -345,7 +345,7 @@
   <div id="search-box-main" class="row search-wrap">
      <div class="search-forms">
 
-      <form action="{{ url_for('search.search') }}"
+      <form action="{{ url_for('search.search', ln=g.ln) }}"
             name="search"
             method="get"
             class="form-horizontal">
@@ -379,7 +379,7 @@
                 </li>
               {%- for e in collection.examples if e.body -%}
                 <li>
-                  <a href="{{ url_for('search.search', p=e.body) }}">
+                  <a href="{{ url_for('search.search', p=e.body, ln=g.ln) }}">
                     <i class="pull-right icon-chevron-right"></i>
                     <span class="after-fix">{{ e.body }}</span>
                   </a>
@@ -438,7 +438,7 @@
       </div><!-- searchdropdown -->
     </form> <!-- end Search form -->
 
-   <form action="{{ url_for('search.search') }}" name="settings" method="get"
+   <form action="{{ url_for('search.search', ln=g.ln) }}" name="settings" method="get"
         class="form-inline search-settings" style="margin-left: 3px;">
      <input name="p" value="{{ request.args.get('p','') }}" type="hidden" />
 
@@ -763,7 +763,7 @@
             var typeahead = this
             $.ajax({
               type: 'GET',
-              url: '{{ url_for('search.autocomplete', field='exactauthor') }}',
+              url: '{{ url_for('search.autocomplete', field='exactauthor', ln=g.ln) }}',
               data: $.param({
                 q: query.substr(query.lastIndexOf(':')+1)
               })

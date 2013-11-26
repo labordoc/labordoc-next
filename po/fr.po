@@ -5098,6 +5098,10 @@ msgstr "Supprimer des signalement d'abus"
 msgid "Undelete comments"
 msgstr "Rétablir les commentaires"
 
+#: modules/webcomment/lib/webcomment_blueprint.py:63
+msgid "Your comment subscriptions"
+msgstr "Vos souscriptions aux commentaires"
+
 #: modules/webmessage/lib/webmessage.py:58
 #: modules/webmessage/lib/webmessage.py:137
 #: modules/webmessage/lib/webmessage.py:203
@@ -13545,6 +13549,46 @@ msgstr "Autres options"
 #: modules/bibformat/lib/elements/bfe_ILO_request_button.py:52
 msgid "Request item"
 msgstr "Demander une copie"
+
+#: modules/webstyle/lib/webinterface_handler_local.py:35
+msgid "Resources"
+msgstr "Ressources"
+
+#: modules/webstyle/lib/webinterface_handler_local.py:39
+msgid "ILO Library"
+msgstr "Bibliothèque du BIT"
+
+#: modules/webstyle/lib/webinterface_handler_local.py:40
+msgid "ILO Databases"
+msgstr "Bases de Donnés du BIT"
+
+#: modules/webstyle/lib/webinterface_handler_local.py:41
+msgid "ILO Thesaurus"
+msgstr "Thesaurus du BIT"
+
+#: modules/webstyle/lib/webinterface_handler_local.py:42
+msgid "Resource Guides"
+msgstr "Guides de Ressources"
+
+#: modules/webstyle/lib/webinterface_handler_local.py:43
+msgid "E-Journals"
+msgstr "Périodiques Électroniques"
+
+#: modules/webstyle/lib/webinterface_handler_local.py:44
+msgid "MultiSearch"
+msgstr "MultiSearch"
+
+#: modules/webstyle/lib/webinterface_handler_local.py:44
+msgid "Ask a Librarian"
+msgstr "Vous avez une question?"
+
+#: modules/webstyle/lib/webinterface_handler_local.py:67
+msgid "About Labordoc"
+msgstr "À Propos de Labordoc"
+
+msgid "Your tags"
+msgstr "Vos tags"
+
 
 #~ msgid "This book is sent to you ..."
 #~ msgstr "Ce livre vous a été envoyé..."

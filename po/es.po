@@ -5088,6 +5088,10 @@ msgstr "Eliminar las denuncias de abuso"
 msgid "Undelete comments"
 msgstr "Recuperar comentarios eliminados"
 
+#: modules/webcomment/lib/webcomment_blueprint.py:63
+msgid "Your comment subscriptions"
+msgstr "Tus subscripciones a comentarios"
+
 #: modules/webmessage/lib/webmessage.py:58
 #: modules/webmessage/lib/webmessage.py:137
 #: modules/webmessage/lib/webmessage.py:203
@@ -5164,7 +5168,7 @@ msgstr "Su mensaje se ha enviado."
 #: modules/webmessage/lib/webmessage_webinterface.py:357
 #: modules/websession/lib/websession_templates.py:607
 msgid "Your Messages"
-msgstr "Sus mensajes"
+msgstr "Tus mensajes"
 
 # Debe traducirse igual que el 'Subject' del correo electrónico
 #: modules/webmessage/lib/webmessage_templates.py:86
@@ -5540,7 +5544,7 @@ msgstr ""
 
 #: modules/websearch/lib/websearchadminlib.py:3393
 msgid "Information"
-msgstr "Información:"
+msgstr "Información"
 
 #: modules/websearch/lib/websearchadminlib.py:3394
 msgid "References"
@@ -6791,7 +6795,7 @@ msgstr "Sus búsquedas"
 
 #: modules/websession/lib/websession_templates.py:1351
 msgid "Administration"
-msgstr "administración"
+msgstr "Administración"
 
 #: modules/websession/lib/websession_templates.py:1367
 msgid "Statistics"
@@ -13498,6 +13502,48 @@ msgstr "Solicita un artículo"
 #: modules/bibformat/etc/format_templates/Default_HTML_actions.bft:15
 msgid "Other options"
 msgstr "Otras opciones"
+
+#: modules/webstyle/lib/webinterface_handler_local.py:35
+msgid "Resources"
+msgstr "Recursos"
+
+#: modules/webstyle/lib/webinterface_handler_local.py:39
+msgid "ILO Library"
+msgstr "Biblioteca de la OIT"
+
+#: modules/webstyle/lib/webinterface_handler_local.py:40
+msgid "ILO Databases"
+msgstr "Bases de Datos de la OIT"
+
+#: modules/webstyle/lib/webinterface_handler_local.py:41
+msgid "ILO Thesaurus"
+msgstr "Tesauro de la OIT"
+
+#: modules/webstyle/lib/webinterface_handler_local.py:42
+msgid "Resource Guides"
+msgstr "Guías de Recursos"
+
+#: modules/webstyle/lib/webinterface_handler_local.py:43
+msgid "E-Journals"
+msgstr "Periódicos Electrónicos"
+
+#: modules/webstyle/lib/webinterface_handler_local.py:44
+msgid "MultiSearch"
+msgstr "Búsqueda Múltiple"
+
+#: modules/webstyle/lib/webinterface_handler_local.py:44
+msgid "Ask a Librarian"
+msgstr "Alguna pregunta?"
+
+#: modules/webstyle/lib/webinterface_handler_local.py:67
+msgid "About Labordoc"
+msgstr "A Propósito de Labordoc"
+
+#: modules/webtag/lib/webtag_blueprint.py:61
+msgid "Your tags"
+msgstr "Tus tags"
+
+
 
 #~ msgid "Make sure we match the right names!"
 #~ msgstr "¡Asegúrese que los nombres se correspondan!"

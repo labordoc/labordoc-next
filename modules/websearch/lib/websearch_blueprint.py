@@ -57,7 +57,7 @@ from invenio.paginationutils import Pagination
 blueprint = InvenioBlueprint('search', __name__, url_prefix="",
                              config='invenio.search_engine_config',
                              breadcrumbs=[],
-                             menubuilder=[('main.search', _('Search'),
+                             menubuilder=[('main.search', 'Search',
                                            'search.index', 1)])
 
 
@@ -417,6 +417,7 @@ def search(collection, p, of, so, rm):
     elif (argd['p'].strip() in CFG_STOPWORDS) or (len(argd['p'].strip()) == 1):
         recids = "stopword"
     else:
+        argd['ln'] = g.ln
         recids = perform_request_search(req=request.get_legacy_request(), **argd)
         recids = sort_and_rank_records(recids, so=so, rm=rm, p=p)
 
