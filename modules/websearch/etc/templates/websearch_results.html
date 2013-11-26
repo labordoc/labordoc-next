@@ -175,12 +175,12 @@
                 </label>
               </div>
               <div class="span10">
-                {{ format_record(recid, of, ln=g.ln)|safe }}
+                {{ format_record(recid, of, ln=g.ln, qid=qid)|safe }}
                 {{ '<hr/>'|safe if not loop.last }}
               </div>
             </div>
           {%- else -%}
-          {{ format_record(recid, of, ln=g.ln) }}
+          {{ format_record(recid, of, ln=g.ln, qid=qid) }}
           {%- endif -%}
         {%- endfor -%}
         <hr/>
