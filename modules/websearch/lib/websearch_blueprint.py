@@ -130,14 +130,14 @@ def get_autocompletion_terms(ln, recids=None):
         authors = autocomplete(field="exactauthor", return_list=True)
         subjects = autocomplete(field="subject_" + ln, return_list=True)
         #subjects = autocomplete(field="subject", return_list=True)
-        return [i for i in authors + subjects]
+        return [i+' ' for i in authors + subjects]
 
     else:
         authors = get_most_popular_field_values(recids, get_field_tags('exactauthor'))[0:20]
         tag_dicc = {'en': '9051_a', 'fr': '9061_a', 'es': '9071_a'}
         subject_tag = tag_dicc[ln]
         subjects = get_most_popular_field_values(recids, subject_tag)[0:20]
-        return [i[0] for i in authors + subjects]
+        return [i[0]+' ' for i in authors + subjects]
 
 
 @blueprint.route('/index.py', methods=['GET', 'POST'])
