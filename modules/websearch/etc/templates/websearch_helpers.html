@@ -739,7 +739,14 @@
       }
     })
 
-    var autocomplete_list = {{ autocompletion_terms|tojson|safe  }};
+	{% if autocompletion_terms is undefined %}
+	    var autocomplete_list = [];
+	{% endif %}
+
+	{% if autocompletion_terms is not undefined %}
+	    var autocomplete_list =  {{ autocompletion_terms|tojson|safe }};
+	{% endif %}
+
     var source = $.map({{ collection.search_within[1:]|tojson|safe }},
           function(val, i) { return val[0]+':';}).concat(autocomplete_list); //['author:', 'title:', 'isbn:'];
     source.push('AND ');

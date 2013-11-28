@@ -46,7 +46,11 @@ def get_search_results_cache_key_from_qid(qid):
     """
     Returns key for search results cache from query identifier.
     """
-    return CFG_SEARCH_RESULTS_CACHE_PREFIX + qid
+
+    try:
+        return CFG_SEARCH_RESULTS_CACHE_PREFIX + qid
+    except: # qid = 'Undefined'
+        return CFG_SEARCH_RESULTS_CACHE_PREFIX
 
 
 def get_collection_name_from_cache(qid):
