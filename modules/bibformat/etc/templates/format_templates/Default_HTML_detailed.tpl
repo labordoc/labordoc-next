@@ -97,9 +97,9 @@
 				          suffix='</div></div>',
 				          separator='<br />', default='', show_icons='yes') }}
 
-    {{ bfe_ilo_conventions_link(bfo, prefix='<span class="formatRecordLabel"> Links </span>
-    					                     <span class="positionDetails detailsConventions"><br /><b>',
-				                     suffix='</b></span>') }}
+    {{ bfe_ilo_conventions_link(bfo, prefix='<div class="formatRecordLabel"> </div>
+											<div class="positionDetails"><br /><b>',
+									suffix='</b></div>') }}
 
 	{{ bfe_ilo_sfx_link(bfo, prefix='<div class="formatRecordLabel"> </div>
 	    					         <div class="positionDetails"><br /><b>',
