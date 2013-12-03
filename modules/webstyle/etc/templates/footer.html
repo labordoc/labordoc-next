@@ -43,7 +43,7 @@
 	      {% if config.CFG_LANGUAGE_LABORDOC_LIST %}
 	          {{ _("This site is also available in the following languages:") }} <br />
 	          {% for (lang, lang_namelong) in config.CFG_LANGUAGE_LABORDOC_LIST %}
-	              &nbsp; <a href="?ln={{ lang }}" class="langinfo">{{ lang_namelong|safe }}</a>
+	              &nbsp; <a class="langinfo" href="{{ url_for('.index', ln=lang) }}"> {{ lang_namelong|safe }}</a>
 	          {% endfor %}
 	      {% endif %}
 	    </p>
