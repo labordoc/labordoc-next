@@ -136,6 +136,7 @@
       -->
     <!-- <maxBufferedDocs>1000</maxBufferedDocs> -->
 
+    <!-- LABORDOC_OPT: Allow to index very large fulltexts-->
     <maxFieldLength>1000000</maxFieldLength>
     <writeLockTimeout>1000</writeLockTimeout>
     <commitLockTimeout>10000</commitLockTimeout>
@@ -423,8 +424,12 @@
            autowarmCount - the number of entries to prepopulate from
                and old cache.  
       -->
+    <!--LABORDOC_OPT:TODO think about filter cache use for snippets-->
+    <!--size = No. of ranking queries per second * no. of collections
+        queried per sec * time after which cache gets invalidated
+        (because of reindexing). Take 50% as initial size.  -->
     <filterCache class="solr.FastLRUCache"
-                 size="512"
+                 size="1024"
                  initialSize="512"
                  autowarmCount="0"/>
 
@@ -433,9 +438,18 @@
          Caches results of searches - ordered lists of document ids
          (DocList) based on a query, a sort, and the range of documents requested.  
       -->
+    <!--LABORDOC_OPT: Expect per second:
+      * Search queries:                        1
+      * in collections:                        5
+      * No. of snippets:                      10
+      * 'Find similar to rec' queries:         4
+      * Total:                                20
+      Expect 1 out of 2 users to use the first and second page: *1.5
+      Caches get invalidated after 10 min.(600 sec), because of reindexing.
+      Take 50% as initial size. -->
     <queryResultCache class="solr.LRUCache"
-                     size="512"
-                     initialSize="512"
+                     size="18432"
+                     initialSize="9216"
                      autowarmCount="0"/>
    
     <!-- Document Cache
@@ -444,6 +458,11 @@
          document).  Since Lucene internal document ids are transient,
          this cache will not be autowarmed.  
       -->
+    <!-- LABORDOC_OPT LABORDOC stores 500K documents and 100K fulltexts.
+         All fulltext ids are retrieved whereas ranking, find similar and snippets
+         return significantly less.
+         Caches up to 0.1% -->
+    <!-- LABORDOC_OPT USE LFUCache as of Solr 3.6 -->
     <documentCache class="solr.LRUCache"
                    size="512"
                    initialSize="512"
@@ -518,12 +537,14 @@
         then documents 0 through 49 will be collected and cached.  Any further
         requests in that range can be satisfied via the cache.  
      -->
-   <queryResultWindowSize>20</queryResultWindowSize>
+   <!-- LABORDOC_OPT: Usually users check no more than 5 pages-->
+   <queryResultWindowSize>50</queryResultWindowSize>
 
    <!-- Maximum number of documents to cache for any entry in the
         queryResultCache. 
      -->
-   <queryResultMaxDocsCached>200</queryResultMaxDocsCached>
+   <!-- LABORDOC_OPT: Buffer, in case 100 documents per (collection) page-->
+   <queryResultMaxDocsCached>100</queryResultMaxDocsCached>
 
    <!-- Query Related Event Listeners
 

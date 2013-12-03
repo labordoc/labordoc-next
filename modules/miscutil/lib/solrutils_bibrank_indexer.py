@@ -148,6 +148,8 @@ def solr_add(recid, abstract, author, fulltext, keyword, title):
                             title=replace_invalid_solr_characters(title))
     except:
         register_exception(alert_admin=True)
+        write_message("WARNING: Indexing of recid %s in Solr failed ..." % recid)
+
 
 
 def word_similarity_solr(run):

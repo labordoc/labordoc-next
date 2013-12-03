@@ -263,6 +263,9 @@ def _create_neareset_term_box(argd_orig):
 
 def sort_and_rank_records(recids, so=None, rm='yt', p=''):
     output = list(recids)
+
+    if 'fulltext:' in p: rm = 'wrd'
+
     if so:
         output.reverse()
     elif rm:
