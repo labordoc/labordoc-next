@@ -485,8 +485,8 @@
         </div>
       </div>
 
-      {% if collection.rnkMETHODs|length %}
-      <div class="control-group clearfix">
+      {#% if collection.rnkMETHODs|length %#}
+      <!-- div class="control-group clearfix">
         <label class="control-label pull-left">{{ _('Ranking') }}</label>
         <div class="controls pull-right">
           <select name='rm'
@@ -499,10 +499,10 @@
           {% endfor %}
           </select>
         </div>
-      </div>
-      {% endif %}
+      </div--!>
+      {#% endif %#}
 
-      <div class="clearfix">
+      <!-- div class="clearfix">
         <label class="control-label pull-left">{{ _('Sort by most') }}</label>
         <div class="controls pull-right">
         <div class="btn-group" data-toggle="buttons-radio">
@@ -542,7 +542,7 @@
         </div>
         </div>
         </div>
-        </li>
+        </li--!>
 
         <li class="modal-footer nav-list clearfix">
           {%- if not current_user.is_guest -%}
