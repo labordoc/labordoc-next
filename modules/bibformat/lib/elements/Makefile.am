@@ -37,7 +37,6 @@ pylib_DATA = bfe_field.py bfe_title.py bfe_authors.py bfe_abstract.py bfe_affili
              bfe_video_platform_sources.py bfe_sciencewise.py bfe_bookmark.py \
              bfe_oai_marcxml.py bfe_copyright.py bfe_meta.py bfe_meta_opengraph_image.py \
              bfe_meta_opengraph_video.py bfe_webauthorpage_affiliations.py \
-             # bfe_qrcode.py \
 			 bfe_ILO_abstract.py \ 
 			 bfe_ILO_authors.py \ 
 			 bfe_ILO_authors_publ.py \ 

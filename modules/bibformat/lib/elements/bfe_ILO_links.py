@@ -20,7 +20,7 @@
 """
 __revision__ = "$Id$"
 
-from invenio.bibformat_elements.bfe_fulltext import get_files, sort_alphanumerically
+from invenio.bibformat_elements.bfe_ILO_fulltext import get_files, sort_alphanumerically
 from invenio.messages import gettext_set_language
 from invenio.config import CFG_SITE_URL, CFG_CERN_SITE
 from cgi import escape
@@ -106,6 +106,11 @@ def format_element(bfo, style, prefix_en="", prefix_es="",
         last_name = ""
         main_urls_keys = sort_alphanumerically(main_urls.keys())
         for descr in main_urls_keys:
+            if descr.lower() in ["full text", "fulltext"]:
+                descr = ""
+            else:
+                descr = escape(str(descr))
+
             urls = main_urls[descr]
             out += '<div><small class="detailedRecordActions">%s:</small> ' % descr
             url_list = []
@@ -180,27 +185,35 @@ def format_element(bfo, style, prefix_en="", prefix_es="",
             pdf_icon = ''
             epub_icon = ''
             web_icon = ''
+
         url_list = []
         non_libdoc_pdf = ''
         libdoc_pdf = ''
         for url, descr in others_urls:
+            if descr.lower() in ["full text", "fulltext"]:
+                descr = ""
+            else:
+                descr = escape(str(descr))
+
             if url.find('.pdf') > -1 and url.find('libdoc') < 1:
                 non_libdoc_pdf = url
             elif url.find('.pdf') > -1 and url.find('libdoc') > -1:
                 libdoc_pdf = url
-                url_list.append('<a target=_blank '+style+' href="'+escape(libdoc_pdf)+'">'+pdf_icon+escape(str(descr))+'</a>')
+                url_list.append('<a target=_blank '+style+' href="'+escape(libdoc_pdf)+'">'+pdf_icon+descr+'</a>')
             elif url.find('.epub') > -1 and url.find('libdoc') > -1:
                 libdoc_epub = url
-                url_list.append('<a target=_blank '+style+' href="'+escape(libdoc_epub)+'">'+epub_icon+escape(str(descr))+'</a>')
+                url_list.append('<a target=_blank '+style+' href="'+escape(libdoc_epub)+'">'+epub_icon+descr+'</a>')
             elif journal_title != '' and (descr.find('ccess') > -1 or descr.find('assword') > -1):
                 pass
             else:
-                url_list.append('<a target=_blank '+style+' href="'+escape(url)+'">'+web_icon+escape(str(descr))+'</a>')
+                url_list.append('<a target=_blank '+style+' href="'+escape(url)+'">'+web_icon+escape+descr+'</a>')
+
         if len(libdoc_pdf) > 0:
             pass
         else: 
             if len(non_libdoc_pdf) != 0:
-                url_list.append('<a target=_blank '+style+' href="'+escape(non_libdoc_pdf)+'">'+pdf_icon+escape(str(descr))+'</a>')
+                url_list.append('<a target=_blank '+style+' href="'+escape(non_libdoc_pdf)+'">'+pdf_icon+descr+'</a>')
+
         out += separator.join(url_list)
 
     if out.endswith('<br />'):
