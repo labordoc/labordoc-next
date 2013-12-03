@@ -1034,4 +1034,13 @@ box-shadow: 0 1px 4px rgba(0, 105, 214, 0.25);
 .row-fluid .span-hit { 
   width: 65px;
 }
+
+.convIteml {
+font-size: 2.8em;
+padding-top: 20px;
+color: #990000;
+font-weight: bold;
+text-align: center;
+}
+
 /* end of invenio.css */
