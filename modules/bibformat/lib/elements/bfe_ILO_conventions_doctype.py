@@ -26,18 +26,18 @@
 
 import cgi
 import re
-def format_element(bfo, prefix, suffix):
+def format_element(bfo):
 
     
     dtype = bfo.field('980__b')
     desc = bfo.field('980__n')
-    postprefix = 'Convention</td><td class="detailsYear">'
+    label = "Convention"
 
     if desc.startswith('P'):
-        postprefix='Protocol</td><td class="detailsYear">'
+        label = "Protocol"
      
     if len(dtype) > 0:
-        return postprefix + dtype 
+        return '<div class="formatRecordLabel">' + label + '</div> <div class="positionDetails">' + dtype + '</div>' 
     else:
         return ''
 

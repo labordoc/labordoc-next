@@ -23,10 +23,10 @@
 
 	<div class="detailedcontent span8">
 	
-	{{ bfe_ilo_conventions_doctype(bfo, prefix='<div class="formatRecordLabel"></div>') }} 
+	{{ bfe_ilo_conventions_doctype(bfo) }} 
 
 	{{ bfe_ilo_conventions(bfo, prefix='<div class="formatRecordLabel"> Document type </div>
-							     <div class="positionDetails detailsConventions">',
+							     <div class="positionDetails">',
 						 		suffix='</div>') }} 
 
 	{{ bfe_ilo_authors(bfo, prefix_en='<div id="authors"><div class="formatRecordLabel"> Author(s) </div>
