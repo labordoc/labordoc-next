@@ -272,10 +272,11 @@ def _create_neareset_term_box(argd_orig):
     #return '<!-- not found -->'
 
 
-def sort_and_rank_records(recids, so=None, rm='yt', p=''):
+def sort_and_rank_records(recids, so=None, rm=None, p=''):
     output = list(recids)
 
-    if 'fulltext:' in p: rm = 'wrd'
+    if 'fulltext:' in p and not rm: rm = 'wrd'
+    else: rm = 'yt' 
 
     if so:
         output.reverse()
@@ -394,7 +395,7 @@ def rss(collection, p, jrec, so, rm):
 @blueprint.invenio_wash_urlargd({'p': (unicode, ''),
                                  'of': (unicode, 'hb'),
                                  'so': (unicode, None),
-                                 'rm': (unicode, 'yt')})
+                                 'rm': (unicode, None)})
 @check_collection(default_collection=True)
 def search(collection, p, of, so, rm):
     """
