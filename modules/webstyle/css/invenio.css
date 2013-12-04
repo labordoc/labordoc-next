@@ -1003,7 +1003,24 @@ box-shadow: 0 1px 4px rgba(0, 105, 214, 0.25);
 }
 
 .customspan5 {
-  width: 450px;
+  width: 425px;
+}
+
+.customspan7 {
+  width: 640px;
+}
+
+.marginleftminus40 {
+  margin-left: -40px;
+}
+
+.marginIC {
+  margin-left: 5px;
+  margin-bottom: 15px;
+}
+
+.lineIC {
+  line-height: 20px;
 }
 
 .collections-title {
@@ -1043,4 +1060,33 @@ font-weight: bold;
 text-align: center;
 }
 
+.convItems {
+font-size: 0.8em;
+color: #990000;
+font-weight: bold;
+}
+
+.defs {
+font-size: 0.8em;
+}
+
+.list-1 {
+list-style-type: none;
+padding: 0 0 0 20px;
+}
+
+.list-2 {
+list-style-type: none;
+padding: 0 0 0 15px;
+margin: 0 0 10px;
+}
+
+.paddingIC {
+   padding-top: 15px;
+   padding-right: 20px;
+}
+
+.padding15 {
+  padding: 15px;
+}
 /* end of invenio.css */

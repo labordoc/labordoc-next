@@ -17,7 +17,7 @@
 ## 59 Temple Place, Suite 330, Boston, MA 02111-1307, USA.
 #}
 {% from "_formhelpers.html" import render_filter_form with context %}
-{% from "websearch_helpers.html" import collection_tree, portalbox_sidebar, search_also, search_form, search_form_javascript  with context %}
+{% from "websearch_helpers.html" import collection_tree, portalbox_sidebar, portalbox_ILO_conv_colls, portalbox_ILC, search_also, search_form, search_form_javascript  with context %}
 {% extends "page.html" %}
 {# set title = collection.name_ln if collection.id > 1 else None #}
 {% set title = None %}
@@ -96,9 +96,12 @@
 </div><!-- /container -->
 
 <div class="row websearch clearfix">
-  {{ portalbox_sidebar(portalboxes.lt, class="span2") }}
 
-  <div class="customspan5 elements-main-page"> <!-- normal-collections --!>
+ <div class="customspan5 elements-main-page"> <!-- normal-collections --!>
+   {# if collection is "International Labour Conference" #}
+   {% if collection.name in ["ILC"] %}
+      {{ portalbox_ILC(portalboxes.ne, width=10) }}
+   {% else %}
      <div class="collections-title titles-main-page"><h3 class="titles-main-page"> {{ _('Collections') }} </h3></div>
 	  {% if collection.collection_children_r %}
 	    <div class="collection clearfix">
@@ -147,10 +150,15 @@
 
 	  {% if collection.externalcollections_2 %}
 	    {{ portalbox_sidebar(portalboxes.rt, class="span2") }}
-	  {% else %}
-	    {{ portalbox_sidebar(portalboxes.rt, class="offset1 span2") }}
 	  {% endif %}
+	{% endif %}
   </div>
+
+ {% if collection.name in ["ILOconventions", "ILO_GB"] %}
+	 <div class="elements-main-page">
+	   {{ portalbox_ILO_conv_colls(portalboxes.rt, width=7) }}
+	 </div>
+ {% endif %}
 
  {% if new_ILO_publications_recids %}
   <div class="row elements-main-page"> <!-- new-ILO-publications --!>

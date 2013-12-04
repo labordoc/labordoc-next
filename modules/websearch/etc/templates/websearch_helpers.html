@@ -78,7 +78,7 @@
 {% for collection in collections recursive %}
  <div id="collection">
   <li>
-     {% if collection.collection_children|length > 0 %}
+     {% if collection.collection_children|length > 0  and collection.name != "ILO meetings" %}
         <a href="{{ url_for(".collection", name=collection.name, ln=g.ln, _external=True) }}">
           {{ collection.name_ln }}
         </a>
@@ -90,12 +90,16 @@
      <small class="muted">({{ collection.nbrecs }})</small>&nbsp;
 
   {% if collection.collection_children and idxs|length < limit %}
-    {%- do idxs.append(loop.index) -%}
-    <ul {{ kwargs|xmlattr }}>
-      {{ loop(collection.collection_children) }}
-    </ul>
-    {%- do idxs.pop() -%}
+  {# hack to NOT display certain children colls (ILOconventions children) #}
+	{% if collection.id not in [158, 160, 161, 162, 163, 164, 165, 166] %}
+		{%- do idxs.append(loop.index) -%}
+		<ul {{ kwargs|xmlattr }}>
+			{{ loop(collection.collection_children) }}
+		</ul>
+		{%- do idxs.pop() -%}
+	{% endif %}
   {% endif %}
+
   </li>
  </div>
 {% endfor %}
@@ -130,6 +134,52 @@
     <div class="row plan well">
       <div class="span2 special-image">{{ cp.portalbox.title|safe }}</div>
       <div class="span4">{{ cp.portalbox.body|safe }}</div>
+    </div>
+    </li>
+    {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+{% endmacro %}
+
+
+{% macro portalbox_ILO_conv_colls(portalboxes, width=2) %}
+  {% if portalboxes %}
+  <div {{ kwargs|xmlattr }}>
+    <ul class="thumbnails">
+    {% for cp in portalboxes %}
+    <li class="customspan7">
+    <div class="thumbnail marginleftminus40">
+      <h3 class="titles-main-page" style="margin-left: 20px;">
+      {{ cp.portalbox.title }}</h3>
+      <br/>
+      <div class="row lineIC">
+	 	 {{ cp.portalbox.body|safe }}
+	  </div !-- row --!>
+     </div>
+    </div>
+    </li>
+    {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+{% endmacro %}
+
+
+{% macro portalbox_ILC(portalboxes, width=2) %}
+  {% if portalboxes %}
+  <div {{ kwargs|xmlattr }} class="span9">
+    <ul class="thumbnails">
+    {% for cp in portalboxes %}
+    <li>
+    <div class="thumbnail padding15">
+      <h3 class="titles-main-page">
+      {{ cp.portalbox.title }} </h3>
+      <br/>
+      <div class="row lineIC">
+		{{ cp.portalbox.body|safe }}
+	  </div !-- row --!>
+     </div>
     </div>
     </li>
     {% endfor %}
