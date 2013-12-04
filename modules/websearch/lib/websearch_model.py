@@ -780,6 +780,14 @@ class CollectionFieldFieldvalue(db.Model):
     fieldvalue = db.relationship(Fieldvalue, backref='collection_fields',
                 lazy='joined')
 
+class AutocompletionCache(db.Model):
+    """Stores the pre-calculated most popular authors and subjects for each collection"""
+    __tablename__ = 'autocompletion_cache'
+    id_collection = db.Column(db.MediumInteger(9, unsigned=True),
+                    db.ForeignKey(Collection.id), primary_key=True, nullable=False)
+    subjects = db.Column(db.PickleType())
+    authors = db.Column(db.PickleType())
+
 
 __all__ = ['Collection',
            'Collectionname',
@@ -801,4 +809,6 @@ __all__ = ['Collection',
            'FieldTag',
            'WebQuery',
            'UserQuery',
-           'CollectionFieldFieldvalue']
+           'CollectionFieldFieldvalue',
+           'AutocompletionCache']
+
