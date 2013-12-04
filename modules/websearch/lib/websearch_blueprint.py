@@ -276,7 +276,7 @@ def sort_and_rank_records(recids, so=None, rm=None, p=''):
     output = list(recids)
 
     if 'fulltext:' in p and not rm: rm = 'wrd'
-    else: rm = 'yt' 
+    elif not rm: rm = 'yt' 
 
     if so:
         output.reverse()
