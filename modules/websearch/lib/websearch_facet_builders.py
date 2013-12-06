@@ -249,18 +249,12 @@ class CollectionFacetBuilder(FacetBuilder):
         return sorted(facet, key=lambda x: x[1], reverse=True)[0:limit]
 
 
-class FulltextFacetBuilder(FacetBuilder):
-    """Custom implementation of fulltext facet builder."""
+class FormatFacetBuilder(FacetBuilder):
+
+    """Custom implementation of format facet builder."""
 
     def get_title(self, **kwargs):
-        return g._('Attached fulltext')
-
-    def get_facets_for_query(self, qid, limit=20, parent=None):
-        facet = get_most_popular_field_values(self.get_recids(qid),
-                                              get_field_tags(self.name)
-                                              )[0:limit]
-        return filter(lambda x: x[0] == "Yes", facet)
-
+        return g._('Any Format')
 
 class LanguageFacetBuilder(FacetBuilder):
     """Custom implementation of language facet builder."""

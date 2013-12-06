@@ -17,8 +17,8 @@
 ## along with Invenio; if not, write to the Free Software Foundation, Inc.,
 ## 59 Temple Place, Suite 330, Boston, MA 02111-1307, USA.
 
-"""Fulltext Facet"""
+"""Format Facet"""
 
-from invenio.websearch_facet_builders import FulltextFacetBuilder
+from invenio.websearch_facet_builders import FormatFacetBuilder
 
-facet = FulltextFacetBuilder('attachment', order=6)
+facet = FormatFacetBuilder('attachment', order=6)

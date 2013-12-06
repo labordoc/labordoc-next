@@ -19,7 +19,8 @@ pylibdir=$(libdir)/python/invenio/bibsched_tasklets
 
 pylib_DATA = __init__.py bst_send_email.py bst_run_bibtask.py \
 	bst_notify_url.py bst_weblinkback_updater.py bst_update_ilo_kb_files.py \
-	bst_get_new_ilo_publications.py bst_autocompletion_cache.py
+	bst_get_new_ilo_publications.py bst_autocompletion_cache.py \
+    bst_format_tag_enricher.py
 
 EXTRA_DIST = $(pylib_DATA)
 
