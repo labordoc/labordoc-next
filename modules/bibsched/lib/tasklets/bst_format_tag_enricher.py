@@ -92,50 +92,53 @@ def bst_format_tag_enricher():
                               (get_last_date(), ))
     recids = [ result[0] for result in recids ]
 
-    marcxml_output = create_marcxml_header()
-    i = 0
-    task_update_progress("Done %s of %s" % (i, len(recids)))
-    for recid in recids:
-        i += 1
-        holdings = get_fieldvalues(recid, "964__d")
-        fulltext = get_fieldvalues(recid, "8564_3")
-        has_fulltext = False
-        has_holdings = False
+    if len(recids) == 0:
+        write_message("No new records. No action needed.")
 
-        record_xml = """<record>
-                        <controlfield tag="001">%s</controlfield>
-                        <datafield tag="913" ind1=" " ind2=" ">
-                     """ % (str(recid),)
-
-        for h in holdings:
-            if not has_holdings and h in ('Book / article', 'Book (Historical collection)',
-                                          'Reference material', 'Serial'):
-                record_xml += """<subfield code="a">%s</subfield>""" % ("Physical copy")
-                has_holdings = True
-
-        for f in fulltext:
-            if not has_fulltext and f.lower().find('text') >= 0:
-                record_xml += """<subfield code="a">%s</subfield>""" % ("Electronic document")
-                has_fulltext = True
-
-        record_xml += "</datafield>  </record>"
-
-        marcxml_output += record_xml
+    else:
+        marcxml_output = create_marcxml_header()
+        i = 0
         task_update_progress("Done %s of %s" % (i, len(recids)))
+        for recid in recids:
+            i += 1
+            holdings = get_fieldvalues(recid, "964__d")
+            fulltext = get_fieldvalues(recid, "8564_3")
+            has_fulltext = False
+            has_holdings = False
 
-    marcxml_output += create_marcxml_footer()
-    write_message("Writting temporary file")
-    current_date = datetime.now()
-    file_path_fd, file_path_name = mkstemp(suffix='.xml',
-                                           prefix="record_with_format_tag_%s" %
-                                           current_date.strftime("%Y-%m-%d_%H:%M:%S"),
-                                           dir=CFG_TMPDIR)
-    os.write(file_path_fd, marcxml_output)
-    os.close(file_path_fd)
-    write_message("Submitting bibupload task")
-    task_low_level_submission('bibupload', 'admin', '-a', '-c', file_path_name)
+            record_xml = """<record>
+                            <controlfield tag="001">%s</controlfield>
+                            <datafield tag="913" ind1=" " ind2=" ">
+                         """ % (str(recid),)
+
+            for h in holdings:
+                if not has_holdings and h in ('Book / article', 'Book (Historical collection)',
+                                              'Reference material', 'Serial'):
+                    record_xml += """<subfield code="a">%s</subfield>""" % ("Physical copy")
+                    has_holdings = True
+
+            for f in fulltext:
+                if not has_fulltext and f.lower().find('text') >= 0:
+                    record_xml += """<subfield code="a">%s</subfield>""" % ("Electronic document")
+                    has_fulltext = True
+
+            record_xml += "</datafield>  </record>"
+
+            marcxml_output += record_xml
+            task_update_progress("Done %s of %s" % (i, len(recids)))
+
+        marcxml_output += create_marcxml_footer()
+        write_message("Writting temporary file")
+        current_date = datetime.now()
+        file_path_fd, file_path_name = mkstemp(suffix='.xml',
+                                               prefix="record_with_format_tag_%s" %
+                                               current_date.strftime("%Y-%m-%d_%H:%M:%S"),
+                                               dir=CFG_TMPDIR)
+        os.write(file_path_fd, marcxml_output)
+        os.close(file_path_fd)
+        write_message("Submitting bibupload task")
+        task_low_level_submission('bibupload', 'admin', '-a', '-c', file_path_name)
 
     save_last_date()
 
-    write_message("Task finished")
     task_update_progress("Task finished")
