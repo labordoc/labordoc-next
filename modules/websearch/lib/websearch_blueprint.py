@@ -128,7 +128,7 @@ def get_autocompletion_terms(ln='en', recids=None, collection=1, pattern=""):
         try:
             cache = AutocompletionCache.query.get(collection)
             if cache is not None:
-                return cache.authors + cache.subjects[ln]
+                return [i+' ' for i in cache.authors + cache.subjects[ln]]
         except:
             pass
 
@@ -139,14 +139,14 @@ def get_autocompletion_terms(ln='en', recids=None, collection=1, pattern=""):
         authors = autocomplete(field="exactauthor", return_list=True)
         subjects = autocomplete(field="subject_" + ln, return_list=True)
         #subjects = autocomplete(field="subject", return_list=True)
-        return authors + subjects
+        return [i+' ' for i in authors + subjects]
 
     else:
         authors = get_most_popular_field_values(recids, get_field_tags('exactauthor'))[0:20]
         tag_dicc = {'en': '9051_a', 'fr': '9061_a', 'es': '9071_a'}
         subject_tag = tag_dicc[ln]
         subjects = get_most_popular_field_values(recids, subject_tag)[0:20]
-        return [i[0] for i in authors + subjects]
+        return [i[0]+' ' for i in authors + subjects]
 
 
 @blueprint.route('/index.py', methods=['GET', 'POST'])

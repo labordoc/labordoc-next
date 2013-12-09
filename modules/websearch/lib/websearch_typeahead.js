@@ -56,7 +56,7 @@
         this.options.type = 'search';
         this.source = this.options.source;
         var subquery = query.substr(query.lastIndexOf(":") + 1);
-        this.source = [subquery.substr(subquery.lastIndexOf(" ") + 1)].concat(this.source);
+        this.source = [subquery.substr(subquery.lastIndexOf(" ") + 1) + ' '].concat(this.source);
       }
       //this.source = $.isFunction(this.source) ? this.source() : this.source
       orig.lookup.call(this);
@@ -74,25 +74,51 @@
         this.$element.val(newVal+val+cwrap+' ');
         this.$element.change();
         this.options.type = 'search';
+
+        if (val.slice(-1) !== ':')
+        {
+          document.forms[0].submit();
+        }
         return this.hide();
       }
 
       if (this.options.type == 'search') {
       var m = this.query.lastIndexOf(' '),
-          im = (m<0)?0:m+1,
           p = this.$element.val(),
-          op = ("+-|".indexOf(p[im])>-1)?p[im]:'',
-          newVal = p.substr(0, m);
-      if (~m) {
-        newVal += ' ';
+          newval = p.substr(0, m);
+
+      if (newval !== '' && val.slice(-1) !== ':' && ['AND ', 'OR ', 'AND NOT '].indexOf(val) < 0) {
+      // remove consecutive duplicate words.
+      var arr = newval.split(/[\s]+/);
+      var valarr = val.split(/[\s]+/);
+      var arrlen = arr.length;
+      var vallen = val.length;
+      var i, j;
+      for (i = arrlen-1; i >= 0; i--) {
+        if (['and', 'or', 'not', 'AND', 'OR', 'NOT', '+', '-', '|'].indexOf(arr[i]) >= 0) break;
+        for (j = 0; j < vallen; j++) {
+            if (arr[i] === valarr[j]) arr.splice(i, 1);
+        }
+        if (j === vallen) break;
       }
-      this.$element.val(newVal+op+val);
+      newval = arr.join(' ');
+      }
+
+      var sp = '';
+      if (newval !== '') sp = ' ';
+      this.$element.val(newval + sp + val);
       this.$element.change();
+
+      if (val.slice(-1) !== ':' && ['AND ', 'OR ', 'AND NOT '].indexOf(val) < 0)
+        {
+           document.forms[0].submit();
+        }
+
       return this.hide();
       }
 
-      orig.select.call(this);
-      return this;
+      //orig.select.call(this);
+      //return this;
     },
 
     matcher: function(item) {
