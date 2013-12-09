@@ -158,6 +158,10 @@ class FacetLoader(object):
     def config(self, *args, **kwargs):
         """Returns facet config for all loaded plugins."""
         pattern = get_pattern_from_cache(kwargs.get('qid'))
+        f = open("/tmp/stripper", "a")
+        f.write("qid: " + kwargs.get('qid') + "\tp: " + str(pattern) + "\n")
+        f.close()
+        pattern = "work"
         collection = kwargs.get('collection')
         collection_id_set = intbitset()
         collection_id_set.add(collection.id)
@@ -207,7 +211,7 @@ class FacetBuilder(object):
     def get_value_recids(self, value):
         if isinstance(value, unicode):
             value = value.encode('utf8')
-        p = '"' + str(value) + '"'
+        p = '"' + str(value).strip() + '"'
         return search_pattern(p=p, f=self.name)
 
     #@blueprint.invenio_memoize(timeout=CFG_WEBSEARCH_SEARCH_CACHE_TIMEOUT / 4)

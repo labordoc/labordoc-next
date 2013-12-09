@@ -28,7 +28,7 @@ def get_search_query_id(**kwargs):
     """
     Returns unique query indentifier.
     """
-    p = kwargs.get('p', '')
+    p = kwargs.get('p', '').strip()
     f = kwargs.get('f', '')
     cc = kwargs.get('cc', '')
     wl = kwargs.get('wl', '')
