@@ -260,7 +260,7 @@ class InvenioSessionInterface(SessionInterface):
         domain = self.get_cookie_domain(app)
         from invenio.websession_model import Session
         if not session:
-            current_app.logger.error("Empty session: " + str(request.url))
+            current_app.logger.error("Empty session: " + request.url)
             return
         #    response.delete_cookie(app.session_cookie_name,
         #                            domain=domain)
