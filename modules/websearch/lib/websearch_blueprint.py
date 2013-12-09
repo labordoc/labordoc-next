@@ -123,6 +123,7 @@ def get_autocompletion_terms(ln='en', recids=None, collection=1, pattern=""):
                                       get_most_popular_field_values, \
                                       get_collection_reclist
 
+    pattern = pattern.strip()
 
     if pattern == "":
         try:
@@ -256,7 +257,7 @@ class SearchUrlargs(object):
 
 def _create_neareset_term_box(argd_orig):
     #try:
-    p = argd_orig.pop('p', '')#.encode('utf-8')
+    p = argd_orig.pop('p', '').strip()#.encode('utf-8')
     f = argd_orig.pop('f', '')#.encode('utf-8')
     if 'rg' in argd_orig and not 'rg' in request.values:
         del argd_orig['rg']
@@ -274,9 +275,9 @@ def _create_neareset_term_box(argd_orig):
 
 def sort_and_rank_records(recids, so=None, rm=None, p=''):
     output = list(recids)
-
+    p = p.strip()
     if 'fulltext:' in p and not rm: rm = 'wrd'
-    elif not rm: rm = 'yt' 
+    elif not rm: rm = 'yt'
 
     if so:
         output.reverse()
@@ -326,7 +327,7 @@ def collection_breadcrumbs(collection, endpoint=None):
                                  'jrec': (int, 1)})
 @check_collection(default_collection=True)
 def browse(collection, p, f, of, so, rm, rg, jrec):
-
+    p = p.strip()
     from invenio.websearch_webinterface import wash_search_urlargd
     argd = argd_orig = wash_search_urlargd(request.args)
 
@@ -401,7 +402,7 @@ def search(collection, p, of, so, rm):
     """
     Renders search pages.
     """
-
+    p = p.strip()
     if 'action_browse' in request.args \
             or request.args.get('action', '') == 'browse':
         return browse()
@@ -507,6 +508,8 @@ def results(qid, p, of, so, rm):
         filter_data = json.loads(request.values.get('filter', '[]'))
     except:
         return _('Invalid filter data')
+
+    p = p.strip()
 
     @check_collection(
         name_getter=functools.partial(get_collection_name_from_cache, qid))

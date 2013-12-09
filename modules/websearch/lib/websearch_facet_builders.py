@@ -207,7 +207,7 @@ class FacetBuilder(object):
     def get_value_recids(self, value):
         if isinstance(value, unicode):
             value = value.encode('utf8')
-        p = '"' + str(value) + '"'
+        p = '"' + str(value).strip() + '"'
         return search_pattern(p=p, f=self.name)
 
     #@blueprint.invenio_memoize(timeout=CFG_WEBSEARCH_SEARCH_CACHE_TIMEOUT / 4)
