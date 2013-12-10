@@ -1089,4 +1089,8 @@ margin: 0 0 10px;
 .padding15 {
   padding: 15px;
 }
+
+.newpublink {
+  float: right;
+}
 /* end of invenio.css */

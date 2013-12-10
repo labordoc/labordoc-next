@@ -168,6 +168,10 @@
             {{ format_record(recid, 'hnp', ln=g.ln)|safe }}
 		    <hr />
          {%- endfor -%}
+         <div class="newpublink">
+             <a href="{{ url_for('search.search', p='%s' % new_ILO_publications_query, rm='yt', ln=g.ln) }}">
+             {{ _('See all new ILO publications ') }} <i class="icon-double-angle-right"></i> </a>
+         </div>
       </div>
     </div>
   </div>

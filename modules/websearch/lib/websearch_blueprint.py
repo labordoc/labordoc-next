@@ -53,6 +53,8 @@ from invenio.websearch_facet_builders import \
 from invenio.search_engine import get_creation_date, perform_request_search,\
     print_record, create_nearest_terms_box, browse_pattern_phrases
 from invenio.paginationutils import Pagination
+from invenio.bibsched_tasklets import bst_get_new_ilo_publications
+
 
 blueprint = InvenioBlueprint('search', __name__, url_prefix="",
                              config='invenio.search_engine_config',
@@ -175,6 +177,8 @@ def index():
     else:
         new_ILO_publications_recids = []
 
+    new_ILO_publications_query = bst_get_new_ilo_publications.bst_get_new_ilo_publications()
+
     @register_template_context_processor
     def index_context():
         return dict(
@@ -182,6 +186,7 @@ def index():
             format_record=print_record,
             get_creation_date=get_creation_date,
             new_ILO_publications_recids=new_ILO_publications_recids,
+            new_ILO_publications_query=new_ILO_publications_query,
             autocompletion_terms=get_autocompletion_terms(ln=g.ln, collection=collection.id,
                                                           recids=new_ILO_publications_recids)
             )

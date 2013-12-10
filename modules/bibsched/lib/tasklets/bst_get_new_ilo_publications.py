@@ -63,3 +63,5 @@ def bst_get_new_ilo_publications(number_results_to_display=5):
     new_ilo_publications_file.write(repr(new_ilo_publications_recids))
     new_ilo_publications_file.close()
     task_update_progress("Finished calculating new ILO publications")
+
+    return dbquery
