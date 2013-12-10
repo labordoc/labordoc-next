@@ -56,9 +56,7 @@
         this.options.type = 'search';
         this.source = this.options.source;
         var subquery = query.substr(query.lastIndexOf(":") + 1);
-        var typed_itm = subquery.substr(subquery.lastIndexOf(" ") + 1) + ' ';
-        if (this.source.indexOf(typed_itm) === -1)
-          this.source = [typed_itm].concat(this.source);
+        this.source = [subquery.substr(subquery.lastIndexOf(" ") + 1) + ' '].concat(this.source);        
       }
       //this.source = $.isFunction(this.source) ? this.source() : this.source
       orig.lookup.call(this);
