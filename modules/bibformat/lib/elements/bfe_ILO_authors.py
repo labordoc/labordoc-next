@@ -192,7 +192,8 @@ def format_element(bfo, limit, prefix_en="", prefix_es="",
         elif nb_authors > 0:
             out = separator.join(authors)
 
-        return prefix + out
+	if out.strip():
+            return prefix + out
 
 def escape_values(bfo):
     """

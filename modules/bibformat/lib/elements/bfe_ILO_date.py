@@ -55,15 +55,18 @@ def format_element(bfo, prefix_en="", prefix_es="",
 
     if doctype == 'as' and date_as != '':
         #date_as = date_as + ' ' + info_as
-        return prefix + date_as
+	if date_as.strip():
+            return prefix + date_as
     elif date_format != '':
         try:
             date_time = time.strptime(date, "%Y-%m-%d")
             return prefix + time.strftime(date_format, date_time)
         except ValueError:
-            return prefix + date
+            if date.strip():
+                return prefix + date
     else:
-        return prefix + date 
+        if date.strip():
+            return prefix + date
 
 
 def escape_values(bfo):
