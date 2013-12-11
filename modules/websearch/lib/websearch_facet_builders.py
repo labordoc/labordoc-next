@@ -244,7 +244,7 @@ class CollectionFacetBuilder(FacetBuilder):
         facet = []
         for c in collection.collection_children_r:
             num_records = len(c.reclist.intersection(recIDsHitSet))
-            if num_records:
+            if num_records and not c.name.startswith("invsbl"):
                 facet.append((c.name, num_records, c.name_ln))
         return sorted(facet, key=lambda x: x[1], reverse=True)[0:limit]
 
