@@ -72,14 +72,14 @@ def format_element(bfo, style, prefix, suffix, separator='\n', show_icons='no', 
                (not CFG_CERN_SITE or len(cern_urls) == 0) and len(others_urls) == 0 and \
                show_icons.lower() == 'yes':
             file_icon = '<img style="border:none" src="%s/img/file-icon-text-12x16.gif" alt="%s" /> ' % (CFG_SITE_URL, _("Download fulltext"))
-            pdf_icon = '<img style="border:none" src="%s/img/attachment-pdf.png" align="absbottom" vspace="2" height="15" weight="15" alt="%s"/> ' \
+            pdf_icon = '<img style="border:none; height:20px;" src="%s/img/attachment-pdf.png" align="absbottom" vspace="2" alt="%s"/> ' \
             % (CFG_SITE_URL, _("Download PDF"))
             web_icon = '<img style="border:none" src="%s/img/webpage.png" align="absbottom" vspace="2" height="15" weight="15" alt="%s" /> ' \
             % (CFG_SITE_URL, _("Download Web link"))
 
         elif show_icons.lower() == 'yes':
             file_icon = '<img style="border:none" src="%s/img/file-icon-text-12x16.gif" alt="%s"/> ' % (CFG_SITE_URL, _("Download fulltext"))
-            pdf_icon = '<img style="border:none" src="%s/img/attachment-pdf.png" align="absbottom" vspace="2" height="15" weight="15" alt="%s"/> ' \
+            pdf_icon = '<img style="border:none; height:20px;" src="%s/img/attachment-pdf.png" align="absbottom" vspace="2" alt="%s"/> ' \
             % (CFG_SITE_URL, _("Download PDF"))
             web_icon = '<img style="border:none" src="%s/img/webpage.png" align="absbottom" vspace="2" height="15" weight="15" alt="%s" /> ' \
             % (CFG_SITE_URL, _("Download Web link"))
@@ -116,14 +116,14 @@ def format_element(bfo, style, prefix, suffix, separator='\n', show_icons='no', 
                len(cern_urls) == 1 and len(others_urls) == 0 and \
                show_icons.lower() == 'yes':
             file_icon = '<img style="border:none" src="%s/img/file-icon-text-34x48.gif" alt="%s" /><br />' % (CFG_SITE_URL, _("Download fulltext"))
-            pdf_icon = '<img style="border:none" src="%s/img/attachment-pdf.png" align="absbottom" vspace="2" height="15" weight="15" alt="%s"/> ' \
+            pdf_icon = '<img style="border:none; height:20px;" src="%s/img/attachment-pdf.png" align="absbottom" vspace="2" alt="%s"/> ' \
             % (CFG_SITE_URL, _("Download PDF"))
             web_icon = '<img style="border:none" src="%s/img/webpage.png" align="absbottom" vspace="2" height="15" weight="15" alt="%s" /> ' \
             % (CFG_SITE_URL, _("Download Web link"))
 
         elif show_icons.lower() == 'yes':
             file_icon = '<img style="border:none" src="%s/img/file-icon-text-12x16.gif" alt="%s"/>' % (CFG_SITE_URL, _("Download fulltext"))
-            pdf_icon = '<img style="border:none" src="%s/img/attachment-pdf.png" align="absbottom" vspace="2" height="15" weight="15" alt="%s"/> ' \
+            pdf_icon = '<img style="border:none; height:20px;" src="%s/img/attachment-pdf.png" align="absbottom" vspace="2" alt="%s"/> ' \
             % (CFG_SITE_URL, _("Download PDF"))
             web_icon = '<img style="border:none" src="%s/img/webpage.png" align="absbottom" vspace="2" height="15" weight="15" alt="%s" /> ' \
             % (CFG_SITE_URL, _("Download Web link"))
@@ -146,13 +146,13 @@ def format_element(bfo, style, prefix, suffix, separator='\n', show_icons='no', 
                (not CFG_CERN_SITE or len(cern_urls) == 0) and len(others_urls) == 1 and \
                show_icons.lower() == 'yes':
             file_icon = '<img style="border:none" src="%s/img/file-icon-text-12x16.gif" alt="%s" /> ' % (CFG_SITE_URL, _("Download fulltext"))
-            pdf_icon = '<img style="border:none" src="%s/img/attachment-pdf.png" align="absbottom" vspace="2" height="15" weight="15" alt="%s"/> ' \
+            pdf_icon = '<img style="border:none; height:20px;" src="%s/img/attachment-pdf.png" align="absbottom" vspace="2" alt="%s"/> ' \
             % (CFG_SITE_URL, _("Download PDF"))
             web_icon = '<img style="border:none" src="%s/img/webpage.png" align="absbottom" vspace="2" height="15" weight="15" alt="%s" /> ' \
             % (CFG_SITE_URL, _("Download Web link"))
         elif show_icons.lower() == 'yes':
             file_icon = '<img style="border:none" src="%s/img/file-icon-text-12x16.gif" alt="%s"/> ' % (CFG_SITE_URL, _("Download fulltext"))
-            pdf_icon = '<img style="border:none" src="%s/img/attachment-pdf.png" align="absbottom" vspace="2" height="15" weight="15" alt="%s"/> ' \
+            pdf_icon = '<img style="border:none; height:20px;" src="%s/img/attachment-pdf.png" align="absbottom" vspace="2" alt="%s"/> ' \
             % (CFG_SITE_URL, _("Download PDF"))
             web_icon = '<img style="border:none" src="%s/img/webpage.png" vspace="2" align="absbottom" height="15" weight="15" alt="%s" /> ' \
             %  (CFG_SITE_URL, _("Download Web link"))
@@ -176,7 +176,7 @@ def format_element(bfo, style, prefix, suffix, separator='\n', show_icons='no', 
                 pass
         if len(libdoc_pdf) > 0:
             pass
-        else: 
+        else:
             if len(non_libdoc_pdf) != 0:
                 pass
         out += separator.join(url_list)
