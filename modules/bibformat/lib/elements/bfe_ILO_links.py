@@ -82,7 +82,7 @@ def format_element(bfo, style, prefix_en="", prefix_es="",
                (not CFG_CERN_SITE or len(cern_urls) == 0) and len(others_urls) == 0 and \
                show_icons.lower() == 'yes':
             file_icon = '<img style="border:none" src="%s/img/file-icon-text-12x16.gif" alt="%s" /> ' % (CFG_SITE_URL, _("Download fulltext"))
-            pdf_icon = '<img style="border:none; height:20px;" src="%s/img/attachment-pdf.png" align="absbottom" vspace="2" alt="%s"/> ' \
+            pdf_icon = '<img style="border:none; height:18px;" src="%s/img/attachment-pdf.png" align="absbottom" vspace="2" alt="%s"/> ' \
             % (CFG_SITE_URL, _("Download PDF"))
             epub_icon = '<img style="border:none" src="%s/img/attachment-epub.png" align="absbottom" vspace="2" height="15" weight="15" alt="%s"/> ' \
             % (CFG_SITE_URL, _("Download Epub"))
@@ -91,7 +91,7 @@ def format_element(bfo, style, prefix_en="", prefix_es="",
 
         elif show_icons.lower() == 'yes':
             file_icon = '<img style="border:none" src="%s/img/file-icon-text-12x16.gif" alt="%s"/> ' % (CFG_SITE_URL, _("Download fulltext"))
-            pdf_icon = '<img style="border:none; height:20px;" src="%s/img/attachment-pdf.png" align="absbottom" vspace="2" alt="%s"/> ' \
+            pdf_icon = '<img style="border:none; height:18px;" src="%s/img/attachment-pdf.png" align="absbottom" vspace="2" alt="%s"/> ' \
             % (CFG_SITE_URL, _("Download PDF"))
             epub_icon = '<img style="border:none" src="%s/img/attachment-epub.png" align="absbottom" vspace="2" height="15" weight="15" alt="%s"/> ' \
             % (CFG_SITE_URL, _("Download Epub"))
@@ -166,7 +166,7 @@ def format_element(bfo, style, prefix_en="", prefix_es="",
                (not CFG_CERN_SITE or len(cern_urls) == 0) and len(others_urls) == 1 and \
                show_icons.lower() == 'yes':
             file_icon = '<img style="border:none" src="%s/img/file-icon-text-12x16.gif" alt="%s" /> ' % (CFG_SITE_URL, _("Download fulltext"))
-            pdf_icon = '<img style="border:none; height:20px;" src="%s/img/attachment-pdf.png" align="absbottom" vspace="2" alt="%s"/> ' \
+            pdf_icon = '<img style="border:none; height:18px;" src="%s/img/attachment-pdf.png" align="absbottom" vspace="2" alt="%s"/> ' \
             % (CFG_SITE_URL, _("Download PDF"))
             epub_icon = '<img style="border:none" src="%s/img/attachment-epub.png" align="absbottom" vspace="2" height="15" weight="15" alt="%s"/> ' \
             % (CFG_SITE_URL, _("Download Epub"))
@@ -174,7 +174,7 @@ def format_element(bfo, style, prefix_en="", prefix_es="",
             % (CFG_SITE_URL, _("Download Web link"))
         elif show_icons.lower() == 'yes':
             file_icon = '<img style="border:none" src="%s/img/file-icon-text-12x16.gif" alt="%s"/> ' % (CFG_SITE_URL, _("Download fulltext"))
-            pdf_icon = '<img style="border:none; height:20px;" src="%s/img/attachment-pdf.png" align="absbottom" vspace="2" alt="%s"/> ' \
+            pdf_icon = '<img style="border:none; height:18px;" src="%s/img/attachment-pdf.png" align="absbottom" vspace="2" alt="%s"/> ' \
             % (CFG_SITE_URL, _("Download PDF"))
             epub_icon = '<img style="border:none" src="%s/img/attachment-epub.png" align="absbottom" vspace="2" height="15" weight="15" alt="%s"/> ' \
             % (CFG_SITE_URL, _("Download Epub"))
