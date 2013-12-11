@@ -48,7 +48,7 @@ def bst_get_new_ilo_publications(number_results_to_display=5):
     task_update_progress("Finished updating query for collection Latest publications by ILO")
 
     task_update_progress("Start calculating new ILO publications")
-    ILO_publications_recids = perform_request_search(p=dbquery)
+    ILO_publications_recids = perform_request_search(p='%s' % dbquery)
     dict_creation_date_per_recid = {}
     for recid in ILO_publications_recids:
         dict_creation_date_per_recid.update({recid:get_creation_date(recid,

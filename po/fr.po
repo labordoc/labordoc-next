@@ -13589,6 +13589,9 @@ msgstr "À Propos de Labordoc"
 msgid "Your tags"
 msgstr "Vos tags"
 
+#: modules/websearch/etc/templates/websearch_index.html:173
+msgid "See all new ILO publications "
+msgstr "Voir tous les nouvelles publications du BIT"
 
 #~ msgid "This book is sent to you ..."
 #~ msgstr "Ce livre vous a été envoyé..."

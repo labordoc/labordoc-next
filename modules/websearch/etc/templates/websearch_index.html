@@ -169,7 +169,7 @@
 		    <hr />
          {%- endfor -%}
          <div class="newpublink">
-             <a href="{{ url_for('search.search', p='%s' % new_ILO_publications_query, rm='yt', ln=g.ln) }}">
+             <a href="{{ url_for('.search', p='%s' % new_ILO_publications_query) }}">
              {{ _('See all new ILO publications ') }} <i class="icon-double-angle-right"></i> </a>
          </div>
       </div>

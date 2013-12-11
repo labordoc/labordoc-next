@@ -13543,7 +13543,9 @@ msgstr "A Propósito de Labordoc"
 msgid "Your tags"
 msgstr "Tus tags"
 
-
+#: modules/websearch/etc/templates/websearch_index.html:173
+msgid "See all new ILO publications "
+msgstr "Ver todas las nuevas publicaciones de la OIT"
 
 #~ msgid "Make sure we match the right names!"
 #~ msgstr "¡Asegúrese que los nombres se correspondan!"
