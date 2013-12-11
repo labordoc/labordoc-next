@@ -6121,6 +6121,9 @@ msgstr "%s segundos"
 msgid "brief"
 msgstr "breve"
 
+msgid "detailed"
+msgstr "detallado"
+
 #: modules/websession/lib/webaccount.py:116
 #, python-format
 msgid ""
@@ -13558,6 +13561,39 @@ msgstr "Tus tags"
 #: modules/websearch/etc/templates/websearch_index.html:173
 msgid "See all new ILO publications "
 msgstr "Ver todas las nuevas publicaciones de la OIT"
+
+msgid "Display"
+msgstr "Ver"
+
+msgid "Sort by"
+msgstr "Ordenar por"
+
+msgid "Most recent first"
+msgstr "Más recientes"
+
+msgid "Oldest first"
+msgstr "Más antiguos"
+
+msgid "Showing records %d to %d out of %d results."
+msgstr "Mostrando registros del %d al %d de un total de %d resultados."
+
+msgid "Any Collection"
+msgstr "Cualquier Colección"
+
+msgid "Any Author"
+msgstr "Cualquier Autor"
+
+msgid "Any Year"
+msgstr "Cualquier Año"
+
+msgid "Any Language"
+msgstr "Cualquier Idioma"
+
+msgid "Any Location"
+msgstr "Cualquier Ubicación"
+
+msgid "Any Format"
+msgstr "Cualquier Formato"
 
 #~ msgid "Make sure we match the right names!"
 #~ msgstr "¡Asegúrese que los nombres se correspondan!"

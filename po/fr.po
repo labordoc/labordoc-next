@@ -6136,6 +6136,9 @@ msgstr "%s secondes"
 msgid "brief"
 msgstr "condensé"
 
+msgid "detailed"
+msgstr "détaillé"
+
 #: modules/websession/lib/webaccount.py:116
 #, python-format
 msgid ""
@@ -13605,6 +13608,40 @@ msgstr "Vos tags"
 msgid "See all new ILO publications "
 msgstr "Voir tous les nouvelles publications du BIT"
 
+msgid "Display"
+msgstr "Affichage"
+
+msgid "Sort by"
+msgstr "Trier par"
+
+msgid "Most recent first"
+msgstr "Plus récents"
+
+msgid "Oldest first"
+msgstr "Plus anciens"
+
+msgid "Showing records %d to %d out of %d results."
+msgstr "Affichage de records de %d à %d sur %d résultats."
+
+msgid "Any Collection"
+msgstr "Toutes Collections"
+
+msgid "Any Author"
+msgstr "Tous Auteurs"
+
+msgid "Any Year"
+msgstr "Toutes Années"
+
+msgid "Any Language"
+msgstr "Toutes Langues"
+
+msgid "Any Location"
+msgstr "Toutes Lieux"
+
+msgid "Any Format"
+msgstr "Tous Formats"
+
+
 #~ msgid "This book is sent to you ..."
 #~ msgstr "Ce livre vous a été envoyé..."
 
@@ -13981,9 +14018,6 @@ msgstr "Voir tous les nouvelles publications du BIT"
 
 #~ msgid "Verbose"
 #~ msgstr "Textuel"
-
-#~ msgid "Display"
-#~ msgstr "Affichage"
 
 #~ msgid "Done"
 #~ msgstr "Valider"
