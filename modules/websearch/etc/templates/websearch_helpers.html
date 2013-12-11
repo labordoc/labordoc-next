@@ -76,6 +76,7 @@
 {%- set idxs = [0] -%}
 <ul {{ kwargs|xmlattr }}>
 {% for collection in collections recursive %}
+{% if not collection.name.startswith('invsbl')  %}
  <div id="collection">
   <li>
      {% if collection.collection_children|length > 0  and collection.name != "ILO meetings" %}
@@ -102,6 +103,7 @@
 
   </li>
  </div>
+{% endif %}
 {% endfor %}
 </ul>
 {% endmacro %}
