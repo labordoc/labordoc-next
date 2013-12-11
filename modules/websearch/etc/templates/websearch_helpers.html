@@ -217,7 +217,7 @@
   {% for f in easy_search_form if not f.name=='csrf_token' %}
   <div class="control-group">
     <label class="control-label">
-      {{ f.label.text }}
+      {{ _(f.label.text) }}
     </label>
     <div class="controls controls-row">
       {{ f|safe }}
@@ -335,10 +335,10 @@
         <div class="modal-footer">
           <small><ul class="nav nav-pills nav-pill-gray pull-left" style="margin-bottom: 0px; text-align: left;">
             <li class="active">
-              <a href="#simple-search" data-toggle="tab">{{ _('simple') }}</a>
+              <a href="#simple-search" data-toggle="tab">{{ _("simple") }}</a>
             </li>
             <li>
-              <a href="#advanced-search" data-toggle="tab">{{ _('advanced') }}</a>
+              <a href="#advanced-search" data-toggle="tab">{{ _("advanced") }}</a>
             </li>
           </ul></small>
           <!-- button name="action_browse" class="btn">
@@ -701,6 +701,7 @@
             author = $('#author').val(),
             title = $('#title').val(),
             subject = $('#subject').val(),
+            fulltext = $('#fulltext').val(),
             rn = $('#rn').val(),
             aff = $('#aff').val()
             cn = $('#cn').val(),
@@ -719,6 +720,7 @@
         if (author !== '') { query.push('author:' + author); }
         if (title !== '') { query.push('title:' + title); }
         if (subject !== '') { query.push('subject:' + subject); }
+        if (fulltext !== '') { query.push('fulltext:' + fulltext); }
         //if (rn !== '') { query.push('reportnumber:' + rn); }
         //if (aff !== '') { query.push('affiliation:' + aff); }
         //if (cn !== '') { query.push('collaboration:' + cn); }

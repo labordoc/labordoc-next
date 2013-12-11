@@ -43,11 +43,13 @@ class JournalForm(WTFormDefault):
 
 class EasySearchForm(InvenioBaseForm):
     """Defines form for easy seach popup."""
-    author = AutocompleteField(_('Author'), data_provide="typeahead-url",
-        data_source=lambda: url_for('search.autocomplete', field='exactauthor'))
-    subject = AutocompleteField(_('Subject'), data_provide="typeahead-url",
+
+    title = TextField('Title')
+    author = AutocompleteField('Author', data_provide="typeahead-url",
+         data_source=lambda: url_for('search.autocomplete', field='exactauthor'))
+    subject = AutocompleteField('Subject', data_provide="typeahead-url",
          data_source=lambda: url_for('search.autocomplete', field='subject'))
-    title = TextField(_('Title'))
+    fulltext = TextField('Fulltext')
 
 #     rn = AutocompleteField(_('Report number'), data_provide="typeahead-url",
 #         data_source=lambda: url_for('search.autocomplete', field='reportnumber'))

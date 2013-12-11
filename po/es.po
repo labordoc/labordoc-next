@@ -41,6 +41,18 @@ msgstr ""
 msgid "AND NOT"
 msgstr "Y NO"
 
+#: modules/websearch/etc/templates/websearch_helpers.html:303
+msgid "Add to search"
+msgstr "Añadir a la búsqueda"
+
+#: modules/websearch/etc/templates/websearch_helpers.html:338
+msgid "simple"
+msgstr "simple"
+
+#: modules/websearch/etc/templates/websearch_helpers.html:341
+msgid "advanced"
+msgstr "avanzada"
+
 #: modules/webhelp/web/admin/admin.webdoc:18
 #: modules/websearch/doc/admin/websearch-admin-guide.webdoc:21
 #: modules/websubmit/doc/admin/websubmit-admin-guide.webdoc:21
