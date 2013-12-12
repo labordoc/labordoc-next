@@ -596,4 +596,9 @@ def export(collection, of):
     """
     # Get list of integers with record IDs.
     recids = request.values.getlist('recid', type=int)
+    if not recids and of in ['hb', 'hd', 'hm', 'ibib']:
+        response = make_response('<html><body>%s</body></html>' % 
+                                 'No records selected for exportation.')
+        response.mimetype = 'text/html'
+        return response
     return response_formated_records(recids, collection, of)
