@@ -1485,77 +1485,77 @@ class PortalboxData(DataSet):
 class ExampleData(DataSet):
 
     class Example_1:
-        body = u'author:"Ellis, J"'
+        body = u'author:"Somavia, Juan."'
         type = u'author search'
         id = 1
 
     class Example_2:
-        body = u'quantum'
+        body = u'labour'
         type = u'word search'
         id = 2
 
     class Example_3:
-        body = u'quant*'
+        body = u'labo*'
         type = u'wildcard word search'
         id = 3
 
     class Example_4:
-        body = u"title:'standard model'"
+        body = u"title:'green jobs'"
         type = u'phrase search'
         id = 4
 
     class Example_5:
-        body = u'quark -sigma +dense'
+        body = u'child -labour +education'
         type = u'boolean search'
         id = 5
 
     class Example_6:
-        body = u'author:draper title:electrical'
+        body = u'author:somavia title:work'
         type = u'complex boolean search'
         id = 6
 
     class Example_7:
-        body = u"author:ellis -muon* +abstract:'dense quark matter'"
+        body = u"author:somavia -wage* +abstract:'working conditions'"
         type = u'complex boolean search'
         id = 7
 
     class Example_8:
-        body = u'ellis muon*'
+        body = u'somavia wage*'
         type = u'boolean search'
         id = 8
 
     class Example_13:
-        body = u'references:"Theor. Math. Phys. 2 (1998) 231"'
-        type = u'reference search'
+        body = u'ILO*'
+        type = u'boolean search'
         id = 13
 
     class Example_14:
-        body = u"abstract:'Higgs boson'"
+        body = u"abstract:'Minimum wages'"
         type = u'phrase search'
         id = 14
 
     class Example_15:
-        body = u'cal*'
+        body = u'sustain*'
         type = u'wildcard word search'
         id = 15
 
     class Example_16:
-        body = u'keyword:Nobel'
+        body = u'subject:cooperative'
         type = u'keyword search'
         id = 16
 
     class Example_17:
-        body = u'author:Cole'
+        body = u'author:Somavia'
         type = u'author search'
         id = 17
 
     class Example_18:
-        body = u"title:'nuclear electronics'"
+        body = u"title:'occupational safety'"
         type = u'phrase search'
         id = 18
 
     class Example_19:
-        body = u'supergravity and author:"Ellis, J" and year:1980->1990'
+        body = u'decent work and author:"Somavia, Juan" and year:2000->2010'
         type = u'combined search'
         id = 19
 
