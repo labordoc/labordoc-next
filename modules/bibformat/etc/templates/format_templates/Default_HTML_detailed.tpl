@@ -88,11 +88,11 @@
     					          <div class="positionDetails">', 					       
 				          suffix='</div></div>') }}
 
-    {{ bfe_ilo_links(bfo, prefix_en='<div id="links"><div class="formatRecordLabel"> Links </div>
+    {{ bfe_ilo_links(bfo, prefix_en='<div id="links"><div class="formatRecordLabel"> Text </div>
 					             <div class="positionDetails">',
-						  prefix_es='<div id="links"><div class="formatRecordLabel"> Enlaces </div>
+						  prefix_es='<div id="links"><div class="formatRecordLabel"> Texto </div>
 						             <div class="positionDetails">',
-						  prefix_fr='<div id="links"><div class="formatRecordLabel"> Liens </div>
+						  prefix_fr='<div id="links"><div class="formatRecordLabel"> Texte </div>
 						             <div class="positionDetails">',
 				          suffix='</div></div>',
 				          separator='<br />', default='', show_icons='yes') }}

@@ -206,7 +206,7 @@ def format_element(bfo, style, prefix_en="", prefix_es="",
             elif journal_title != '' and (descr.find('ccess') > -1 or descr.find('assword') > -1):
                 pass
             else:
-                url_list.append('<a target=_blank '+style+' href="'+escape(url)+'">'+web_icon+escape+descr+'</a>')
+                url_list.append('<a target=_blank '+style+' href="'+escape(url)+'">'+web_icon+descr+'</a>')
 
         if len(libdoc_pdf) > 0:
             pass
@@ -218,6 +218,7 @@ def format_element(bfo, style, prefix_en="", prefix_es="",
 
     if out.endswith('<br />'):
         out = out[:-len('<br />')]
+    if out: out += "<p></p>"
 
     return prefix + out
 

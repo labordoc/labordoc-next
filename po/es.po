@@ -5186,7 +5186,7 @@ msgstr "Tus mensajes"
 #: modules/webmessage/lib/webmessage_templates.py:86
 #: modules/bibcirculation/lib/bibcirculation_templates.py:5322
 msgid "Subject"
-msgstr "Asunto"
+msgstr "Temas"
 
 #: modules/webmessage/lib/webmessage_templates.py:87
 msgid "Sender"
@@ -5198,7 +5198,7 @@ msgstr "Sin mensajes"
 
 #: modules/webmessage/lib/webmessage_templates.py:100
 msgid "No subject"
-msgstr "Sin asunto"
+msgstr "Sin temas"
 
 #: modules/webmessage/lib/webmessage_templates.py:146
 msgid "Write new message"
@@ -5233,7 +5233,7 @@ msgstr "Grupos"
 #: modules/webmessage/lib/webmessage_templates.py:447
 #: modules/websubmit/lib/websubmit_templates.py:3081
 msgid "Subject:"
-msgstr "Asunto:"
+msgstr "Temas:"
 
 #: modules/webmessage/lib/webmessage_templates.py:286
 #: modules/websubmit/lib/websubmit_templates.py:3082
@@ -5938,8 +5938,8 @@ msgid "People who downloaded this document also downloaded:"
 msgstr "La gente que descargó este documento también descargó:"
 
 #: modules/websearch/lib/websearch_templates.py:3902
-msgid "People who viewed this page also viewed:"
-msgstr "La gente que vio esta página también vio:"
+msgid "People who viewed this publication also viewed:"
+msgstr "La gente que vio esta publicación también vio:"
 
 #: modules/websearch/lib/websearch_templates.py:3956
 #, python-format
@@ -13552,7 +13552,7 @@ msgstr "Alguna pregunta?"
 
 #: modules/webstyle/lib/webinterface_handler_local.py:67
 msgid "About Labordoc"
-msgstr "A Propósito de Labordoc"
+msgstr "Acerca de Labordoc"
 
 #: modules/webtag/lib/webtag_blueprint.py:61
 msgid "Your tags"
@@ -13594,6 +13594,13 @@ msgstr "Cualquier Ubicación"
 
 msgid "Any Format"
 msgstr "Cualquier Formato"
+
+msgid "Clear"
+msgstr "Efface"
+
+msgid "Number of results"
+msgstr "Numero de resultados"
+
 
 #~ msgid "Make sure we match the right names!"
 #~ msgstr "¡Asegúrese que los nombres se correspondan!"

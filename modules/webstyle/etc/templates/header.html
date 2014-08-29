@@ -31,6 +31,20 @@
         <a class="brand" href="{{ url_for('search.index', ln=g.ln) }}">
           <img src="{{ url_for('static', filename='img/labordoc-logo.png') }}" alt="{{ config.CFG_SITE_NAME_INTL[g.ln] }}" />
         </a>
+           <div class="span8">
+            <p style="text-align:right; font-size:12px; color:#FFFFFF">
+              {% if config.CFG_LANGUAGE_LABORDOC_LIST %}
+                  {% for (lang, lang_namelong) in config.CFG_LANGUAGE_LABORDOC_LIST %}
+                     {% if request.endpoint == "search.search" %}
+                        &nbsp; <a class="langinfo" style="color:#FFFFFF" ref="{{ url_for('.index', ln=lang) }}"> {{ lang_namelong|safe }}</a>
+                     {% else%}
+                        &nbsp; <a href="?ln={{ lang }}" style="color:#FFFFFF" class="langinfo"> {{ lang_namelong|safe }}</a>
+                     {% endif %}
+                  {% endfor %}
+              {% endif %}
+            </p>
+          </div>
+
         <a class="brand-logo" href="{{ url_for('http://www.ilo.org/global/lang--en/index.htm') }}">
           <img src="{{ url_for('static', filename='img/ILO-logo-Labordoc-small.png') }}" alt="{{ config.CFG_SITE_NAME_INTL[g.ln] }}" />
         </a>
@@ -47,8 +61,8 @@
           {%- for item in config.menubuilder_map.main.children.itervalues()|sort(attribute='order') if item.display() recursive %}
             {%- if item.children -%}
             <li class="dropdown">
-              <a href="{{ url_for(item.url, ln=g.ln) }}" style="display: inline-block; padding-right: 5px;">{{ _(item.title)|safe }}</a>
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="display: inline-block; padding-left: 5px;">
+              <a href="{{ url_for(item.url, ln=g.ln) }}" style="display: inline-block; padding-right: 1px;">{{ _(item.title)|safe }}</a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="display: inline-block; padding-left: 1px; vertical-align: 12px;">
                 <b class="caret"></b>
               </a>
               <ul class="dropdown-menu pull-right">

@@ -6,7 +6,7 @@
 	  {{ bfe_ilo_itemsymbol(bfo) }}
     </div>
 
-	<div class="span9">
+	<div class="span10">
 
       <div id="title">
 	    {{ bfe_ilo_title_with_link(bfo, highlight="no") }}
@@ -40,11 +40,11 @@
 						  		   <div class="positionDetailsBrief">',
 				  		   suffix='</div></div>') }}
 	
-	  {{ bfe_ilo_links(bfo, prefix_en='<div id="links"><div class="formatRecordLabel"> Links </div>
+	  {{ bfe_ilo_links(bfo, prefix_en='<div id="links"><div class="formatRecordLabel"> Text </div>
 						             <div class="positionDetailsBrief">',
-						  prefix_es='<div id="links"><div class="formatRecordLabel"> Enlaces </div>
+						  prefix_es='<div id="links"><div class="formatRecordLabel"> Texto </div>
 						             <div class="positionDetailsBrief">',
-						  prefix_fr='<div id="links"><div class="formatRecordLabel"> Liens </div>
+						  prefix_fr='<div id="links"><div class="formatRecordLabel"> Texte </div>
 						             <div class="positionDetailsBrief">',
 				          suffix='</div></div>',
 				          separator='<br />', default='', show_icons='yes') }}
