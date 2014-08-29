@@ -51,7 +51,7 @@ def format_element(bfo, prefix_en="", prefix_es="",
             out = '. '.join(s_abstract)
  
             if print_extension:
-                out += " " + extension
+                out += ". " + extension
         else:
              out += abstract
 

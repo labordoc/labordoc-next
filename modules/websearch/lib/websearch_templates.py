@@ -3896,7 +3896,7 @@ class Template:
 
         if CFG_BIBRANK_SHOW_READING_STATS and viewsimilarity is not None:
             out += self.tmpl_print_record_list_for_similarity_boxen (
-                _("People who viewed this page also viewed:"), viewsimilarity, ln)
+                _("People who viewed this publication also viewed:"), viewsimilarity, ln)
 
         if CFG_BIBRANK_SHOW_DOWNLOAD_GRAPHS and downloadhistory is not None:
             out += downloadhistory + '<br />'

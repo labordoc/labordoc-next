@@ -749,7 +749,7 @@ def eval_format_element(format_element, bfo, parameters=None, verbose=0):
         except Exception, e:
             name = format_element['attrs']['name']
             try:
-                raise InvenioBibFormatError(_('Error when evaluating format element %s with parameters %s.') % (name, str(params)))
+                raise InvenioBibFormatError(_('Error when evaluating format element %s with parameters %s. Recid: %s') % (name, str(params), str(bfo.recID)))
             except InvenioBibFormatError, exc:
                 register_exception(req=bfo.req)
                 errors.append(exc.message)

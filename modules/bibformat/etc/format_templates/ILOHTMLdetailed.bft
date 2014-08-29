@@ -67,7 +67,7 @@ ISSN
 </td><td style="padding-left:5px;">' suffix="</b></td></tr>"  default=''/>
 
 <BFE_ILO_LINKS prefix='<tr><td class="formatRecordLabel">
-Links
+Text
 </td><td style="padding-left:5px;">' suffix="</b></td></tr>" 
 separator='<br />' default='' show_icons='yes'/>
 

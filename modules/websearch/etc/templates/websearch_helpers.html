@@ -349,6 +349,10 @@
           <button name="action_search" type="submit" class="btn btn-primary">
             <i class="icon-search icon-white"></i> {{ _("Search") }}
           </button>
+          
+          <button name="action_clear" class="btn btn-primary">
+            <span class="hidden-phone">{{ _("Clear") }}</span>
+          </button>
         </div><!-- end modal-footer -->
 
       </div><!-- end span5 -->
@@ -482,6 +486,10 @@
             <i class="icon-search icon-white"></i>
             <span class="hidden-phone">{{ _("Search") }}</span>
           </button>
+
+          <button name="action_clear" class="btn btn-primary">
+            <span class="hidden-phone">{{ _("Clear") }}</span>
+         </button>
           {#
           <span class="help-inline">
             <a href="/help/search-tips">{{ _("Search Tips") }}</a>
@@ -489,8 +497,7 @@
           #}
       </div><!-- searchdropdown -->
     </form> <!-- end Search form -->
-
-   <form action="{{ url_for('search.search', ln=g.ln) }}" name="settings" method="get"
+   <!-- <form action="{{ url_for('search.search', ln=g.ln) }}" name="settings" method="get"
         class="form-inline search-settings" style="margin-left: 3px;">
      <input name="p" value="{{ request.args.get('p','') }}" type="hidden" />
 
@@ -538,7 +545,7 @@
       </div>
 
       {#% if collection.rnkMETHODs|length %#}
-      <!-- div class="control-group clearfix">
+      <div class="control-group clearfix">
         <label class="control-label pull-left">{{ _('Ranking') }}</label>
         <div class="controls pull-right">
           <select name='rm'
@@ -551,10 +558,10 @@
           {% endfor %}
           </select>
         </div>
-      </div--!>
+      </div>
       {#% endif %#}
 
-      <!-- div class="clearfix">
+       div class="clearfix">
         <label class="control-label pull-left">{{ _('Sort by most') }}</label>
         <div class="controls pull-right">
         <div class="btn-group" data-toggle="buttons-radio">
@@ -594,7 +601,7 @@
         </div>
         </div>
         </div>
-        </li--!>
+        </li>
 
         <li class="modal-footer nav-list clearfix">
           {%- if not current_user.is_guest -%}
@@ -615,8 +622,8 @@
           </button>
         </li>
       </ul>
-    </div> <!-- settingsdropdown --!>
-  </form>
+    </div>
+  </form>-->
 
   </div><!-- end span12 -->
  </div><!-- end row -->
@@ -639,10 +646,15 @@
   <script>
   $(function () {
 
+    $('[name=action_clear]').click(function(){
+      $('[name=p]').val('');
+      event.preventDefault();
+    }); 
+
     $("form[name=search]").submit(function() {
       $('.donothide').remove();
       return true; // ensure form still submits
-    })
+    });
 
     $('#settingsdropdown select[name="of"]').buttonSelect({
       button: '<div class="btn btn-mini" />'

@@ -38,20 +38,6 @@
 	      {{ _("Last updated") }}: {{ lastupdated|invenio_format_date }}
 	  {% endif %}
 	  </div>
-	  <div class="span6">
-	    <p style="text-align: right">
-	      {% if config.CFG_LANGUAGE_LABORDOC_LIST %}
-	          {{ _("This site is also available in the following languages:") }} <br />
-	          {% for (lang, lang_namelong) in config.CFG_LANGUAGE_LABORDOC_LIST %}
-	             {% if request.endpoint == "search.search" %}
-	                &nbsp; <a class="langinfo" href="{{ url_for('.index', ln=lang) }}"> {{ lang_namelong|safe }}</a>
-	             {% else%}
-	                &nbsp; <a href="?ln={{ lang }}" class="langinfo"> {{ lang_namelong|safe }}</a>
-	             {% endif %}
-	          {% endfor %}
-	      {% endif %}
-	    </p>
-	  </div>
     </div>
     <!-- replaced page footer -->
   </div> <!-- containter -->

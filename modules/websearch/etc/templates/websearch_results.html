@@ -75,13 +75,12 @@
       <form class="clearfix form-horizontal" name="" action="{{ url_for('search.dispatch') }}" method="post">
         <span class="btn-group">
           <span onclick="$('[name=recid]').prop('checked', function() {return !$(this).prop('checked')});"
-                class="btn">
-            <i class="icon icon-check"
-               rel="tooltip"
-               title="{{ _('Toggle all') }}"></i>
+                class="btn" style="padding: 0px;border: 0px; height: 13px;">
+              <input type="checkbox" style="margin:0px;"
+                     title="{{ _('Toggle all') }}">
           </span>
           {% if current_user.precached_usebaskets %}
-          <button name="action" value="addtobasket" class="btn">
+          <button name="action" value="addtobasket" class="btn" style="left:10px;">
             <i class="icon icon-bookmark"
                rel="tooltip"
                title="{{ _('Add to basket') }}"></i>
@@ -89,7 +88,7 @@
           </button>
           {% endif %}
         </span>
-        <p class="help-inline hidden-phone">
+        <p class="help-inline hidden-phone" style="padding-left:10px">
           {%- set r_from = (pagination.page-1)*pagination.per_page+1 -%}
           {%- set r_to = pagination.page*pagination.per_page -%}
           {%- set r_of = recids|length -%}
@@ -149,7 +148,7 @@
             <span class="caret"></span>
           </span>
           <ul class="dropdown-menu">
-          {%- for i in collection.formatoptions if i.content_type == 'text/html' and i.visibility == 1 -%}
+          {%- for i in collection.formatoptions if i.content_type == 'text/html' -%}
             {%- set used_args = new_args.copy() -%}
             {%- do used_args.update({'of':i.code}) -%}
             <li><a
@@ -158,6 +157,27 @@
               <i class="pull-right icon {{ ' icon-ok' if of==i.code }}"></i>
               {{ i.name }}
             </a></li>
+          {%- endfor -%}
+          </ul>
+        </div>
+
+      <div class="btn-group pull-right" style="margin-right: 10px;">
+         <span class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+            <i class="icon-th"></i> {{ _('Number of results') }}
+            <span class="caret"></span>
+         </span>
+         <ul class="dropdown-menu"> 
+          {%- for i in [10, 25, 50, 100, 150] -%}
+          {%- if i <= config.CFG_WEBSEARCH_MAX_RECORDS_IN_GROUPS -%}
+            {%- set used_args = new_args.copy() -%}
+            {%- do used_args.update({'rg':i}) -%}
+            <li><a
+               href="{{ url_for('search.search', **used_args) }}{{ '#'+request.form.get('rg','')|default('', true) }}"
+               class="{{ ' active' if active }}">
+              <i class="pull-right icon {{ ' icon-ok' if rg==i }}"></i>
+              {{ i|string() + ' results' }}
+            </a></li>  
+          {%- endif -%}
           {%- endfor -%}
           </ul>
         </div>
@@ -188,13 +208,12 @@
           <div class="span10">
             <span class="pull-left btn-group clearfix">
             <span onclick="$('[name=recid]').prop('checked', function() {return !$(this).prop('checked')});"
-                  class="btn">
-              <i class="icon icon-check"
-                 rel="tooltip"
-                 title="{{ _('Toggle all') }}"></i>
+                  class="btn" style="padding: 0px;border: 0px; height: 13px;">
+              <input type="checkbox" style="margin:0px;"
+                     title="{{ _('Toggle all') }}">
             </span>
             {% if current_user.precached_usebaskets %}
-            <button name="action" value="addtobasket" class="btn">
+            <button name="action" value="addtobasket" class="btn" style="left:10px;">
               <i class="icon icon-bookmark"
                  rel="tooltip"
                  title="{{ _('Add to basket') }}"></i>
@@ -218,6 +237,24 @@
             {{ render_search_pagination(pagination) }}
           </div>
         </div>
+        <div>
+           {% if 'search?' in request.url %}
+           <a name="googlebox"></a>
+           <table class="googlebox">
+            <tr>
+                <th class="googleboxheader">{{ _('Interested in being notified about new results for this query?') }}</th>
+            </tr>
+            <tr><td class="googleboxbody">{{_('Subscribe to the ')}}
+                <a href="http://mango.ilo.org/">
+                   <img src="http://mango.ilo.org/img/feed-icon-12x12.gif" border="0" alt="" />
+                </a>
+                <a class="google" href="{{request.url.replace('/search?', '/rss?').encode('utf-8')}}">{{_('RSS feed')}}
+                </a>
+                </td>
+            </tr>
+           </table>
+        </div>
+           {% endif %}
       </form>
 
   {% for category, msg in get_flashed_messages(with_categories=True, category_filter=['search-results-after']) %}

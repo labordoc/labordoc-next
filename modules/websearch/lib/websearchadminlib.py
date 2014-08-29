@@ -3395,7 +3395,7 @@ def get_detailed_page_tabs(colID=None, recID=None, ln=CFG_SITE_LANG):
             'references': {'label': _('References'),       'visible': False, 'enabled': False, 'order': 2},
             'citations' : {'label': _('Citations'),        'visible': False, 'enabled': False, 'order': 3},
             'keywords'  : {'label': _('Keywords'),         'visible': False, 'enabled': False, 'order': 4},
-            'comments'  : {'label': _('Comments'),         'visible': False, 'enabled': True, 'order': 5},
+            'comments'  : {'label': _('Comments'),         'visible': False, 'enabled': False, 'order': 5},
             'reviews'   : {'label': _('Reviews'),          'visible': False, 'enabled': False, 'order': 6},
             'usage'     : {'label': _('Usage statistics'), 'visible': False, 'enabled': True, 'order': 7},
             'files'     : {'label': _('Files'),            'visible': False, 'enabled': False, 'order': 8},

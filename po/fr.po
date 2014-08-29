@@ -5949,8 +5949,8 @@ msgid "People who downloaded this document also downloaded:"
 msgstr "Les utilisateurs qui ont téléchargé ce document ont aussi téléchargé:"
 
 #: modules/websearch/lib/websearch_templates.py:3902
-msgid "People who viewed this page also viewed:"
-msgstr "Les utilisateurs qui ont vu cette page ont aussi vu:"
+msgid "People who viewed this publication also viewed:"
+msgstr "Les utilisateurs qui ont vu cette publication ont aussi vu:"
 
 #: modules/websearch/lib/websearch_templates.py:3956
 #, python-format
@@ -13641,6 +13641,11 @@ msgstr "Toutes Lieux"
 msgid "Any Format"
 msgstr "Tous Formats"
 
+msgid "Clear"
+msgstr "Efface"
+
+msgid "Number of results"
+msgstr "Nombre de résultats"
 
 #~ msgid "This book is sent to you ..."
 #~ msgstr "Ce livre vous a été envoyé..."
